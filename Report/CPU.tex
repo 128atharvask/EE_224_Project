@@ -48,7 +48,7 @@
                 \hline
                 PC $\to$ ALU\_A & PC\_E\\
                 +1 $\to$ ALU\_B & ALU\_J\\
-                ALU\_CND <= 11 & \\
+                ALU\_CND $\leftarrow$ 11 & \\
                 ALU\_S $\to$ PC &\\
                 \hline
             \end{tabular}
@@ -115,7 +115,7 @@
                 T2 $\to$ ALU\_A & ALU\_J\\
                 T3 $\to$ ALU\_B & T2\_E\\
                 ALU\_C $\to$ SE\_2 $\to$ T2 & \\
-                ALU\_CND <=  & \\ %SHREYAS LA VICHARU
+                ALU\_CND $\leftarrow$  00& \\
                 \hline
             \end{tabular}
         \end{center}
@@ -127,7 +127,7 @@
                 \hline
                 PC $\to$ ALU\_A & ALU\_J\\
                 $T1 \to$ SE\_10 $\to$ ALU\_B & PC\_E\\
-                ALU\_CND <= 11 & \\
+                ALU\_CND $\leftarrow$ 11 & \\
                 if($T2_0$ == 0) then ALU\_C $\to$ PC & \\
                 else PC $\to$ PC & \\
                 \hline
@@ -152,7 +152,7 @@
                 \hline
                 PC $\to$ ALU\_A & ALU\_J\\
                 $T1_{8-0} \to$ SE\_9 $\to$ ALU\_B & \\
-                ALU\_CND <= 11 & \\
+                ALU\_CND $\leftarrow$ 11 & \\
                 ALU\_S $\to$ PC & \\
                 \hline
             \end{tabular}
@@ -357,9 +357,12 @@
         \begin{center}
             \begin{tabular}{|c|c|c|}
                 \hline
-                Instruction & State flow & Control Signals \\
+                Instruction & State flow & Control \\
                 \hline
-                ADD & \\
+                ADD & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
+                ADC & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
+                ADZ & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
+                ADI & $S_0 \to S_1 \to S_5 \to S_3 \to S_4$\\
                 \hline
             \end{tabular}
         \end{center} 
