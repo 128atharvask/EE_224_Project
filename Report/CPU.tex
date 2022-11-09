@@ -47,8 +47,9 @@
                 Data Transfer & Commands \\
                 \hline
                 PC $\to$ ALU\_A & PC\_E\\
-                +2 $\to$ ALU\_B & ADD\\  %to be decided
-                ALU\_S $\to$ PC & \\
+                +1 $\to$ ALU\_B & ALU\_J\\
+                ALU\_CND <= 11 & \\
+                ALU\_S $\to$ PC &\\
                 \hline
             \end{tabular}
         \end{center}
@@ -65,16 +66,17 @@
                 \hline
             \end{tabular}
         \end{center}
-        \subsection*{$S_3$ (Executing ADD)}
+        \subsection*{$S_3$ (Execution)} % can execute ADD, SUB, NAND
         \begin{center}
             \begin{tabular}{|c|c|}
                 \hline
                 Data Transfer & Commands \\
                 \hline
                 T2 $\to$ ALU\_A & T2\_E\\
-                T3 $\to$ ALU\_B & ADD\\
-                ALU\_S $\to$ T2 & FC\_E\\
-                ALU\_C $\to$ FC & FZ\_E\\
+                T3 $\to$ ALU\_B & ALU\_J\\
+                $T1_{1-0} \to$ ALU\_CND & \\
+                ALU\_S $\to$ T2 & \\
+                ALU\_C $\to$ FC & \\
                 ALU\_Z $\to$ FZ & \\
                 \hline
             \end{tabular}
@@ -110,9 +112,10 @@
                 \hline
                 Data Transfer & Commands \\
                 \hline
-                T2 $\to$ ALU\_A & SUB\\
+                T2 $\to$ ALU\_A & ALU\_J\\
                 T3 $\to$ ALU\_B & T2\_E\\
                 ALU\_C $\to$ SE\_2 $\to$ T2 & \\
+                ALU\_CND <=  & \\ %SHREYAS LA VICHARU
                 \hline
             \end{tabular}
         \end{center}
@@ -122,8 +125,9 @@
                 \hline
                 Data Transfer & Commands \\
                 \hline
-                PC $\to$ ALU\_A & ADD\\
+                PC $\to$ ALU\_A & ALU\_J\\
                 $T1 \to$ SE\_10 $\to$ ALU\_B & PC\_E\\
+                ALU\_CND <= 11 & \\
                 if($T2_0$ == 0) then ALU\_C $\to$ PC & \\
                 else PC $\to$ PC & \\
                 \hline
@@ -146,8 +150,9 @@
                 \hline
                 Data Transfer & Commands \\
                 \hline
-                PC $\to$ ALU\_A & ADD\\
+                PC $\to$ ALU\_A & ALU\_J\\
                 $T1_{8-0} \to$ SE\_9 $\to$ ALU\_B & \\
+                ALU\_CND <= 11 & \\
                 ALU\_S $\to$ PC & \\
                 \hline
             \end{tabular}
@@ -187,27 +192,13 @@
         \end{center}
         %Harshit's instructions end here
 
-        \subsection*{$S_{13}$ (Executing NAND)} %NDU, NDC, NDZ by Shreyas
-        \begin{center}
-            \begin{tabular}{|c|c|}
-                \hline
-                Data Transfer & Commands \\
-                \hline
-                T2 $\to$ ALU\_A & T2\_E\\
-                T3 $\to$ ALU\_B & NAND\\
-                ALU\_S $\to$ T2 & FC\_E\\
-                ALU\_Z $\to$ FZ & \\
-                \hline
-            \end{tabular}
-        \end{center}
-
         \subsection*{$S_{14}$ (Computing address of the memory destination)} %SW by Varad
         \begin{center}
             \begin{tabular}{|c|c|}
                 \hline
                 Data Transfer & Commands \\
                 \hline
-                T3 $\to$ ALU\_A & ADD\\
+                T3 $\to$ ALU\_A & ALU\_CND\\
                 $T1_{5-0} \to$ SE\_16 $\to$ ALU\_B & T3\_E\\
                 ALU\_C $\to$ T3 & \\
                 \hline
@@ -230,7 +221,7 @@
                 \hline
                 Data Transfer & Commands \\
                 \hline
-                T3 $\to$ ALU\_A & ADD\\
+                T3 $\to$ ALU\_A & ALU\_CND\\
                 $T1_{5-0} \to$ SE\_16 $\to$ ALU\_B & T3\_E\\
                 ALU\_C $\to$ T3 & ALU\_CND\\ % explain separately
                 \hline
@@ -362,4 +353,15 @@
                 \end{tabular}
             \end{center} 
             %Varad's instructions end here
+    \section*{Instructions with their State Diagrams and Control Signals}
+        \begin{center}
+            \begin{tabular}{|c|c|c|}
+                \hline
+                Instruction & State flow & Control Signals \\
+                \hline
+                ADD & \\
+                \hline
+            \end{tabular}
+        \end{center} 
+
 \end{document}
