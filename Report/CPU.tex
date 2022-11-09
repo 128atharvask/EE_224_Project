@@ -1,0 +1,365 @@
+\documentclass[]{article}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{esint}
+\usepackage[parfill]{parskip}
+\usepackage{hyperref}
+\usepackage{floatrow}
+\usepackage{mwe}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{biblatex}
+
+\title{EE 224 Course Project : CPU}
+
+\author{Atharva Kulkarni(210070047) \\Harshit Raj(20d070033) \\
+ Shreyas Grampurohit(21d070029) \\ Varad Deshpande(21d070024)}
+
+\date{9 Nov 2022}
+
+\begin{document}
+
+\maketitle
+
+% remember to mention that PC eqt to R7
+    \section*{State Descriptions}
+        \subsection*{$S_0$ (Fetching instruction from memory)}  % can be merged with S1
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    PC $\to$ M\_add & MDR\\
+                        M\_data $\to$ T1& T1\_E\\
+                    \hline
+                \end{tabular}
+            \end{center}
+        \subsection*{$S_1$ (Updating PC)}   % +1 or +2
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                PC $\to$ ALU\_A & PC\_E\\
+                +2 $\to$ ALU\_B & ADD\\  %to be decided
+                ALU\_S $\to$ PC & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_2$ (Reading operands)}
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                $T1_{11-9} \to$ RF\_A1  & T2\_E\\
+                $T1_{8-6} \to$ RF\_A2 & T3\_E\\
+                RF\_D1 $\to$ T2 & \\
+                RF\_D2 $\to$ T3 & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_3$ (Executing ADD)}
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                T2 $\to$ ALU\_A & T2\_E\\
+                T3 $\to$ ALU\_B & ADD\\
+                ALU\_S $\to$ T2 & FC\_E\\
+                ALU\_C $\to$ FC & FZ\_E\\
+                ALU\_Z $\to$ FZ & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_4$ (Storing the output)}
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                T2 $\to$ RF\_D3 & RF\_WE\\
+                $T1_{5-3}$ $\to$ RF\_A3 & \\                
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_5$ (Reading operands (for ADI))}
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                $T1_{11-9} \to$ RF\_A1  & T2\_E\\
+                RF\_D1 $\to$ T2 & T3\_E\\
+                $T1_{5-0} \to$ SE\_6 $\to$ T3 & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        % states for Atharva's instructions till here
+
+        \subsection*{$S_6$ (Checking whether the two operands are equal, and storing zero flag into T2 (without changing FZ))} %BEQ by Harshit
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                T2 $\to$ ALU\_A & SUB\\
+                T3 $\to$ ALU\_B & T2\_E\\
+                ALU\_C $\to$ SE\_2 $\to$ T2 & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_7$ (Updating PC if BEQ)} %BEQ by Harshit
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                PC $\to$ ALU\_A & ADD\\
+                $T1 \to$ SE\_10 $\to$ ALU\_B & PC\_E\\
+                if($T2_0$ == 0) then ALU\_C $\to$ PC & \\
+                else PC $\to$ PC & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_8$ (Storing PC into REG\_A)} %JAL by Harshit
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                $T1_{11-9}$ $\to$ RF\_A3 & RF\_WE\\
+                PC $\to$ RF\_D3 & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_9$ (Branching PC to the address PC + immediate)} %JAL by Harshit
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                PC $\to$ ALU\_A & ADD\\
+                $T1_{8-0} \to$ SE\_9 $\to$ ALU\_B & \\
+                ALU\_S $\to$ PC & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_{10}$ (Branching PC to the address in REG\_B)} %JLR by Harshit
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                $T1_{8-6} \to$ RF\_A1 & PC\_E\\
+                RF\_D1 $\to$ PC & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_{11}$ (Executing Load Higher Immediate)} %LHI by Harshit
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                $T1_{11-9} \to$ RF\_A3 & RF\_WE\\
+                $T1_{11-9} \to$ PZ\_7 $\to$ RF\_D3 & \\   %PZ = pad zeros
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_{12}$ (Executing Load Higher Immediate)} %LHI by Harshit
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                $T1_{11-9} \to$ RF\_A3 & RF\_WE\\
+                $T1_{11-9} \to$ PZ\_7 $\to$ RF\_D3 & \\   %PZ = pad zeros
+                \hline
+            \end{tabular}
+        \end{center}
+        %Harshit's instructions end here
+
+        \subsection*{$S_{13}$ (Executing NAND)} %NDU, NDC, NDZ by Shreyas
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                T2 $\to$ ALU\_A & T2\_E\\
+                T3 $\to$ ALU\_B & NAND\\
+                ALU\_S $\to$ T2 & FC\_E\\
+                ALU\_Z $\to$ FZ & \\
+                \hline
+            \end{tabular}
+        \end{center}
+
+        \subsection*{$S_{14}$ (Computing address of the memory destination)} %SW by Varad
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                T3 $\to$ ALU\_A & ADD\\
+                $T1_{5-0} \to$ SE\_16 $\to$ ALU\_B & T3\_E\\
+                ALU\_C $\to$ T3 & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_{15}$ (Writing to the memory)} %SW by Varad
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                T3 $\to$ M\_add & MWR\\
+                T2 $\to$ M\_data & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_{16}$ (Computing address of the memory destination)} %LW by Varad
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                T3 $\to$ ALU\_A & ADD\\
+                $T1_{5-0} \to$ SE\_16 $\to$ ALU\_B & T3\_E\\
+                ALU\_C $\to$ T3 & ALU\_CND\\ % explain separately
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_{17}$ (Reading from memory)} %LW by Varad
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                T3 $\to$ M\_add & MDR\\
+                T2 $\to$ M\_data & T2\_E\\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_{18}$ (Writing to the register)} %LW by Varad
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    $T1_{11-9} \to$ RF\_A3 & RF\_WE\\
+                    T2 $\to$ RF\_D3 & \\
+                    \hline
+                \end{tabular}
+            \end{center}
+
+            \subsection*{$S_{19}$ (Initial step of SM)} %SM by Varad
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    (0000000000000000) $\to$ T2 & T2\_WE\\
+                    $T1_{11-9} \to$ RF\_A2 & T3\_E\\
+                    RF\_D2 $\to$ T3 & \\
+                    \hline
+                \end{tabular}
+            \end{center}            
+            \subsection*{$S_{20}$ (Looping step 1 of SM)} %SM by Varad
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    counter := int($T2_{2-0}$) & MWR\\
+                    if($T1_{counter}$==1) then T3 $\to$ & \\
+                    RF\_D1 $\to$ M\_data & \\ %if statement ends
+                    $T2_{2-0}$ $\to$ RF\_A1 & \\
+                    \hline
+                \end{tabular}
+            \end{center} 
+            \subsection*{$S_{21}$ (Looping step 2 of SM)} %SM by Varad
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    T3 $\to$ ALU\_A & T3\_E\\
+                    1 $\to$ ALU\_B & ADD\\
+                    if($T1_{counter}$==1) then ALU\_C $\to$ T3 & \\
+                    \hline
+                \end{tabular}
+            \end{center} 
+            \subsection*{$S_{22}$ (Looping step 3 of SM)} %SM by Varad
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    T2 $\to$ ALU\_A & ADD\\
+                    1 $\to$ ALU\_B & T2\_E\\
+                    ALU\_C $\to$ T2 & \\
+                    \hline
+                \end{tabular}
+            \end{center} 
+
+            \subsection*{$S_{23}$ (Initial step of LM)} %LM by Varad
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    (0000000000000000) $\to$ T2 & T2\_WE\\
+                    $T1_{11-9} \to$ RF\_A2 & T3\_E\\
+                    RF\_D3 $\to$ T3 & \\     %only diff b/w this and SM's 1st step is D3 vs D2
+                    \hline
+                \end{tabular}
+            \end{center}    
+
+            \subsection*{$S_{24}$ (Looping step 1 of LM)} %LM by Varad --not sure
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    counter := int($T2_{2-0}$) & MDR\\
+                    %if($T1_counter$==1) then T3 $\to$ & \\
+                    $T1_{counter}$ $\to$ RF\_WR & MDR \\
+                    T3 $\to$ M\_add & \\
+                    M\_data $\to$ RF\_D3 & \\
+                    $T2_{2-0}$ $\to$ RF\_A3 & \\
+                    \hline
+                \end{tabular}
+            \end{center} 
+            \subsection*{$S_{25}$ (Looping step 2 of LM)} %LM by Varad
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    T3 $\to$ ALU\_A & T3\_E\\
+                    1 $\to$ ALU\_B & ADD\\
+                    if($T1_{counter}$==1) then ALU\_C $\to$ T3 & \\
+                    \hline
+                \end{tabular}
+            \end{center} 
+            \subsection*{$S_{26}$ (Looping step 3 of LM)} %LM by Varad
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    T2 $\to$ ALU\_A & ADD\\
+                    1 $\to$ ALU\_B & T2\_E\\        %here 1 must be mentioned as a bit ig
+                    ALU\_C $\to$ T2 & \\
+                    \hline
+                \end{tabular}
+            \end{center} 
+            %Varad's instructions end here
+\end{document}
