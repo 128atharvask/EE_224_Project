@@ -47,7 +47,7 @@
                 Data Transfer & Commands \\
                 \hline
                 PC $\to$ ALU\_A & PC\_E\\
-                +1 $\to$ ALU\_B & ALU\_J\\
+                +1 $\to$ ALU\_B & ALU\_J $\leftarrow$ 00\\
                 ALU\_CND $\leftarrow$ 11 & \\
                 ALU\_S $\to$ PC &\\
                 \hline
@@ -73,8 +73,8 @@
                 Data Transfer & Commands \\
                 \hline
                 T2 $\to$ ALU\_A & T2\_E\\
-                T3 $\to$ ALU\_B & ALU\_J\\
-                $T1_{1-0} \to$ ALU\_CND & \\
+                T3 $\to$ ALU\_B & ALU\_J $\leftarrow$ $T1_{14-13}$\\
+                $T1_{1-0} \to $ ALU\_CND & \\
                 ALU\_S $\to$ T2 & \\
                 ALU\_C $\to$ FC & \\
                 ALU\_Z $\to$ FZ & \\
@@ -87,7 +87,7 @@
                 \hline
                 Data Transfer & Commands \\
                 \hline
-                T2 $\to$ RF\_D3 & RF\_WE\\
+                T2 $\to$ RF\_D3 & RF\_WR\\
                 $T1_{5-3}$ $\to$ RF\_A3 & \\                
                 \hline
             \end{tabular}
@@ -112,10 +112,11 @@
                 \hline
                 Data Transfer & Commands \\
                 \hline
-                T2 $\to$ ALU\_A & ALU\_J\\
+                T2 $\to$ ALU\_A & ALU\_J $\leftarrow$ 11\\
                 T3 $\to$ ALU\_B & T2\_E\\
-                ALU\_C $\to$ SE\_2 $\to$ T2 & \\
-                ALU\_CND $\leftarrow$  00& \\
+                ALU\_Z $\to$ SE\_1 $\to$ T2 & \\
+                ALU\_C $\to$ FC & \\
+                ALU\_CND $\leftarrow$ 00& \\
                 \hline
             \end{tabular}
         \end{center}
@@ -125,11 +126,11 @@
                 \hline
                 Data Transfer & Commands \\
                 \hline
-                PC $\to$ ALU\_A & ALU\_J\\
-                $T1 \to$ SE\_10 $\to$ ALU\_B & PC\_E\\
+                PC $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
+                if($T2_0$ == 0) then +1 $\to$ ALU\_B & PC\_E\\
+                else $T1 \to$ SE\_10 $\to$ ALU\_B & \\
                 ALU\_CND $\leftarrow$ 11 & \\
-                if($T2_0$ == 0) then ALU\_C $\to$ PC & \\
-                else PC $\to$ PC & \\
+                ALU\_S $\to$ PC & \\
                 \hline
             \end{tabular}
         \end{center}
@@ -139,7 +140,7 @@
                 \hline
                 Data Transfer & Commands \\
                 \hline
-                $T1_{11-9}$ $\to$ RF\_A3 & RF\_WE\\
+                $T1_{11-9}$ $\to$ RF\_A3 & RF\_WR\\
                 PC $\to$ RF\_D3 & \\
                 \hline
             \end{tabular}
@@ -174,37 +175,26 @@
                 \hline
                 Data Transfer & Commands \\
                 \hline
-                $T1_{11-9} \to$ RF\_A3 & RF\_WE\\
-                $T1_{11-9} \to$ PZ\_7 $\to$ RF\_D3 & \\   %PZ = pad zeros
-                \hline
-            \end{tabular}
-        \end{center}
-        \subsection*{$S_{12}$ (Executing Load Higher Immediate)} %LHI by Harshit
-        \begin{center}
-            \begin{tabular}{|c|c|}
-                \hline
-                Data Transfer & Commands \\
-                \hline
-                $T1_{11-9} \to$ RF\_A3 & RF\_WE\\
+                $T1_{11-9} \to$ RF\_A3 & RF\_WR\\
                 $T1_{11-9} \to$ PZ\_7 $\to$ RF\_D3 & \\   %PZ = pad zeros
                 \hline
             \end{tabular}
         \end{center}
         %Harshit's instructions end here
 
-        \subsection*{$S_{14}$ (Computing address of the memory destination)} %SW by Varad
+        \subsection*{$S_{12}$ (Computing address of the memory destination)} %LW by Varad
         \begin{center}
             \begin{tabular}{|c|c|}
                 \hline
                 Data Transfer & Commands \\
                 \hline
-                T3 $\to$ ALU\_A & ALU\_CND\\
+                T3 $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
                 $T1_{5-0} \to$ SE\_16 $\to$ ALU\_B & T3\_E\\
-                ALU\_C $\to$ T3 & \\
+                ALU\_S $\to$ T3 & \\
                 \hline
             \end{tabular}
         \end{center}
-        \subsection*{$S_{15}$ (Writing to the memory)} %SW by Varad
+        \subsection*{$S_{13}$ (Writing to the memory)} %SW by Varad
         \begin{center}
             \begin{tabular}{|c|c|}
                 \hline
@@ -215,105 +205,85 @@
                 \hline
             \end{tabular}
         \end{center}
-        \subsection*{$S_{16}$ (Computing address of the memory destination)} %LW by Varad
-        \begin{center}
-            \begin{tabular}{|c|c|}
-                \hline
-                Data Transfer & Commands \\
-                \hline
-                T3 $\to$ ALU\_A & ALU\_CND\\
-                $T1_{5-0} \to$ SE\_16 $\to$ ALU\_B & T3\_E\\
-                ALU\_C $\to$ T3 & ALU\_CND\\ % explain separately
-                \hline
-            \end{tabular}
-        \end{center}
-        \subsection*{$S_{17}$ (Reading from memory)} %LW by Varad
+        \subsection*{$S_{14}$ (Reading from memory)} %LW by Varad
         \begin{center}
             \begin{tabular}{|c|c|}
                 \hline
                 Data Transfer & Commands \\
                 \hline
                 T3 $\to$ M\_add & MDR\\
-                T2 $\to$ M\_data & T2\_E\\
+                M\_data $\to$ T2 & T2\_E\\
                 \hline
             \end{tabular}
         \end{center}
-        \subsection*{$S_{18}$ (Writing to the register)} %LW by Varad
+        \subsection*{$S_{15}$ (Writing to the register)} %LW by Varad
             \begin{center}
                 \begin{tabular}{|c|c|}
                     \hline
                     Data Transfer & Commands \\
                     \hline
-                    $T1_{11-9} \to$ RF\_A3 & RF\_WE\\
+                    $T1_{11-9} \to$ RF\_A3 & RF\_WR\\
                     T2 $\to$ RF\_D3 & \\
                     \hline
                 \end{tabular}
             \end{center}
 
-            \subsection*{$S_{19}$ (Initial step of SM)} %SM by Varad
+            \subsection*{$S_{16}$ (Initial step of SM)} %SM by Varad
             \begin{center}
                 \begin{tabular}{|c|c|}
                     \hline
                     Data Transfer & Commands \\
                     \hline
-                    (0000000000000000) $\to$ T2 & T2\_WE\\
+                    (0000000000000000) $\to$ T2 & T2\_E\\
                     $T1_{11-9} \to$ RF\_A2 & T3\_E\\
                     RF\_D2 $\to$ T3 & \\
                     \hline
                 \end{tabular}
             \end{center}            
-            \subsection*{$S_{20}$ (Looping step 1 of SM)} %SM by Varad
+            \subsection*{$S_{17}$ (Looping step 1 of SM)} %SM by Varad
             \begin{center}
                 \begin{tabular}{|c|c|}
                     \hline
                     Data Transfer & Commands \\
                     \hline
                     counter := int($T2_{2-0}$) & MWR\\
-                    if($T1_{counter}$==1) then T3 $\to$ & \\
-                    RF\_D1 $\to$ M\_data & \\ %if statement ends
-                    $T2_{2-0}$ $\to$ RF\_A1 & \\
-                    \hline
-                \end{tabular}
-            \end{center} 
-            \subsection*{$S_{21}$ (Looping step 2 of SM)} %SM by Varad
-            \begin{center}
-                \begin{tabular}{|c|c|}
-                    \hline
-                    Data Transfer & Commands \\
-                    \hline
                     T3 $\to$ ALU\_A & T3\_E\\
-                    1 $\to$ ALU\_B & ADD\\
-                    if($T1_{counter}$==1) then ALU\_C $\to$ T3 & \\
+                    1 $\to$ ALU\_B & ALU\_J $\leftarrow$ 00\\
+                    if($T1_{counter}$==1) then & \\
+                    \{T3 $\to$ M\_add& \\
+                    $T2_{2-0}$ $\to$ RF\_A1 & \\
+                    RF\_D1 $\to$ M\_data\ & \\
+                    ALU\_S $\to$ T3 \} & \\ 
                     \hline
                 \end{tabular}
             \end{center} 
-            \subsection*{$S_{22}$ (Looping step 3 of SM)} %SM by Varad
+            \subsection*{$S_{19}$ (Looping step 3 of SM)} %SM by Varad
             \begin{center}
                 \begin{tabular}{|c|c|}
                     \hline
                     Data Transfer & Commands \\
                     \hline
-                    T2 $\to$ ALU\_A & ADD\\
+                    T2 $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
                     1 $\to$ ALU\_B & T2\_E\\
                     ALU\_C $\to$ T2 & \\
                     \hline
                 \end{tabular}
             \end{center} 
 
-            \subsection*{$S_{23}$ (Initial step of LM)} %LM by Varad
+            \subsection*{$S_{20}$ (Initial step of LM)} %LM by Varad
             \begin{center}
                 \begin{tabular}{|c|c|}
                     \hline
                     Data Transfer & Commands \\
                     \hline
-                    (0000000000000000) $\to$ T2 & T2\_WE\\
+                    (0000000000000000) $\to$ T2 & T2\_E\\
                     $T1_{11-9} \to$ RF\_A2 & T3\_E\\
                     RF\_D3 $\to$ T3 & \\     %only diff b/w this and SM's 1st step is D3 vs D2
                     \hline
                 \end{tabular}
             \end{center}    
 
-            \subsection*{$S_{24}$ (Looping step 1 of LM)} %LM by Varad --not sure
+            \subsection*{$S_{21}$ (Looping step 1 of LM)} %LM by Varad --not sure
             \begin{center}
                 \begin{tabular}{|c|c|}
                     \hline
@@ -321,32 +291,32 @@
                     \hline
                     counter := int($T2_{2-0}$) & MDR\\
                     %if($T1_counter$==1) then T3 $\to$ & \\
-                    $T1_{counter}$ $\to$ RF\_WR & MDR \\
-                    T3 $\to$ M\_add & \\
+                    $T1_{counter}$ $\to$ RF\_WR & \\
+                    T3 $\to$ M\_ALU\_J $\leftarrow$ 00 & \\
                     M\_data $\to$ RF\_D3 & \\
                     $T2_{2-0}$ $\to$ RF\_A3 & \\
                     \hline
                 \end{tabular}
             \end{center} 
-            \subsection*{$S_{25}$ (Looping step 2 of LM)} %LM by Varad
+            \subsection*{$S_{22}$ (Looping step 2 of LM)} %LM by Varad
             \begin{center}
                 \begin{tabular}{|c|c|}
                     \hline
                     Data Transfer & Commands \\
                     \hline
                     T3 $\to$ ALU\_A & T3\_E\\
-                    1 $\to$ ALU\_B & ADD\\
+                    1 $\to$ ALU\_B & ALU\_J $\leftarrow$ 00\\
                     if($T1_{counter}$==1) then ALU\_C $\to$ T3 & \\
                     \hline
                 \end{tabular}
             \end{center} 
-            \subsection*{$S_{26}$ (Looping step 3 of LM)} %LM by Varad
+            \subsection*{$S_{23}$ (Looping step 3 of LM)} %LM by Varad
             \begin{center}
                 \begin{tabular}{|c|c|}
                     \hline
                     Data Transfer & Commands \\
                     \hline
-                    T2 $\to$ ALU\_A & ADD\\
+                    T2 $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
                     1 $\to$ ALU\_B & T2\_E\\        %here 1 must be mentioned as a bit ig
                     ALU\_C $\to$ T2 & \\
                     \hline
@@ -355,14 +325,34 @@
             %Varad's instructions end here
     \section*{Instructions with their State Diagrams and Control Signals}
         \begin{center}
-            \begin{tabular}{|c|c|c|}
+            \begin{tabular}{|c|c|}
                 \hline
-                Instruction & State flow & Control \\
+                Instruction & State flow\\
                 \hline
                 ADD & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
                 ADC & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
                 ADZ & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
                 ADI & $S_0 \to S_1 \to S_5 \to S_3 \to S_4$\\
+                NDU & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
+                NDC & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
+                NDZ & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
+                LHI & $S_0 \to S_1 \to S_{11}$\\
+                LW & $S_0 \to S_1 \to S_2 \to S_{13} \to S_{15} \to S_{16}$\\
+                SW & $S_0 \to S_1 \to S_2 \to S_{13} \to S_{14}$\\
+                & \\
+                & \\
+                & \\
+                SM & $S_0 \to S_1 \to S_{16} \to S_{17} \to S_{18} \to S_{19}$\\
+                & \\
+                & \\
+                & \\
+                LM & $S_0 \to S_1 \to S_{20} \to S_{21} \to S_{22} \to S_{23}$\\
+                & \\
+                & \\
+                & \\
+                BEQ & $S_0 \to S_2 \to S_6 \to S_7 \to S_{23}$\\
+                JAL & $S_0 \to S_8 \to S_9$\\
+                JLR & $S_0 \to S_8 \to S_{10}$\\
                 \hline
             \end{tabular}
         \end{center} 
