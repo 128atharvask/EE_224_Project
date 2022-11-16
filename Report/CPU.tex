@@ -1,4 +1,5 @@
-\documentclass[]{article}
+\documentclass[]{report}
+\usepackage[left=0.8in, right=0.8in, top=1in, bottom=1in]{geometry}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{amsmath}
@@ -27,9 +28,81 @@
 \begin{document}
 
 \maketitle
+\section*{ALU:}
+\subsection*{Data-flow}
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics*[width=0.85\textwidth]{ADDNAND.jpg}
+    \end{center}
+\end{figure}
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics*[width=0.85\textwidth]{BEQ+JAL+JLR.jpg}
+        \end{center}
+    \end{figure}
+We have separated data-flow diagrams for ADD, NAND instructions from other instructions for simplicity.
+    \subsection*{Inputs:}
+    ALU\_A: Takes 3-bit input \\
+    ALU\_B: Takes 3-bit input \\
 
+    \subsection*{Registers storing the flags:}
+    FC and FZ \\
+    These are connected to ALU\_C and ALU\_Z respectively.
+
+    \subsection*{Control Signals:}
+    ALU\_J: Takes 2-bit input. This specifies whether to perform addition, subtraction or NAND. \\
+    ALU\_CND: Takes 2-bit input. This is used to find the new values to be updated to FZ and FC(may or may not be the same as the previous values in FZ and FC) based upon ALU\_J(see table). \\
+
+    \subsection*{Outputs:}
+    ALU\_C: Outputs the carry flag to be put in the FZ register at the end of the clock cycle. \\
+    ALU\_Z: Outputs the zero flag to be put in the FZ register at the end of the clock cycle. This may or may not be the same as Z\_int. \\
+    ALU\_S: Outputs sum, NAND, or the difference based on the bits provided in ALU\_J. \\
+    Z\_int: Evaluates to 1 when ALU\_S is zero. Else, it evaluates to 0. \\
+
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        ALU\_J & Function \\
+        \hline
+        00 & Addition \\
+        \hline
+        01 & NAND \\
+        \hline
+        11 & Subtraction \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{|p{0.13\linewidth}|p{0.16\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|}
+    \hline
+    ALU\_J & ALU\_CND & Output from ALU\_C & Output from ALU\_Z  \\
+    \hline
+    00 (Add) & 00 & Modified value of carry flag. & Modified value of zero flag. \\
+    \hline
+    00 (Add) & 10 & Modified value of carry flag if input FC is 1. Same as the previous value in FC if FC is 0. & Modified value of zero flag if input FC is 1. Same as the previous value in FZ if FC is 0. \\
+    \hline
+    00 (Add) & 01 & Modified value of carry flag if input FZ is 1. Same as the previous value in FC if FZ is 0. & Modified value of zero flag if input FZ is 1. Same as the previous value in FZ if FZ is 0 \\
+    \hline
+    00 (Add) & 11 (Used for updating PC) & Same as the previous value in FC. & Same as the previous value in FZ. \\
+    \hline
+    01 (NAND) & 00 & Same as the previous value in FC. & Modified value of zero flag. \\
+    \hline
+    01 (NAND) & 10 & Same as the previous value in FC. & Modified value of zero flag if input FC is 1. Same as the previous value in FZ if FC is 0. \\
+    \hline
+    01 (NAND) & 01 & Same as the previous value in FC. & Modified value of zero flag if input FZ is 1. Same as the previous value in FZ if FZ is 0. \\
+    \hline
+    11 (Subtract) & xx & Same as the previous value in FC. & Same as the previous value in FZ. \\
+    \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\newpage
 % remember to mention that PC eqt to R7
     \section*{State Descriptions}
+        (PC $\equiv$ R7) \\ 
         \subsection*{$S_0$ (Fetching instruction from memory)}  % can be merged with S1
             \begin{center}
                 \begin{tabular}{|c|c|}
@@ -115,8 +188,7 @@
                 \hline
                 T2 $\to$ ALU\_A & ALU\_J $\leftarrow$ 11\\
                 T3 $\to$ ALU\_B & T2\_E\\
-                ALU\_Z $\to$ SE\_1 $\to$ T2 & \\
-                ALU\_C $\to$ FC & \\
+                Z\_int $\to$ SE\_1 $\to$ T2 & \\
                 ALU\_CND $\leftarrow$ 00 & \\
                 \hline
             \end{tabular}
@@ -332,15 +404,9 @@
                 LW & $S_0 \to S_1 \to S_2 \to S_{13} \to S_{15} \to S_{16}$\\
                 SW & $S_0 \to S_1 \to S_2 \to S_{13} \to S_{14}$\\
                 & \\
+                SM & $S_0 \to S_1 \to S_{16} \to S_{17} $  $ S_{18}$\\
                 & \\
-                & \\
-                SM & $S_0 \to S_1 \to S_{16} \to S_{17} \to S_{18}$\\
-                & \\
-                & \\
-                & \\
-                LM & $S_0 \to S_1 \to S_{19} \to S_{20} \to S_{21}$\\
-                & \\
-                & \\
+                LM & $S_0 \to S_1 \to S_{19} \to S_{20} $  $ S_{21}$\\
                 & \\
                 BEQ & $S_0 \to S_2 \to S_6 \to S_7$\\
                 JAL & $S_0 \to S_8 \to S_9$\\
@@ -348,5 +414,14 @@
                 \hline
             \end{tabular}
         \end{center} 
+        \begin{figure}[H]
+            \begin{center}
+                \includegraphics*[width=0.8\textwidth]{StateDiagram.jpg}
+                \caption{State Transition Diagram}
+            \end{center}
+        \end{figure}
+            
+
+
 
 \end{document}
