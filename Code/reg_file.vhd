@@ -25,7 +25,7 @@ architecture rf of reg_file is
     signal R7 : std_logic_vector(15 downto 0) := "0000000000000000";  --PC
 begin
     --writing to register when RF_WR is set
-    write_proc: process(A3,RF_WR,clk,reset)
+    write_proc: process(A3,RF_WR,clk)
     begin
         if (clk'event and clk = '0') then  --writing at negative clock edge
             if(RF_WR = '1') then

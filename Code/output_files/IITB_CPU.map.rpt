@@ -1,5 +1,5 @@
 Analysis & Elaboration report for IITB_CPU
-Sun Nov 20 16:12:17 2022
+Sun Nov 20 20:12:09 2022
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Elaboration Summary                                                   ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Elaboration Status      ; Failed - Sun Nov 20 16:12:17 2022           ;
+; Analysis & Elaboration Status      ; Failed - Sun Nov 20 20:12:09 2022           ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; IITB_CPU                                    ;
 ; Top-level Entity Name              ; IITB_CPU                                    ;
@@ -164,7 +164,7 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Sun Nov 20 16:12:08 2022
+    Info: Processing started: Sun Nov 20 20:11:53 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off IITB_CPU -c IITB_CPU --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -172,13 +172,16 @@ Info (12021): Found 2 design units, including 1 entities, in source file memory.
     Info (12022): Found design unit 1: memory-memory_arch File: C:/Users/theas/Documents/EE_224_Project/Code/memory.vhd Line: 16
     Info (12023): Found entity 1: memory File: C:/Users/theas/Documents/EE_224_Project/Code/memory.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file reg_file.vhd
-    Info (12022): Found design unit 1: reg_file-rf File: C:/Users/theas/Documents/EE_224_Project/Code/reg_file.vhd Line: 18
+    Info (12022): Found design unit 1: reg_file-rf File: C:/Users/theas/Documents/EE_224_Project/Code/reg_file.vhd Line: 17
     Info (12023): Found entity 1: reg_file File: C:/Users/theas/Documents/EE_224_Project/Code/reg_file.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file register.vhd
+    Info (12022): Found design unit 1: reg-arch File: C:/Users/theas/Documents/EE_224_Project/Code/register.vhd Line: 17
+    Info (12023): Found entity 1: reg File: C:/Users/theas/Documents/EE_224_Project/Code/register.vhd Line: 7
 Error (12007): Top-level design entity "IITB_CPU" is undefined
 Error: Quartus Prime Analysis & Elaboration was unsuccessful. 1 error, 1 warning
     Error: Peak virtual memory: 4779 megabytes
-    Error: Processing ended: Sun Nov 20 16:12:17 2022
-    Error: Elapsed time: 00:00:09
-    Error: Total CPU time (on all processors): 00:00:09
+    Error: Processing ended: Sun Nov 20 20:12:09 2022
+    Error: Elapsed time: 00:00:16
+    Error: Total CPU time (on all processors): 00:00:17
 
 
