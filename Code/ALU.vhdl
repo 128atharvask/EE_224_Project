@@ -84,6 +84,8 @@ begin
             
             if(ALU_J = "01") then
                 bitwise_nand <= nander(ALU_A, ALU_B);
+                ALU_S <= bitwise_nand;
+                Z_int <= not (ALU_S(2) or ALU_S(1) or ALU_S(0));
 
         end if;
     end process;
