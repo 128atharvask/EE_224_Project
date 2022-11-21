@@ -8,30 +8,34 @@ use ieee.numeric_std.all;
 
 entity ALU is
 
+    generic(
+        operand_width : integer:=16
+    );
+
 	port(
 
     -- inputs
-        ALU_A,ALU_B:in std_logic_vector(2 downto 0);
+        ALU_A,ALU_B:in std_logic_vector(15 downto 0);
 		clock:in std_logic;
         ALU_J,ALU_CND:in std_logic_vector(1 downto 0);
 
     -- outputs
 		ALU_C, ALU_Z, Z_int: out std_logic;
-        ALU_S: out std_logic_vector(2 downto 0)
+        ALU_S: out std_logic_vector(15 downto 0)
         );
 
 end ALU;
 
 architecture behavioural of ALU is
 
-    function add(A: in std_logic_vector(2 downto 0);
-                 B: in std_logic_vector(2 downto 0))
+    function add(A: in std_logic_vector((operand_width-1) downto 0);
+                 B: in std_logic_vector(15 downto 0))
     
         return std_logic_vector is
-            variable sum: std_logic_vector(2 downto 0);
-            variable carry: std_logic_vector(2 downto 0);
+            variable sum: std_logic_vector((operand_width-1) downto 0);
+            variable carry: std_logic_vector((operand_width-1) downto 0);
     begin
-        L1: for i in 0 to 2 loop
+        L1: for i in 0 to (operand_width-1) loop
                 if i = 0 then 
                     sum(i) := A(i) xor B(i);
                     carry(i) := A(i) and B(i);
@@ -40,23 +44,23 @@ architecture behavioural of ALU is
                     carry(i) := (A(i) and B(i)) or (carry(i-1) and (A(i) or B(i)));
                 end if;
             end loop L1;
-        return carry(2) & sum;
+        return carry((operand_width-1)) & sum;
     end add;
-    function nander(A: in std_logic_vector(2 downto 0);
-		B: in std_logic_vector(2 downto 0))
+    function nander(A: in std_logic_vector((operand_width-1) downto 0);
+		B: in std_logic_vector((operand_width-1) downto 0))
 	return std_logic_vector is
-		variable bitwise_nand : std_logic_vector(2 downto 0);
+		variable bitwise_nand : std_logic_vector((operand_width-1) downto 0);
 	begin
-		L2: for i in 2 downto 0 loop
+		L2: for i in (operand_width-1) downto 0 loop
 				bitwise_nand(i) := (A(i) nand B(i));
 			end loop L2;
 		return bitwise_nand;
 	end nander;
     
-    variable sum: std_logic_vector(2 downto 0);
-    variable full_add: std_logic_vector(3 downto 0);
+    variable sum: std_logic_vector((operand_width-1) downto 0);
+    variable full_add: std_logic_vector((operand_width) downto 0);
     variable carry: std_logic;
-    variable bitwise_nand: std_logic_vector(2 downto 0);
+    variable bitwise_nand: std_logic_vector((operand_width-1) downto 0);
 begin
 
     -- works on the rising edge of the clock
@@ -65,10 +69,14 @@ begin
         if(clock='1' and clock' event) then
             if(ALU_J = "00") then
                 full_add <= add(ALU_A, ALU_B);
-                carry := full_add(3);
-                sum := full_add(2 downto 0);
+                carry := full_add((operand_width-1));
+                sum := full_add((operand_width-1) downto 0);
                 ALU_S <= sum;
-                Z_int <= not (ALU_S(2) or ALU_S(1) or ALU_S(0));
+                if(ALU_S = "0000000000000000")
+                    Z_int <= '1';
+                else
+                    Z_int <= '0';
+                end if;
                 if(ALU_CND = "00") then
                     ALU_C <= carry;
                     ALU_Z <= Z_int;
@@ -86,7 +94,11 @@ begin
             if(ALU_J = "01") then
                 bitwise_nand <= nander(ALU_A, ALU_B);
                 ALU_S <= bitwise_nand;
-                Z_int <= not (ALU_S(2) or ALU_S(1) or ALU_S(0));
+                if(ALU_S = "0000000000000000")
+                    Z_int <= '1';
+                else
+                    Z_int <= '0';
+                end if;
                 ALU_C <= c_in;
                 if(ALU_CND = "00") then
                     ALU_Z <= Z_int;
@@ -98,14 +110,18 @@ begin
                     ALU_Z <= z_in;
             end if;
 
-            if(ALU_J = "01") then
+            if(ALU_J = "11") then
                 if(A = B) then
-                    Z_int <= '0';
-                else
                     Z_int <= '1';
+                else
+                    Z_int <= '0';
+                end if;
                 ALU_C <= c_in;
                 ALU_Z <= z_in;
             end if;
+            
+            else
+                null;
         end if;
     end process;
 end architecture behavioural;
