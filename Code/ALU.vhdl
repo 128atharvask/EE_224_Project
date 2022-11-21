@@ -81,12 +81,31 @@ begin
                 else
                     ALU_C <= c_in;
                     ALU_Z <= z_in;
+            end if;
             
             if(ALU_J = "01") then
                 bitwise_nand <= nander(ALU_A, ALU_B);
                 ALU_S <= bitwise_nand;
                 Z_int <= not (ALU_S(2) or ALU_S(1) or ALU_S(0));
+                ALU_C <= c_in;
+                if(ALU_CND = "00") then
+                    ALU_Z <= Z_int;
+                elsif(ALU_CND = "10") then
+                    ALU_Z <= (c_in and Z_int) or ((not c_in) and z_in);
+                elsif(ALU_CND = "01") then
+                    ALU_Z <= z_in and Z_int;
+                else
+                    ALU_Z <= z_in;
+            end if;
 
+            if(ALU_J = "01") then
+                if(A = B) then
+                    Z_int <= '0';
+                else
+                    Z_int <= '1';
+                ALU_C <= c_in;
+                ALU_Z <= z_in;
+            end if;
         end if;
     end process;
 end architecture behavioural;
