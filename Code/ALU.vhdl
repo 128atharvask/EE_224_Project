@@ -15,13 +15,13 @@ entity ALU is
 	port(
 
     -- inputs
-        ALU_A,ALU_B:in std_logic_vector(15 downto 0);
-		clock:in std_logic;
-        ALU_J,ALU_CND:in std_logic_vector(1 downto 0);
+        ALU_A, ALU_B:in std_logic_vector((operand_width - 1) downto 0);
+		clock, c_in, z_in:in std_logic;
+        ALU_J, ALU_CND:in std_logic_vector(1 downto 0);
 
     -- outputs
 		ALU_C, ALU_Z, Z_int: out std_logic;
-        ALU_S: out std_logic_vector(15 downto 0)
+        ALU_S: out std_logic_vector((operand_width - 1) downto 0)
         );
 
 end ALU;
@@ -119,7 +119,7 @@ begin
                 ALU_C <= c_in;
                 ALU_Z <= z_in;
             end if;
-            
+
             else
                 null;
         end if;
