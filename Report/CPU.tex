@@ -162,7 +162,7 @@ We have separated data-flow diagrams for ADD, NAND instructions from other instr
                 Data Transfer & Commands \\
                 \hline
                 T2 $\to$ RF\_D3 & RF\_WR\\
-                $T1_{5-3}$ $\to$ RF\_A3 & \\                
+                $T1_{8-6}$ $\to$ RF\_A3 & \\                
                 \hline
             \end{tabular}
         \end{center}
@@ -350,7 +350,7 @@ We have separated data-flow diagrams for ADD, NAND instructions from other instr
                     Data Transfer & Commands \\
                     \hline
                     (0000000000000000) $\to$ T2 & T2\_E\\
-                    $T1_{11-9} \to$ RF\_A2 & T3\_E\\
+                    $T1_{11-9} \to$ RF\_A3 & T3\_E\\
                     RF\_D3 $\to$ T3 & \\     %only diff b/w this and SM's 1st step is D3 vs D2
                     \hline
                 \end{tabular}
@@ -382,7 +382,7 @@ We have separated data-flow diagrams for ADD, NAND instructions from other instr
                     \hline
                     T2 $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
                     1 bit $\to$ ALU\_B & T2\_E\\        %here 1 must be mentioned as a bit ig
-                    ALU\_C $\to$ T2 & \\
+                    ALU\_S $\to$ T2 & \\
                     \hline
                 \end{tabular}
             \end{center} 
@@ -401,8 +401,8 @@ We have separated data-flow diagrams for ADD, NAND instructions from other instr
                 NDC & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
                 NDZ & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
                 LHI & $S_0 \to S_1 \to S_{11}$\\
-                LW & $S_0 \to S_1 \to S_2 \to S_{13} \to S_{15} \to S_{16}$\\
-                SW & $S_0 \to S_1 \to S_2 \to S_{13} \to S_{14}$\\
+                LW & $S_0 \to S_1 \to S_2 \to S_{12} \to S_{14} \to S_{15}$\\
+                SW & $S_0 \to S_1 \to S_2 \to S_{12} \to S_{13}$\\
                 & \\
                 SM & $S_0 \to S_1 \to S_{16} \to S_{17} $  $ S_{18}$\\
                 & \\

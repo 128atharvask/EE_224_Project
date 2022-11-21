@@ -8,6 +8,7 @@ entity reg_file is
         A3 : in std_logic_vector(2 downto 0);	--select lines for write
         D3 : in std_logic_vector(15 downto 0);	-- input data
         RF_WR : in std_logic;   --write enable
+		  PC_E : in std_logic;
         clk : in std_logic;
         D1 : out std_logic_vector(15 downto 0);	--output data
         D2 : out std_logic_vector(15 downto 0)	--output data
@@ -43,10 +44,11 @@ begin
                     R5 <= D3;
                 elsif(A3 = "110") then
                     R6 <= D3;
-                elsif(A3 = "111") then
-                    R7 <= D3;
-                end if;
+					 end if;
             end if;
+				if(PC_E = '1' and A3 = "111") then
+					R7 <= D3;
+				end if;
         end if;
     end process write_proc;
 
