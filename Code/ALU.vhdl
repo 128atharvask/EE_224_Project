@@ -72,7 +72,7 @@ begin
                 carry := full_add((operand_width-1));
                 sum := full_add((operand_width-1) downto 0);
                 ALU_S <= sum;
-                if(ALU_S = "0000000000000000")
+                if(ALU_S = "0000000000000000") then
                     Z_int <= '1';
                 else
                     Z_int <= '0';
@@ -89,12 +89,12 @@ begin
                 else
                     ALU_C <= c_in;
                     ALU_Z <= z_in;
-            end if;
+                end if;
             
-            if(ALU_J = "01") then
+            elsif(ALU_J = "01") then
                 bitwise_nand <= nander(ALU_A, ALU_B);
                 ALU_S <= bitwise_nand;
-                if(ALU_S = "0000000000000000")
+                if(ALU_S = "0000000000000000") then
                     Z_int <= '1';
                 else
                     Z_int <= '0';
@@ -108,9 +108,9 @@ begin
                     ALU_Z <= z_in and Z_int;
                 else
                     ALU_Z <= z_in;
-            end if;
+                end if;
 
-            if(ALU_J = "11") then
+            elsif(ALU_J = "11") then
                 if(A = B) then
                     Z_int <= '1';
                 else
@@ -118,7 +118,7 @@ begin
                 end if;
                 ALU_C <= c_in;
                 ALU_Z <= z_in;
-            end if;
+                end if;
 
             else
                 null;
