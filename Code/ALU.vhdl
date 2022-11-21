@@ -12,7 +12,7 @@ entity ALU is
 
     -- inputs
         ALU_A,ALU_B:in std_logic_vector(2 downto 0);
-		c_in,z_in,clock:in std_logic;
+		clock:in std_logic;
         ALU_J,ALU_CND:in std_logic_vector(1 downto 0);
 
     -- outputs
@@ -58,6 +58,7 @@ architecture behavioural of ALU is
     variable carry: std_logic;
     variable bitwise_nand: std_logic_vector(2 downto 0);
 begin
+
     -- works on the rising edge of the clock
     clock_proc:process(clock,ALU_J, ALU_CND, ALU_A, ALU_B, c_in, z_in)
     begin
@@ -87,3 +88,4 @@ begin
         end if;
     end process;
 end architecture behavioural;
+
