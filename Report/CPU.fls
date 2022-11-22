@@ -1,6 +1,6 @@
-PWD c:\Users\theas\Desktop\IITB\Current Courses\EE 224\EE_224_Project\Report
+PWD c:\Users\theas\Documents\EE_224_Project\Report
 INPUT C:\Users\theas\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\theas\Desktop\IITB\Current Courses\EE 224\EE_224_Project\Report\CPU.tex
+INPUT c:\Users\theas\Documents\EE_224_Project\Report\CPU.tex
 OUTPUT CPU.log
 INPUT C:\Users\theas\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
 INPUT C:\Users\theas\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
