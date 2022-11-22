@@ -128,3 +128,24 @@ begin
     end process;
 end architecture behavioural;
 
+
+-- Details for MUX:
+-- ALU_A : PC: S1, S7, S9
+--         T2: S3, S6, S18, S21
+--         T3: S12, S17, S20
+
+-- ALU_B : 1: S1, S7, S20
+--         T3: S3, S6
+--         T1_8-0( with SE9): S9
+--         T1_5-0( with SE6): S7
+--         1 bit: S18, S21
+
+-- ALU_J : 00: S1, S7, S9, S12, S17, S18, S20, S21
+--         11: S6
+--         T1_14-13: S3
+
+-- ALU_CND : 00: S6, S20
+--           11: S1, S7, S9, S12, S17, S18, S20, S21
+--           T1_1-0: S3, 
+
+-- Remember: Modify S12 and S14
