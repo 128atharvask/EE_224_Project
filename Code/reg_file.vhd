@@ -8,7 +8,7 @@ entity reg_file is
         A3 : in std_logic_vector(2 downto 0);	--select lines for write
         D3 : in std_logic_vector(15 downto 0);	-- input data
         RF_WR : in std_logic;   --write enable
-		  PC_E : in std_logic;
+		PC_E : in std_logic;
         clk : in std_logic;
         D1 : out std_logic_vector(15 downto 0);	--output data
         D2 : out std_logic_vector(15 downto 0)	--output data
