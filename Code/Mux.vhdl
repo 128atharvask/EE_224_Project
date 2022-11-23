@@ -13,6 +13,8 @@ end entity Mux;
 architecture behave of Mux is
 begin
     -- outp <= inp(unsigned(sel));
+	connection: process(inp, sel)
+	begin
 	case sel is
 		when s0 => outp <= inp(0);
 		when s1 => outp <= inp(1);
