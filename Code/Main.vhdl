@@ -13,7 +13,7 @@ architecture controller of Main is
 signal sp,sn: state := s0;
 signal null_vec: std_logic_vector := (others => '0');
 
-signal ALU_Ain, ALU_Bin, T1in, T2in, T3in : size21x16 := (others => (others => '0'));
+signal ALU_Ain, ALU_Bin, T1in, T2in, T3in, M_addin : size21x16 := (others => (others => '0'));
 signal ALU_Jin, ALU_CNDin : size21x2 := (others => (others => '0'));
 
 variable counter : integer := 0;
@@ -131,6 +131,7 @@ begin
    ALU_CNDin(21) <= "11";
 
    -- T1in(0) <= M_data_out;
+   T1 <= M_data_out;
 
    T2in(2) <= D1;
    T2in(5) <= D1;
@@ -147,13 +148,22 @@ begin
    T3in(16) <= D2;
    T3in(5) <= "0000000000"T1(5 downto 0);
    T3in(12) <= ALU_S;
-   T3in(17) <= ALU_S;
-   T3in(19) <= D3;
    counter := unsigned(T2(2 downto 0));
+   if (T1(counter)=1) generate
+      T3in(17) <= ALU_S;
+   end if;
+   T3in(19) <= D3;
    if (T1(counter)=1) generate
       T3in(20) <= ALU_S;
    end if;
-   
+
+   M_addin(0) <= ;--PC
+   M_addin(13) <= T3;
+   M_addin(14) <= T3;
+   if (T1(counter)=1) generate
+      M_addin(17) <= T3;
+   M_addin(20) <= T3;
+
 
    
    
@@ -163,7 +173,6 @@ begin
    MuxALU_CND : Mux port map (ALU_CNDin, sp, ALU_CND);
 
    -- MuxT1 : Mux port map (T1in, sp, T1);
-   T1 <= M_data_out;
 
    MuxT2 : Mux port map (T2_in, sp, T2);
    MuxT3 : Mux port map (T3_in, sp, T3);
