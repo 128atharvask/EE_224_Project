@@ -15,7 +15,18 @@ end entity;
 
 architecture memory_arch of memory is
 type mem_arr is array( 0 to 65535 ) of std_logic_vector(15 downto 0);
-signal data : mem_arr := (others => (others => '0'));
+signal data : mem_arr := (
+    0 => "0011000000001000",    --LHI
+    1 => "0011001000001011",    --LHI
+    2 => "0000000001010000",    --ADD R0+R1=>R2
+    3 => "0011000000001000",    --same as 0
+    4 => "0011001000001011",    --same as 1
+    5 => "0000000001010010",    --ADC R0+R1=>R2 , here carryflag=0
+    6 => "0000000001010001",    --ADZ R0+R1=>R2 , here zeroflag=0
+    
+    1000 => "0000000000000101",
+    1001 => "0000000000001000",
+    others => (others => '0'));
 begin
     mem_proc: process(MWR, MDR)
     begin
