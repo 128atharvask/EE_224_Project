@@ -119,11 +119,11 @@ begin
                 end if;
                 ALU_C <= c_in;
                 ALU_Z <= z_in;
-                end if;
+            end if;
 
-            else
-                null;
-				Z_int <= sz_int;
+        else
+            null;
+		Z_int <= sz_int;
         end if;
     end process;
 end architecture behavioural;
