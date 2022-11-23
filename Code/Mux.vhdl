@@ -4,7 +4,7 @@ use work.DataTypePackage.all;
 
 entity Mux is
    	port(
-	inp : in size21x16;
+	inp : in size22x16;
    	sel : in state;
    	outp : out std_logic_vector(15 downto 0)
    	);
