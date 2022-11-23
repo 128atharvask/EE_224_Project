@@ -13,8 +13,8 @@ architecture controller of Main is
 signal sp,sn: state := s0;
 signal null_vec: std_logic_vector := (others => '0');
 
-signal ALU_Ain, ALU_Bin, T1in, T2in, T3in, M_addin : size21x16 := (others => (others => '0'));
-signal ALU_Jin, ALU_CNDin : size21x2 := (others => (others => '0'));
+signal ALU_Ain, ALU_Bin, T1in, T2in, T3in, M_addin : size22x16 := (others => (others => '0'));
+signal ALU_Jin, ALU_CNDin : size22x2 := (others => (others => '0'));
 
 variable counter : integer := 0;
 
@@ -72,7 +72,7 @@ end component memory;
 
 component Mux is
    port(
-	inp : in size21x16;
+	inp : in size22x16;
    sel : in state;
    outp : out std_logic_vector(15 downto 0);
    );
