@@ -1,5 +1,5 @@
 Analysis & Elaboration report for IITB_CPU
-Tue Nov 22 00:24:43 2022
+Wed Nov 23 10:56:44 2022
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Elaboration Summary                                                   ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Elaboration Status      ; Failed - Tue Nov 22 00:24:43 2022           ;
+; Analysis & Elaboration Status      ; Failed - Wed Nov 23 10:56:44 2022           ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; IITB_CPU                                    ;
 ; Top-level Entity Name              ; IITB_CPU                                    ;
@@ -164,10 +164,16 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Tue Nov 22 00:24:27 2022
+    Info: Processing started: Wed Nov 23 10:56:28 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off IITB_CPU -c IITB_CPU --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (12021): Found 1 design units, including 0 entities, in source file datatypepackage.vhdl
+    Info (12022): Found design unit 1: DataTypePackage File: C:/Users/theas/Documents/EE_224_Project/Code/DataTypePackage.vhdl Line: 4
+Warning (12090): Entity "Mux" obtained from "Mux.vhdl" instead of from Quartus Prime megafunction library File: C:/Users/theas/Documents/EE_224_Project/Code/Mux.vhdl Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file mux.vhdl
+    Info (12022): Found design unit 1: Mux-behave File: C:/Users/theas/Documents/EE_224_Project/Code/Mux.vhdl Line: 13
+    Info (12023): Found entity 1: Mux File: C:/Users/theas/Documents/EE_224_Project/Code/Mux.vhdl Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file memory.vhd
     Info (12022): Found design unit 1: memory-memory_arch File: C:/Users/theas/Documents/EE_224_Project/Code/memory.vhd Line: 16
     Info (12023): Found entity 1: memory File: C:/Users/theas/Documents/EE_224_Project/Code/memory.vhd Line: 5
@@ -181,10 +187,10 @@ Info (12021): Found 2 design units, including 1 entities, in source file alu.vhd
     Info (12022): Found design unit 1: ALU-behavioural File: C:/Users/theas/Documents/EE_224_Project/Code/ALU.vhdl Line: 29
     Info (12023): Found entity 1: ALU File: C:/Users/theas/Documents/EE_224_Project/Code/ALU.vhdl Line: 9
 Error (12007): Top-level design entity "IITB_CPU" is undefined
-Error: Quartus Prime Analysis & Elaboration was unsuccessful. 1 error, 1 warning
-    Error: Peak virtual memory: 4771 megabytes
-    Error: Processing ended: Tue Nov 22 00:24:43 2022
+Error: Quartus Prime Analysis & Elaboration was unsuccessful. 1 error, 2 warnings
+    Error: Peak virtual memory: 4778 megabytes
+    Error: Processing ended: Wed Nov 23 10:56:44 2022
     Error: Elapsed time: 00:00:16
-    Error: Total CPU time (on all processors): 00:00:21
+    Error: Total CPU time (on all processors): 00:00:22
 
 
