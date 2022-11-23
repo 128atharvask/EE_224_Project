@@ -28,6 +28,7 @@ end ALU;
 
 architecture behavioural of ALU is
 
+    -- Ripple Adder Implementation
     function add(A: in std_logic_vector((operand_width-1) downto 0);
                  B: in std_logic_vector(15 downto 0))
     
@@ -46,10 +47,12 @@ architecture behavioural of ALU is
             end loop L1;
         return carry((operand_width-1)) & sum;
     end add;
+
+    -- Bitwise NAND implementation
     function nander(A: in std_logic_vector((operand_width-1) downto 0);
 		B: in std_logic_vector((operand_width-1) downto 0))
-	return std_logic_vector is
-		variable bitwise_nand : std_logic_vector((operand_width-1) downto 0);
+	    return std_logic_vector is
+		    variable bitwise_nand : std_logic_vector((operand_width-1) downto 0);
 	begin
 		L2: for i in (operand_width-1) downto 0 loop
 				bitwise_nand(i) := (A(i) nand B(i));
@@ -61,13 +64,15 @@ architecture behavioural of ALU is
     variable full_add: std_logic_vector((operand_width) downto 0);
     variable carry: std_logic;
     variable bitwise_nand: std_logic_vector((operand_width-1) downto 0);
-	 signal sz_int: std_logic;
+	signal sz_int: std_logic; -- Signal for temporarily storing Z_int
 begin
 
     -- works on the rising edge of the clock
     clock_proc:process(clock,ALU_J, ALU_CND, ALU_A, ALU_B, c_in, z_in)
     begin
         if(clock='1' and clock' event) then
+
+            -- Case Addition
             if(ALU_J = "00") then
                 full_add := add(ALU_A, ALU_B);
                 carry := full_add((operand_width-1));
@@ -92,7 +97,8 @@ begin
                     ALU_Z <= z_in;
                 end if;
             
-            elsif(ALU_J = "01") then
+            -- Case NAND
+            elsif(ALU_J = "01") then -- NAND
                 bitwise_nand := nander(ALU_A, ALU_B);
                 ALU_S <= bitwise_nand;
                 if(bitwise_nand = "0000000000000000") then
@@ -111,6 +117,7 @@ begin
                     ALU_Z <= z_in;
                 end if;
 
+            -- For BEQ
             elsif(ALU_J = "11") then
                 if(ALU_A = ALU_B) then
                     sz_int <= '1';
@@ -119,17 +126,17 @@ begin
                 end if;
                 ALU_C <= c_in;
                 ALU_Z <= z_in;
-                end if;
-
-            else
-                null;
-				Z_int <= sz_int;
+            else null;
+            end if;
+		Z_int <= sz_int;
         end if;
     end process;
 end architecture behavioural;
 
 
 -- Details for MUX:
+-- This represents possible inputs for all inputs of ALU and in which state they occur.
+
 -- ALU_A : PC: S1, S7, S9
 --         T2: S3, S6, S18, S21
 --         T3: S12, S17, S20
@@ -148,4 +155,4 @@ end architecture behavioural;
 --           11: S1, S7, S9, S12, S17, S18, S20, S21
 --           T1_1-0: S3, 
 
--- Remember: Modify S12 and S14
+-- Remember: Modify S12 and S14 - Done
