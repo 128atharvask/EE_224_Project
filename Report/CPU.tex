@@ -224,7 +224,7 @@ We have separated data-flow diagrams for ADD, NAND instructions from other instr
                 \hline
                 Data Transfer & Commands \\
                 \hline
-                PC $\to$ ALU\_A & ALU\_J\\
+                PC $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
                 $T1_{8-0} \to$ SE\_9 $\to$ ALU\_B & \\
                 ALU\_CND $\leftarrow$ 11 & \\
                 ALU\_S $\to$ PC & \\
@@ -262,8 +262,8 @@ We have separated data-flow diagrams for ADD, NAND instructions from other instr
                 Data Transfer & Commands \\
                 \hline
                 T3 $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
-                $T1_{5-0} \to$ SE\_16 $\to$ ALU\_B & T3\_E\\
-                ALU\_S $\to$ T3 & \\
+                $T1_{5-0} \to$ SE\_6 $\to$ ALU\_B & ALU\_CND $\leftarrow$ 11\\
+                ALU\_S $\to$ T3 & T3\_E\\
                 \hline
             \end{tabular}
         \end{center}
@@ -322,7 +322,7 @@ We have separated data-flow diagrams for ADD, NAND instructions from other instr
                     counter := int($T2_{2-0}$) & MWR\\
                     T3 $\to$ ALU\_A & T3\_E\\
                     +1 $\to$ ALU\_B & ALU\_J $\leftarrow$ 00\\
-                    if($T1_{counter}$==1) then & \\
+                    if($T1_{counter}$==1) then & ALU\_CND $\leftarrow$ 11\\
                     \{T3 $\to$ M\_add& \\
                     $T2_{2-0}$ $\to$ RF\_A1 & \\
                     RF\_D1 $\to$ M\_data\ & \\
@@ -337,8 +337,8 @@ We have separated data-flow diagrams for ADD, NAND instructions from other instr
                     Data Transfer & Commands \\
                     \hline
                     T2 $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
-                    1 bit $\to$ ALU\_B & T2\_E\\
-                    ALU\_C $\to$ T2 & \\
+                    1 bit $\to$ ALU\_B & ALU\_CND $\leftarrow$ 11\\
+                    ALU\_S $\to$ T2 & T2\_E\\
                     \hline
                 \end{tabular}
             \end{center} 
@@ -365,7 +365,7 @@ We have separated data-flow diagrams for ADD, NAND instructions from other instr
                     counter := int($T2_{2-0}$) & MDR\\
                     $T1_{counter}$ $\to$ RF\_WR & T3\_E\\
                     T3 $\to$ M\_add & ALU\_J $\leftarrow$ 00\\
-                    M\_data $\to$ RF\_D3 & \\
+                    M\_data $\to$ RF\_D3 & ALU\_CND $\leftarrow$ 11\\
                     $T2_{2-0}$ $\to$ RF\_A3 & \\
                     T3 $\to$ ALU\_A &\\
                     +1 $\to$ ALU\_B &\\
@@ -381,8 +381,8 @@ We have separated data-flow diagrams for ADD, NAND instructions from other instr
                     Data Transfer & Commands \\
                     \hline
                     T2 $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
-                    1 bit $\to$ ALU\_B & T2\_E\\        %here 1 must be mentioned as a bit ig
-                    ALU\_S $\to$ T2 & \\
+                    1 bit $\to$ ALU\_B & ALU\_CND $\leftarrow$ 11\\        %here 1 must be mentioned as a bit ig
+                    ALU\_S $\to$ T2 & T2\_E\\
                     \hline
                 \end{tabular}
             \end{center} 
