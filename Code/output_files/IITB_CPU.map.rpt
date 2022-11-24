@@ -1,5 +1,5 @@
-Analysis & Elaboration report for IITB_CPU
-Tue Nov 22 00:24:43 2022
+Analysis & Synthesis report for IITB_CPU
+Thu Nov 24 12:14:33 2022
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -7,10 +7,10 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 ; Table of Contents ;
 ---------------------
   1. Legal Notice
-  2. Analysis & Elaboration Summary
-  3. Parallel Compilation
-  4. Analysis & Elaboration Settings
-  5. Analysis & Elaboration Messages
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Messages
 
 
 
@@ -35,12 +35,12 @@ https://fpgasoftware.intel.com/eula.
 
 
 +----------------------------------------------------------------------------------+
-; Analysis & Elaboration Summary                                                   ;
+; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Elaboration Status      ; Failed - Tue Nov 22 00:24:43 2022           ;
+; Analysis & Synthesis Status        ; Failed - Thu Nov 24 12:14:33 2022           ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; IITB_CPU                                    ;
-; Top-level Entity Name              ; IITB_CPU                                    ;
+; Top-level Entity Name              ; Main                                        ;
 ; Family                             ; MAX 10                                      ;
 ; Total logic elements               ; N/A until Partition Merge                   ;
 ;     Total combinational functions  ; N/A until Partition Merge                   ;
@@ -56,29 +56,13 @@ https://fpgasoftware.intel.com/eula.
 +------------------------------------+---------------------------------------------+
 
 
-+------------------------------------------+
-; Parallel Compilation                     ;
-+----------------------------+-------------+
-; Processors                 ; Number      ;
-+----------------------------+-------------+
-; Number detected on machine ; 12          ;
-; Maximum allowed            ; 12          ;
-;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
-;                            ;             ;
-; Usage by Processor         ; % Time Used ;
-;     Processor 1            ; 100.0%      ;
-+----------------------------+-------------+
-
-
 +------------------------------------------------------------------------------------------------------------+
-; Analysis & Elaboration Settings                                                                            ;
+; Analysis & Synthesis Settings                                                                              ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Option                                                           ; Setting            ; Default Value      ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                           ; 10M25SCE144C8G     ;                    ;
-; Top-level entity name                                            ; IITB_CPU           ; IITB_CPU           ;
+; Top-level entity name                                            ; Main               ; IITB_CPU           ;
 ; Family name                                                      ; MAX 10             ; Cyclone V          ;
 ; Use smart compilation                                            ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
@@ -158,33 +142,77 @@ https://fpgasoftware.intel.com/eula.
 +------------------------------------------------------------------+--------------------+--------------------+
 
 
-+---------------------------------+
-; Analysis & Elaboration Messages ;
-+---------------------------------+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 12          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
 Info: *******************************************************************
-Info: Running Quartus Prime Analysis & Elaboration
+Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Tue Nov 22 00:24:27 2022
-Info: Command: quartus_map --read_settings_files=on --write_settings_files=off IITB_CPU -c IITB_CPU --analysis_and_elaboration
+    Info: Processing started: Thu Nov 24 12:14:25 2022
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off IITB_CPU -c IITB_CPU
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
-Info (12021): Found 2 design units, including 1 entities, in source file memory.vhd
-    Info (12022): Found design unit 1: memory-memory_arch File: C:/Users/theas/Documents/EE_224_Project/Code/memory.vhd Line: 16
-    Info (12023): Found entity 1: memory File: C:/Users/theas/Documents/EE_224_Project/Code/memory.vhd Line: 5
-Info (12021): Found 2 design units, including 1 entities, in source file reg_file.vhd
-    Info (12022): Found design unit 1: reg_file-rf File: C:/Users/theas/Documents/EE_224_Project/Code/reg_file.vhd Line: 18
-    Info (12023): Found entity 1: reg_file File: C:/Users/theas/Documents/EE_224_Project/Code/reg_file.vhd Line: 4
-Info (12021): Found 2 design units, including 1 entities, in source file register.vhd
-    Info (12022): Found design unit 1: reg-arch File: C:/Users/theas/Documents/EE_224_Project/Code/register.vhd Line: 17
-    Info (12023): Found entity 1: reg File: C:/Users/theas/Documents/EE_224_Project/Code/register.vhd Line: 7
+Info (12021): Found 1 design units, including 0 entities, in source file datatypepackage.vhdl
+    Info (12022): Found design unit 1: DataTypePackage File: D:/IITBCPU/EE_224_Project/Code/DataTypePackage.vhdl Line: 4
+Info (12021): Found 9 design units, including 4 entities, in source file mux.vhdl
+    Info (12022): Found design unit 1: Mux File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 7
+    Info (12022): Found design unit 2: Mux22x16-behave1 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 58
+    Info (12022): Found design unit 3: Mux22x3-behave2 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 108
+    Info (12022): Found design unit 4: Mux22x2-behave3 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 156
+    Info (12022): Found design unit 5: Mux22x1-behave4 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 203
+    Info (12023): Found entity 1: Mux22x16 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 50
+    Info (12023): Found entity 2: Mux22x3 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 100
+    Info (12023): Found entity 3: Mux22x2 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 148
+    Info (12023): Found entity 4: Mux22x1 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 195
+Info (12021): Found 2 design units, including 1 entities, in source file main.vhdl
+    Info (12022): Found design unit 1: Main-controller File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 11
+    Info (12023): Found entity 1: Main File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 7
 Info (12021): Found 2 design units, including 1 entities, in source file alu.vhdl
-    Info (12022): Found design unit 1: ALU-behavioural File: C:/Users/theas/Documents/EE_224_Project/Code/ALU.vhdl Line: 29
-    Info (12023): Found entity 1: ALU File: C:/Users/theas/Documents/EE_224_Project/Code/ALU.vhdl Line: 9
-Error (12007): Top-level design entity "IITB_CPU" is undefined
-Error: Quartus Prime Analysis & Elaboration was unsuccessful. 1 error, 1 warning
-    Error: Peak virtual memory: 4771 megabytes
-    Error: Processing ended: Tue Nov 22 00:24:43 2022
-    Error: Elapsed time: 00:00:16
-    Error: Total CPU time (on all processors): 00:00:21
+    Info (12022): Found design unit 1: ALU-behavioural File: D:/IITBCPU/EE_224_Project/Code/ALU.vhdl Line: 29
+    Info (12023): Found entity 1: ALU File: D:/IITBCPU/EE_224_Project/Code/ALU.vhdl Line: 9
+Info (12021): Found 2 design units, including 1 entities, in source file register.vhd
+    Info (12022): Found design unit 1: reg-arch File: D:/IITBCPU/EE_224_Project/Code/register.vhd Line: 17
+    Info (12023): Found entity 1: reg File: D:/IITBCPU/EE_224_Project/Code/register.vhd Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file memory.vhd
+    Info (12022): Found design unit 1: memory-memory_arch File: D:/IITBCPU/EE_224_Project/Code/memory.vhd Line: 16
+    Info (12023): Found entity 1: memory File: D:/IITBCPU/EE_224_Project/Code/memory.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file reg_file.vhd
+    Info (12022): Found design unit 1: reg_file-rf File: D:/IITBCPU/EE_224_Project/Code/reg_file.vhd Line: 18
+    Info (12023): Found entity 1: reg_file File: D:/IITBCPU/EE_224_Project/Code/reg_file.vhd Line: 4
+Info (12127): Elaborating entity "Main" for the top level hierarchy
+Error (10807): VHDL error at Main.vhdl(98): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 98
+Error (10807): VHDL error at Main.vhdl(101): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 101
+Error (10807): VHDL error at Main.vhdl(155): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 155
+Error (10807): VHDL error at Main.vhdl(162): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 162
+Error (10807): VHDL error at Main.vhdl(177): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 177
+Error (10807): VHDL error at Main.vhdl(213): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 213
+Error (10807): VHDL error at Main.vhdl(222): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 222
+Error (10807): VHDL error at Main.vhdl(255): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 255
+Error (10807): VHDL error at Main.vhdl(262): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 262
+Error (10807): VHDL error at Main.vhdl(295): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 295
+Error (10807): VHDL error at Main.vhdl(302): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 302
+Error (10807): VHDL error at Main.vhdl(309): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 309
+Error (12153): Can't elaborate top-level user hierarchy
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 13 errors, 1 warning
+    Error: Peak virtual memory: 4779 megabytes
+    Error: Processing ended: Thu Nov 24 12:14:33 2022
+    Error: Elapsed time: 00:00:08
+    Error: Total CPU time (on all processors): 00:00:17
 
 
