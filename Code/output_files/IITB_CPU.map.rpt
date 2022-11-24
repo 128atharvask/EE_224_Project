@@ -1,5 +1,5 @@
 Analysis & Synthesis report for IITB_CPU
-Thu Nov 24 12:14:33 2022
+Thu Nov 24 20:27:56 2022
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -10,7 +10,40 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Parameter Settings for User Entity Instance: ALU:ALU1
+ 10. Port Connectivity Checks: "Mux22x1:MuxMWR"
+ 11. Port Connectivity Checks: "Mux22x1:MuxMDR"
+ 12. Port Connectivity Checks: "Mux22x1:MuxRF_WR"
+ 13. Port Connectivity Checks: "Mux22x1:MuxPC_E"
+ 14. Port Connectivity Checks: "Mux22x16:MuxM_datain"
+ 15. Port Connectivity Checks: "Mux22x16:MuxM_add"
+ 16. Port Connectivity Checks: "Mux22x16:MuxD3"
+ 17. Port Connectivity Checks: "Mux22x3:MuxA3"
+ 18. Port Connectivity Checks: "Mux22x3:MuxA2"
+ 19. Port Connectivity Checks: "Mux22x3:MuxA1"
+ 20. Port Connectivity Checks: "Mux22x16:MuxT3"
+ 21. Port Connectivity Checks: "Mux22x16:MuxT2"
+ 22. Port Connectivity Checks: "Mux22x1:MuxT3_E"
+ 23. Port Connectivity Checks: "Mux22x1:MuxT2_E"
+ 24. Port Connectivity Checks: "Mux22x1:MuxT1_E"
+ 25. Port Connectivity Checks: "Mux22x2:MuxALU_CND"
+ 26. Port Connectivity Checks: "Mux22x2:MuxALU_J"
+ 27. Port Connectivity Checks: "Mux22x16:MuxALU_B"
+ 28. Port Connectivity Checks: "Mux22x16:MuxALU_A"
+ 29. Port Connectivity Checks: "Mux2x1:S17_2"
+ 30. Port Connectivity Checks: "Mux2x1:S3_2"
+ 31. Port Connectivity Checks: "Mux2x1:S3_1"
+ 32. Port Connectivity Checks: "Mux2x1:S20_1"
+ 33. Port Connectivity Checks: "Mux2x1:S17_1"
+ 34. Port Connectivity Checks: "Mux2x16:S7"
+ 35. Port Connectivity Checks: "memory:M1"
+ 36. Post-Synthesis Netlist Statistics for Top Partition
+ 37. Elapsed Time Per Partition
+ 38. Analysis & Synthesis Messages
 
 
 
@@ -37,22 +70,22 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Thu Nov 24 12:14:33 2022           ;
+; Analysis & Synthesis Status        ; Successful - Thu Nov 24 20:27:56 2022       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; IITB_CPU                                    ;
 ; Top-level Entity Name              ; Main                                        ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; N/A until Partition Merge                   ;
-;     Total combinational functions  ; N/A until Partition Merge                   ;
-;     Dedicated logic registers      ; N/A until Partition Merge                   ;
-; Total registers                    ; N/A until Partition Merge                   ;
-; Total pins                         ; N/A until Partition Merge                   ;
-; Total virtual pins                 ; N/A until Partition Merge                   ;
-; Total memory bits                  ; N/A until Partition Merge                   ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                   ;
-; Total PLLs                         ; N/A until Partition Merge                   ;
-; UFM blocks                         ; N/A until Partition Merge                   ;
-; ADC blocks                         ; N/A until Partition Merge                   ;
+; Total logic elements               ; 0                                           ;
+;     Total combinational functions  ; 0                                           ;
+;     Dedicated logic registers      ; 0                                           ;
+; Total registers                    ; 0                                           ;
+; Total pins                         ; 23                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
+; UFM blocks                         ; 0                                           ;
+; ADC blocks                         ; 0                                           ;
 +------------------------------------+---------------------------------------------+
 
 
@@ -147,8 +180,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 12          ;
-; Maximum allowed            ; 12          ;
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
 ; Maximum used               ; 1           ;
@@ -158,61 +191,1028 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                         ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                  ; Library ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------+---------+
+; DataTypePackage.vhdl             ; yes             ; User VHDL File  ; C:/Users/SCI/Desktop/EE_224_Project/Code/DataTypePackage.vhdl ;         ;
+; Mux.vhdl                         ; yes             ; User VHDL File  ; C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl             ;         ;
+; Main.vhdl                        ; yes             ; User VHDL File  ; C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl            ;         ;
+; ALU.vhdl                         ; yes             ; User VHDL File  ; C:/Users/SCI/Desktop/EE_224_Project/Code/ALU.vhdl             ;         ;
+; memory.vhd                       ; yes             ; User VHDL File  ; C:/Users/SCI/Desktop/EE_224_Project/Code/memory.vhd           ;         ;
+; reg_file.vhd                     ; yes             ; User VHDL File  ; C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd         ;         ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+;                                             ;       ;
+; Total combinational functions               ; 0     ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 0     ;
+;     -- 3 input functions                    ; 0     ;
+;     -- <=2 input functions                  ; 0     ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 0     ;
+;     -- arithmetic mode                      ; 0     ;
+;                                             ;       ;
+; Total registers                             ; 0     ;
+;     -- Dedicated logic registers            ; 0     ;
+;     -- I/O registers                        ; 0     ;
+;                                             ;       ;
+; I/O pins                                    ; 23    ;
+;                                             ;       ;
+; Embedded Multiplier 9-bit elements          ; 0     ;
+;                                             ;       ;
+; Maximum fan-out node                        ; clk   ;
+; Maximum fan-out                             ; 1     ;
+; Total fan-out                               ; 23    ;
+; Average fan-out                             ; 0.50  ;
++---------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
+; |Main                      ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 23   ; 0            ; 0          ; |Main               ; Main        ; work         ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 0     ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ALU:ALU1 ;
++----------------+-------+------------------------------+
+; Parameter Name ; Value ; Type                         ;
++----------------+-------+------------------------------+
+; operand_width  ; 16    ; Signed Integer               ;
++----------------+-------+------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "Mux22x1:MuxMWR"    ;
++-------------+-------+----------+--------------+
+; Port        ; Type  ; Severity ; Details      ;
++-------------+-------+----------+--------------+
+; inp[21..18] ; Input ; Info     ; Stuck at GND ;
+; inp[16..14] ; Input ; Info     ; Stuck at GND ;
+; inp[12..0]  ; Input ; Info     ; Stuck at GND ;
+; inp[13]     ; Input ; Info     ; Stuck at VCC ;
+; sel.s0      ; Input ; Info     ; Stuck at VCC ;
+; sel.s1      ; Input ; Info     ; Stuck at GND ;
+; sel.s2      ; Input ; Info     ; Stuck at GND ;
+; sel.s3      ; Input ; Info     ; Stuck at GND ;
+; sel.s4      ; Input ; Info     ; Stuck at GND ;
+; sel.s5      ; Input ; Info     ; Stuck at GND ;
+; sel.s6      ; Input ; Info     ; Stuck at GND ;
+; sel.s7      ; Input ; Info     ; Stuck at GND ;
+; sel.s8      ; Input ; Info     ; Stuck at GND ;
+; sel.s9      ; Input ; Info     ; Stuck at GND ;
+; sel.s10     ; Input ; Info     ; Stuck at GND ;
+; sel.s11     ; Input ; Info     ; Stuck at GND ;
+; sel.s12     ; Input ; Info     ; Stuck at GND ;
+; sel.s13     ; Input ; Info     ; Stuck at GND ;
+; sel.s14     ; Input ; Info     ; Stuck at GND ;
+; sel.s15     ; Input ; Info     ; Stuck at GND ;
+; sel.s16     ; Input ; Info     ; Stuck at GND ;
+; sel.s17     ; Input ; Info     ; Stuck at GND ;
+; sel.s18     ; Input ; Info     ; Stuck at GND ;
+; sel.s19     ; Input ; Info     ; Stuck at GND ;
+; sel.s20     ; Input ; Info     ; Stuck at GND ;
+; sel.s21     ; Input ; Info     ; Stuck at GND ;
++-------------+-------+----------+--------------+
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "Mux22x1:MuxMDR"    ;
++-------------+-------+----------+--------------+
+; Port        ; Type  ; Severity ; Details      ;
++-------------+-------+----------+--------------+
+; inp[19..15] ; Input ; Info     ; Stuck at GND ;
+; inp[13..1]  ; Input ; Info     ; Stuck at GND ;
+; inp[21]     ; Input ; Info     ; Stuck at GND ;
+; inp[20]     ; Input ; Info     ; Stuck at VCC ;
+; inp[14]     ; Input ; Info     ; Stuck at VCC ;
+; inp[0]      ; Input ; Info     ; Stuck at VCC ;
+; sel.s0      ; Input ; Info     ; Stuck at VCC ;
+; sel.s1      ; Input ; Info     ; Stuck at GND ;
+; sel.s2      ; Input ; Info     ; Stuck at GND ;
+; sel.s3      ; Input ; Info     ; Stuck at GND ;
+; sel.s4      ; Input ; Info     ; Stuck at GND ;
+; sel.s5      ; Input ; Info     ; Stuck at GND ;
+; sel.s6      ; Input ; Info     ; Stuck at GND ;
+; sel.s7      ; Input ; Info     ; Stuck at GND ;
+; sel.s8      ; Input ; Info     ; Stuck at GND ;
+; sel.s9      ; Input ; Info     ; Stuck at GND ;
+; sel.s10     ; Input ; Info     ; Stuck at GND ;
+; sel.s11     ; Input ; Info     ; Stuck at GND ;
+; sel.s12     ; Input ; Info     ; Stuck at GND ;
+; sel.s13     ; Input ; Info     ; Stuck at GND ;
+; sel.s14     ; Input ; Info     ; Stuck at GND ;
+; sel.s15     ; Input ; Info     ; Stuck at GND ;
+; sel.s16     ; Input ; Info     ; Stuck at GND ;
+; sel.s17     ; Input ; Info     ; Stuck at GND ;
+; sel.s18     ; Input ; Info     ; Stuck at GND ;
+; sel.s19     ; Input ; Info     ; Stuck at GND ;
+; sel.s20     ; Input ; Info     ; Stuck at GND ;
+; sel.s21     ; Input ; Info     ; Stuck at GND ;
++-------------+-------+----------+--------------+
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "Mux22x1:MuxRF_WR"  ;
++-------------+-------+----------+--------------+
+; Port        ; Type  ; Severity ; Details      ;
++-------------+-------+----------+--------------+
+; inp[19..16] ; Input ; Info     ; Stuck at GND ;
+; inp[14..12] ; Input ; Info     ; Stuck at GND ;
+; inp[10..9]  ; Input ; Info     ; Stuck at GND ;
+; inp[7..5]   ; Input ; Info     ; Stuck at GND ;
+; inp[3..0]   ; Input ; Info     ; Stuck at GND ;
+; inp[21]     ; Input ; Info     ; Stuck at GND ;
+; inp[15]     ; Input ; Info     ; Stuck at VCC ;
+; inp[11]     ; Input ; Info     ; Stuck at VCC ;
+; inp[8]      ; Input ; Info     ; Stuck at VCC ;
+; inp[4]      ; Input ; Info     ; Stuck at VCC ;
+; sel.s0      ; Input ; Info     ; Stuck at VCC ;
+; sel.s1      ; Input ; Info     ; Stuck at GND ;
+; sel.s2      ; Input ; Info     ; Stuck at GND ;
+; sel.s3      ; Input ; Info     ; Stuck at GND ;
+; sel.s4      ; Input ; Info     ; Stuck at GND ;
+; sel.s5      ; Input ; Info     ; Stuck at GND ;
+; sel.s6      ; Input ; Info     ; Stuck at GND ;
+; sel.s7      ; Input ; Info     ; Stuck at GND ;
+; sel.s8      ; Input ; Info     ; Stuck at GND ;
+; sel.s9      ; Input ; Info     ; Stuck at GND ;
+; sel.s10     ; Input ; Info     ; Stuck at GND ;
+; sel.s11     ; Input ; Info     ; Stuck at GND ;
+; sel.s12     ; Input ; Info     ; Stuck at GND ;
+; sel.s13     ; Input ; Info     ; Stuck at GND ;
+; sel.s14     ; Input ; Info     ; Stuck at GND ;
+; sel.s15     ; Input ; Info     ; Stuck at GND ;
+; sel.s16     ; Input ; Info     ; Stuck at GND ;
+; sel.s17     ; Input ; Info     ; Stuck at GND ;
+; sel.s18     ; Input ; Info     ; Stuck at GND ;
+; sel.s19     ; Input ; Info     ; Stuck at GND ;
+; sel.s20     ; Input ; Info     ; Stuck at GND ;
+; sel.s21     ; Input ; Info     ; Stuck at GND ;
++-------------+-------+----------+--------------+
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "Mux22x1:MuxPC_E"   ;
++-------------+-------+----------+--------------+
+; Port        ; Type  ; Severity ; Details      ;
++-------------+-------+----------+--------------+
+; inp[21..11] ; Input ; Info     ; Stuck at GND ;
+; inp[9..8]   ; Input ; Info     ; Stuck at GND ;
+; inp[6..2]   ; Input ; Info     ; Stuck at GND ;
+; inp[10]     ; Input ; Info     ; Stuck at VCC ;
+; inp[7]      ; Input ; Info     ; Stuck at VCC ;
+; inp[1]      ; Input ; Info     ; Stuck at VCC ;
+; inp[0]      ; Input ; Info     ; Stuck at GND ;
+; sel.s0      ; Input ; Info     ; Stuck at VCC ;
+; sel.s1      ; Input ; Info     ; Stuck at GND ;
+; sel.s2      ; Input ; Info     ; Stuck at GND ;
+; sel.s3      ; Input ; Info     ; Stuck at GND ;
+; sel.s4      ; Input ; Info     ; Stuck at GND ;
+; sel.s5      ; Input ; Info     ; Stuck at GND ;
+; sel.s6      ; Input ; Info     ; Stuck at GND ;
+; sel.s7      ; Input ; Info     ; Stuck at GND ;
+; sel.s8      ; Input ; Info     ; Stuck at GND ;
+; sel.s9      ; Input ; Info     ; Stuck at GND ;
+; sel.s10     ; Input ; Info     ; Stuck at GND ;
+; sel.s11     ; Input ; Info     ; Stuck at GND ;
+; sel.s12     ; Input ; Info     ; Stuck at GND ;
+; sel.s13     ; Input ; Info     ; Stuck at GND ;
+; sel.s14     ; Input ; Info     ; Stuck at GND ;
+; sel.s15     ; Input ; Info     ; Stuck at GND ;
+; sel.s16     ; Input ; Info     ; Stuck at GND ;
+; sel.s17     ; Input ; Info     ; Stuck at GND ;
+; sel.s18     ; Input ; Info     ; Stuck at GND ;
+; sel.s19     ; Input ; Info     ; Stuck at GND ;
+; sel.s20     ; Input ; Info     ; Stuck at GND ;
+; sel.s21     ; Input ; Info     ; Stuck at GND ;
++-------------+-------+----------+--------------+
+
+
++--------------------------------------------------+
+; Port Connectivity Checks: "Mux22x16:MuxM_datain" ;
++-------------+-------+----------+-----------------+
+; Port        ; Type  ; Severity ; Details         ;
++-------------+-------+----------+-----------------+
+; inp[0..12]  ; Input ; Info     ; Stuck at GND    ;
+; inp[14..16] ; Input ; Info     ; Stuck at GND    ;
+; inp[18..21] ; Input ; Info     ; Stuck at GND    ;
+; sel.s0      ; Input ; Info     ; Stuck at VCC    ;
+; sel.s1      ; Input ; Info     ; Stuck at GND    ;
+; sel.s2      ; Input ; Info     ; Stuck at GND    ;
+; sel.s3      ; Input ; Info     ; Stuck at GND    ;
+; sel.s4      ; Input ; Info     ; Stuck at GND    ;
+; sel.s5      ; Input ; Info     ; Stuck at GND    ;
+; sel.s6      ; Input ; Info     ; Stuck at GND    ;
+; sel.s7      ; Input ; Info     ; Stuck at GND    ;
+; sel.s8      ; Input ; Info     ; Stuck at GND    ;
+; sel.s9      ; Input ; Info     ; Stuck at GND    ;
+; sel.s10     ; Input ; Info     ; Stuck at GND    ;
+; sel.s11     ; Input ; Info     ; Stuck at GND    ;
+; sel.s12     ; Input ; Info     ; Stuck at GND    ;
+; sel.s13     ; Input ; Info     ; Stuck at GND    ;
+; sel.s14     ; Input ; Info     ; Stuck at GND    ;
+; sel.s15     ; Input ; Info     ; Stuck at GND    ;
+; sel.s16     ; Input ; Info     ; Stuck at GND    ;
+; sel.s17     ; Input ; Info     ; Stuck at GND    ;
+; sel.s18     ; Input ; Info     ; Stuck at GND    ;
+; sel.s19     ; Input ; Info     ; Stuck at GND    ;
+; sel.s20     ; Input ; Info     ; Stuck at GND    ;
+; sel.s21     ; Input ; Info     ; Stuck at GND    ;
++-------------+-------+----------+-----------------+
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "Mux22x16:MuxM_add" ;
++-------------+-------+----------+--------------+
+; Port        ; Type  ; Severity ; Details      ;
++-------------+-------+----------+--------------+
+; inp[1..12]  ; Input ; Info     ; Stuck at GND ;
+; inp[15..16] ; Input ; Info     ; Stuck at GND ;
+; inp[18..19] ; Input ; Info     ; Stuck at GND ;
+; inp[21]     ; Input ; Info     ; Stuck at GND ;
+; sel.s0      ; Input ; Info     ; Stuck at VCC ;
+; sel.s1      ; Input ; Info     ; Stuck at GND ;
+; sel.s2      ; Input ; Info     ; Stuck at GND ;
+; sel.s3      ; Input ; Info     ; Stuck at GND ;
+; sel.s4      ; Input ; Info     ; Stuck at GND ;
+; sel.s5      ; Input ; Info     ; Stuck at GND ;
+; sel.s6      ; Input ; Info     ; Stuck at GND ;
+; sel.s7      ; Input ; Info     ; Stuck at GND ;
+; sel.s8      ; Input ; Info     ; Stuck at GND ;
+; sel.s9      ; Input ; Info     ; Stuck at GND ;
+; sel.s10     ; Input ; Info     ; Stuck at GND ;
+; sel.s11     ; Input ; Info     ; Stuck at GND ;
+; sel.s12     ; Input ; Info     ; Stuck at GND ;
+; sel.s13     ; Input ; Info     ; Stuck at GND ;
+; sel.s14     ; Input ; Info     ; Stuck at GND ;
+; sel.s15     ; Input ; Info     ; Stuck at GND ;
+; sel.s16     ; Input ; Info     ; Stuck at GND ;
+; sel.s17     ; Input ; Info     ; Stuck at GND ;
+; sel.s18     ; Input ; Info     ; Stuck at GND ;
+; sel.s19     ; Input ; Info     ; Stuck at GND ;
+; sel.s20     ; Input ; Info     ; Stuck at GND ;
+; sel.s21     ; Input ; Info     ; Stuck at GND ;
++-------------+-------+----------+--------------+
+
+
++--------------------------------------------------+
+; Port Connectivity Checks: "Mux22x16:MuxD3"       ;
++----------------+-------+----------+--------------+
+; Port           ; Type  ; Severity ; Details      ;
++----------------+-------+----------+--------------+
+; inp[2..3]      ; Input ; Info     ; Stuck at GND ;
+; inp[5..6]      ; Input ; Info     ; Stuck at GND ;
+; inp[12..14]    ; Input ; Info     ; Stuck at GND ;
+; inp[16..19]    ; Input ; Info     ; Stuck at GND ;
+; inp[0]         ; Input ; Info     ; Stuck at GND ;
+; inp[11][15..9] ; Input ; Info     ; Stuck at GND ;
+; inp[21]        ; Input ; Info     ; Stuck at GND ;
+; sel.s0         ; Input ; Info     ; Stuck at VCC ;
+; sel.s1         ; Input ; Info     ; Stuck at GND ;
+; sel.s2         ; Input ; Info     ; Stuck at GND ;
+; sel.s3         ; Input ; Info     ; Stuck at GND ;
+; sel.s4         ; Input ; Info     ; Stuck at GND ;
+; sel.s5         ; Input ; Info     ; Stuck at GND ;
+; sel.s6         ; Input ; Info     ; Stuck at GND ;
+; sel.s7         ; Input ; Info     ; Stuck at GND ;
+; sel.s8         ; Input ; Info     ; Stuck at GND ;
+; sel.s9         ; Input ; Info     ; Stuck at GND ;
+; sel.s10        ; Input ; Info     ; Stuck at GND ;
+; sel.s11        ; Input ; Info     ; Stuck at GND ;
+; sel.s12        ; Input ; Info     ; Stuck at GND ;
+; sel.s13        ; Input ; Info     ; Stuck at GND ;
+; sel.s14        ; Input ; Info     ; Stuck at GND ;
+; sel.s15        ; Input ; Info     ; Stuck at GND ;
+; sel.s16        ; Input ; Info     ; Stuck at GND ;
+; sel.s17        ; Input ; Info     ; Stuck at GND ;
+; sel.s18        ; Input ; Info     ; Stuck at GND ;
+; sel.s19        ; Input ; Info     ; Stuck at GND ;
+; sel.s20        ; Input ; Info     ; Stuck at GND ;
+; sel.s21        ; Input ; Info     ; Stuck at GND ;
++----------------+-------+----------+--------------+
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "Mux22x3:MuxA3"     ;
++-------------+-------+----------+--------------+
+; Port        ; Type  ; Severity ; Details      ;
++-------------+-------+----------+--------------+
+; inp[9..10]  ; Input ; Info     ; Stuck at VCC ;
+; inp[2..3]   ; Input ; Info     ; Stuck at GND ;
+; inp[5..6]   ; Input ; Info     ; Stuck at GND ;
+; inp[12..14] ; Input ; Info     ; Stuck at GND ;
+; inp[16..18] ; Input ; Info     ; Stuck at GND ;
+; inp[0]      ; Input ; Info     ; Stuck at GND ;
+; inp[1]      ; Input ; Info     ; Stuck at VCC ;
+; inp[7]      ; Input ; Info     ; Stuck at VCC ;
+; inp[21]     ; Input ; Info     ; Stuck at GND ;
+; sel.s0      ; Input ; Info     ; Stuck at VCC ;
+; sel.s1      ; Input ; Info     ; Stuck at GND ;
+; sel.s2      ; Input ; Info     ; Stuck at GND ;
+; sel.s3      ; Input ; Info     ; Stuck at GND ;
+; sel.s4      ; Input ; Info     ; Stuck at GND ;
+; sel.s5      ; Input ; Info     ; Stuck at GND ;
+; sel.s6      ; Input ; Info     ; Stuck at GND ;
+; sel.s7      ; Input ; Info     ; Stuck at GND ;
+; sel.s8      ; Input ; Info     ; Stuck at GND ;
+; sel.s9      ; Input ; Info     ; Stuck at GND ;
+; sel.s10     ; Input ; Info     ; Stuck at GND ;
+; sel.s11     ; Input ; Info     ; Stuck at GND ;
+; sel.s12     ; Input ; Info     ; Stuck at GND ;
+; sel.s13     ; Input ; Info     ; Stuck at GND ;
+; sel.s14     ; Input ; Info     ; Stuck at GND ;
+; sel.s15     ; Input ; Info     ; Stuck at GND ;
+; sel.s16     ; Input ; Info     ; Stuck at GND ;
+; sel.s17     ; Input ; Info     ; Stuck at GND ;
+; sel.s18     ; Input ; Info     ; Stuck at GND ;
+; sel.s19     ; Input ; Info     ; Stuck at GND ;
+; sel.s20     ; Input ; Info     ; Stuck at GND ;
+; sel.s21     ; Input ; Info     ; Stuck at GND ;
++-------------+-------+----------+--------------+
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "Mux22x3:MuxA2"     ;
++-------------+-------+----------+--------------+
+; Port        ; Type  ; Severity ; Details      ;
++-------------+-------+----------+--------------+
+; inp[0..1]   ; Input ; Info     ; Stuck at GND ;
+; inp[3..15]  ; Input ; Info     ; Stuck at GND ;
+; inp[17..21] ; Input ; Info     ; Stuck at GND ;
+; sel.s0      ; Input ; Info     ; Stuck at VCC ;
+; sel.s1      ; Input ; Info     ; Stuck at GND ;
+; sel.s2      ; Input ; Info     ; Stuck at GND ;
+; sel.s3      ; Input ; Info     ; Stuck at GND ;
+; sel.s4      ; Input ; Info     ; Stuck at GND ;
+; sel.s5      ; Input ; Info     ; Stuck at GND ;
+; sel.s6      ; Input ; Info     ; Stuck at GND ;
+; sel.s7      ; Input ; Info     ; Stuck at GND ;
+; sel.s8      ; Input ; Info     ; Stuck at GND ;
+; sel.s9      ; Input ; Info     ; Stuck at GND ;
+; sel.s10     ; Input ; Info     ; Stuck at GND ;
+; sel.s11     ; Input ; Info     ; Stuck at GND ;
+; sel.s12     ; Input ; Info     ; Stuck at GND ;
+; sel.s13     ; Input ; Info     ; Stuck at GND ;
+; sel.s14     ; Input ; Info     ; Stuck at GND ;
+; sel.s15     ; Input ; Info     ; Stuck at GND ;
+; sel.s16     ; Input ; Info     ; Stuck at GND ;
+; sel.s17     ; Input ; Info     ; Stuck at GND ;
+; sel.s18     ; Input ; Info     ; Stuck at GND ;
+; sel.s19     ; Input ; Info     ; Stuck at GND ;
+; sel.s20     ; Input ; Info     ; Stuck at GND ;
+; sel.s21     ; Input ; Info     ; Stuck at GND ;
++-------------+-------+----------+--------------+
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "Mux22x3:MuxA1"     ;
++-------------+-------+----------+--------------+
+; Port        ; Type  ; Severity ; Details      ;
++-------------+-------+----------+--------------+
+; inp[0..1]   ; Input ; Info     ; Stuck at VCC ;
+; inp[7..9]   ; Input ; Info     ; Stuck at VCC ;
+; inp[3..4]   ; Input ; Info     ; Stuck at GND ;
+; inp[11..16] ; Input ; Info     ; Stuck at GND ;
+; inp[18..21] ; Input ; Info     ; Stuck at GND ;
+; inp[6]      ; Input ; Info     ; Stuck at GND ;
+; sel.s0      ; Input ; Info     ; Stuck at VCC ;
+; sel.s1      ; Input ; Info     ; Stuck at GND ;
+; sel.s2      ; Input ; Info     ; Stuck at GND ;
+; sel.s3      ; Input ; Info     ; Stuck at GND ;
+; sel.s4      ; Input ; Info     ; Stuck at GND ;
+; sel.s5      ; Input ; Info     ; Stuck at GND ;
+; sel.s6      ; Input ; Info     ; Stuck at GND ;
+; sel.s7      ; Input ; Info     ; Stuck at GND ;
+; sel.s8      ; Input ; Info     ; Stuck at GND ;
+; sel.s9      ; Input ; Info     ; Stuck at GND ;
+; sel.s10     ; Input ; Info     ; Stuck at GND ;
+; sel.s11     ; Input ; Info     ; Stuck at GND ;
+; sel.s12     ; Input ; Info     ; Stuck at GND ;
+; sel.s13     ; Input ; Info     ; Stuck at GND ;
+; sel.s14     ; Input ; Info     ; Stuck at GND ;
+; sel.s15     ; Input ; Info     ; Stuck at GND ;
+; sel.s16     ; Input ; Info     ; Stuck at GND ;
+; sel.s17     ; Input ; Info     ; Stuck at GND ;
+; sel.s18     ; Input ; Info     ; Stuck at GND ;
+; sel.s19     ; Input ; Info     ; Stuck at GND ;
+; sel.s20     ; Input ; Info     ; Stuck at GND ;
+; sel.s21     ; Input ; Info     ; Stuck at GND ;
++-------------+-------+----------+--------------+
+
+
++-------------------------------------------------+
+; Port Connectivity Checks: "Mux22x16:MuxT3"      ;
++---------------+-------+----------+--------------+
+; Port          ; Type  ; Severity ; Details      ;
++---------------+-------+----------+--------------+
+; inp[0..1]     ; Input ; Info     ; Stuck at GND ;
+; inp[3..4]     ; Input ; Info     ; Stuck at GND ;
+; inp[6..11]    ; Input ; Info     ; Stuck at GND ;
+; inp[13..15]   ; Input ; Info     ; Stuck at GND ;
+; inp[5][15..6] ; Input ; Info     ; Stuck at GND ;
+; inp[18]       ; Input ; Info     ; Stuck at GND ;
+; inp[21]       ; Input ; Info     ; Stuck at GND ;
+; sel.s0        ; Input ; Info     ; Stuck at VCC ;
+; sel.s1        ; Input ; Info     ; Stuck at GND ;
+; sel.s2        ; Input ; Info     ; Stuck at GND ;
+; sel.s3        ; Input ; Info     ; Stuck at GND ;
+; sel.s4        ; Input ; Info     ; Stuck at GND ;
+; sel.s5        ; Input ; Info     ; Stuck at GND ;
+; sel.s6        ; Input ; Info     ; Stuck at GND ;
+; sel.s7        ; Input ; Info     ; Stuck at GND ;
+; sel.s8        ; Input ; Info     ; Stuck at GND ;
+; sel.s9        ; Input ; Info     ; Stuck at GND ;
+; sel.s10       ; Input ; Info     ; Stuck at GND ;
+; sel.s11       ; Input ; Info     ; Stuck at GND ;
+; sel.s12       ; Input ; Info     ; Stuck at GND ;
+; sel.s13       ; Input ; Info     ; Stuck at GND ;
+; sel.s14       ; Input ; Info     ; Stuck at GND ;
+; sel.s15       ; Input ; Info     ; Stuck at GND ;
+; sel.s16       ; Input ; Info     ; Stuck at GND ;
+; sel.s17       ; Input ; Info     ; Stuck at GND ;
+; sel.s18       ; Input ; Info     ; Stuck at GND ;
+; sel.s19       ; Input ; Info     ; Stuck at GND ;
+; sel.s20       ; Input ; Info     ; Stuck at GND ;
+; sel.s21       ; Input ; Info     ; Stuck at GND ;
++---------------+-------+----------+--------------+
+
+
++-------------------------------------------------+
+; Port Connectivity Checks: "Mux22x16:MuxT2"      ;
++---------------+-------+----------+--------------+
+; Port          ; Type  ; Severity ; Details      ;
++---------------+-------+----------+--------------+
+; inp[0..1]     ; Input ; Info     ; Stuck at GND ;
+; inp[7..13]    ; Input ; Info     ; Stuck at GND ;
+; inp[15..17]   ; Input ; Info     ; Stuck at GND ;
+; inp[19..20]   ; Input ; Info     ; Stuck at GND ;
+; inp[4]        ; Input ; Info     ; Stuck at GND ;
+; inp[6][15..1] ; Input ; Info     ; Stuck at GND ;
+; sel.s0        ; Input ; Info     ; Stuck at VCC ;
+; sel.s1        ; Input ; Info     ; Stuck at GND ;
+; sel.s2        ; Input ; Info     ; Stuck at GND ;
+; sel.s3        ; Input ; Info     ; Stuck at GND ;
+; sel.s4        ; Input ; Info     ; Stuck at GND ;
+; sel.s5        ; Input ; Info     ; Stuck at GND ;
+; sel.s6        ; Input ; Info     ; Stuck at GND ;
+; sel.s7        ; Input ; Info     ; Stuck at GND ;
+; sel.s8        ; Input ; Info     ; Stuck at GND ;
+; sel.s9        ; Input ; Info     ; Stuck at GND ;
+; sel.s10       ; Input ; Info     ; Stuck at GND ;
+; sel.s11       ; Input ; Info     ; Stuck at GND ;
+; sel.s12       ; Input ; Info     ; Stuck at GND ;
+; sel.s13       ; Input ; Info     ; Stuck at GND ;
+; sel.s14       ; Input ; Info     ; Stuck at GND ;
+; sel.s15       ; Input ; Info     ; Stuck at GND ;
+; sel.s16       ; Input ; Info     ; Stuck at GND ;
+; sel.s17       ; Input ; Info     ; Stuck at GND ;
+; sel.s18       ; Input ; Info     ; Stuck at GND ;
+; sel.s19       ; Input ; Info     ; Stuck at GND ;
+; sel.s20       ; Input ; Info     ; Stuck at GND ;
+; sel.s21       ; Input ; Info     ; Stuck at GND ;
++---------------+-------+----------+--------------+
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "Mux22x1:MuxT3_E"   ;
++-------------+-------+----------+--------------+
+; Port        ; Type  ; Severity ; Details      ;
++-------------+-------+----------+--------------+
+; inp[15..13] ; Input ; Info     ; Stuck at GND ;
+; inp[11..6]  ; Input ; Info     ; Stuck at GND ;
+; inp[4..3]   ; Input ; Info     ; Stuck at GND ;
+; inp[1..0]   ; Input ; Info     ; Stuck at GND ;
+; inp[21]     ; Input ; Info     ; Stuck at GND ;
+; inp[19]     ; Input ; Info     ; Stuck at VCC ;
+; inp[18]     ; Input ; Info     ; Stuck at GND ;
+; inp[16]     ; Input ; Info     ; Stuck at VCC ;
+; inp[12]     ; Input ; Info     ; Stuck at VCC ;
+; inp[5]      ; Input ; Info     ; Stuck at VCC ;
+; inp[2]      ; Input ; Info     ; Stuck at VCC ;
+; sel.s0      ; Input ; Info     ; Stuck at VCC ;
+; sel.s1      ; Input ; Info     ; Stuck at GND ;
+; sel.s2      ; Input ; Info     ; Stuck at GND ;
+; sel.s3      ; Input ; Info     ; Stuck at GND ;
+; sel.s4      ; Input ; Info     ; Stuck at GND ;
+; sel.s5      ; Input ; Info     ; Stuck at GND ;
+; sel.s6      ; Input ; Info     ; Stuck at GND ;
+; sel.s7      ; Input ; Info     ; Stuck at GND ;
+; sel.s8      ; Input ; Info     ; Stuck at GND ;
+; sel.s9      ; Input ; Info     ; Stuck at GND ;
+; sel.s10     ; Input ; Info     ; Stuck at GND ;
+; sel.s11     ; Input ; Info     ; Stuck at GND ;
+; sel.s12     ; Input ; Info     ; Stuck at GND ;
+; sel.s13     ; Input ; Info     ; Stuck at GND ;
+; sel.s14     ; Input ; Info     ; Stuck at GND ;
+; sel.s15     ; Input ; Info     ; Stuck at GND ;
+; sel.s16     ; Input ; Info     ; Stuck at GND ;
+; sel.s17     ; Input ; Info     ; Stuck at GND ;
+; sel.s18     ; Input ; Info     ; Stuck at GND ;
+; sel.s19     ; Input ; Info     ; Stuck at GND ;
+; sel.s20     ; Input ; Info     ; Stuck at GND ;
+; sel.s21     ; Input ; Info     ; Stuck at GND ;
++-------------+-------+----------+--------------+
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "Mux22x1:MuxT2_E"   ;
++-------------+-------+----------+--------------+
+; Port        ; Type  ; Severity ; Details      ;
++-------------+-------+----------+--------------+
+; inp[19..18] ; Input ; Info     ; Stuck at VCC ;
+; inp[6..5]   ; Input ; Info     ; Stuck at VCC ;
+; inp[3..2]   ; Input ; Info     ; Stuck at VCC ;
+; inp[13..7]  ; Input ; Info     ; Stuck at GND ;
+; inp[1..0]   ; Input ; Info     ; Stuck at GND ;
+; inp[21]     ; Input ; Info     ; Stuck at VCC ;
+; inp[20]     ; Input ; Info     ; Stuck at GND ;
+; inp[17]     ; Input ; Info     ; Stuck at GND ;
+; inp[16]     ; Input ; Info     ; Stuck at VCC ;
+; inp[15]     ; Input ; Info     ; Stuck at GND ;
+; inp[14]     ; Input ; Info     ; Stuck at VCC ;
+; inp[4]      ; Input ; Info     ; Stuck at GND ;
+; sel.s0      ; Input ; Info     ; Stuck at VCC ;
+; sel.s1      ; Input ; Info     ; Stuck at GND ;
+; sel.s2      ; Input ; Info     ; Stuck at GND ;
+; sel.s3      ; Input ; Info     ; Stuck at GND ;
+; sel.s4      ; Input ; Info     ; Stuck at GND ;
+; sel.s5      ; Input ; Info     ; Stuck at GND ;
+; sel.s6      ; Input ; Info     ; Stuck at GND ;
+; sel.s7      ; Input ; Info     ; Stuck at GND ;
+; sel.s8      ; Input ; Info     ; Stuck at GND ;
+; sel.s9      ; Input ; Info     ; Stuck at GND ;
+; sel.s10     ; Input ; Info     ; Stuck at GND ;
+; sel.s11     ; Input ; Info     ; Stuck at GND ;
+; sel.s12     ; Input ; Info     ; Stuck at GND ;
+; sel.s13     ; Input ; Info     ; Stuck at GND ;
+; sel.s14     ; Input ; Info     ; Stuck at GND ;
+; sel.s15     ; Input ; Info     ; Stuck at GND ;
+; sel.s16     ; Input ; Info     ; Stuck at GND ;
+; sel.s17     ; Input ; Info     ; Stuck at GND ;
+; sel.s18     ; Input ; Info     ; Stuck at GND ;
+; sel.s19     ; Input ; Info     ; Stuck at GND ;
+; sel.s20     ; Input ; Info     ; Stuck at GND ;
+; sel.s21     ; Input ; Info     ; Stuck at GND ;
++-------------+-------+----------+--------------+
+
+
++----------------------------------------------+
+; Port Connectivity Checks: "Mux22x1:MuxT1_E"  ;
++------------+-------+----------+--------------+
+; Port       ; Type  ; Severity ; Details      ;
++------------+-------+----------+--------------+
+; inp[21..1] ; Input ; Info     ; Stuck at GND ;
+; inp[0]     ; Input ; Info     ; Stuck at VCC ;
+; sel.s0     ; Input ; Info     ; Stuck at VCC ;
+; sel.s1     ; Input ; Info     ; Stuck at GND ;
+; sel.s2     ; Input ; Info     ; Stuck at GND ;
+; sel.s3     ; Input ; Info     ; Stuck at GND ;
+; sel.s4     ; Input ; Info     ; Stuck at GND ;
+; sel.s5     ; Input ; Info     ; Stuck at GND ;
+; sel.s6     ; Input ; Info     ; Stuck at GND ;
+; sel.s7     ; Input ; Info     ; Stuck at GND ;
+; sel.s8     ; Input ; Info     ; Stuck at GND ;
+; sel.s9     ; Input ; Info     ; Stuck at GND ;
+; sel.s10    ; Input ; Info     ; Stuck at GND ;
+; sel.s11    ; Input ; Info     ; Stuck at GND ;
+; sel.s12    ; Input ; Info     ; Stuck at GND ;
+; sel.s13    ; Input ; Info     ; Stuck at GND ;
+; sel.s14    ; Input ; Info     ; Stuck at GND ;
+; sel.s15    ; Input ; Info     ; Stuck at GND ;
+; sel.s16    ; Input ; Info     ; Stuck at GND ;
+; sel.s17    ; Input ; Info     ; Stuck at GND ;
+; sel.s18    ; Input ; Info     ; Stuck at GND ;
+; sel.s19    ; Input ; Info     ; Stuck at GND ;
+; sel.s20    ; Input ; Info     ; Stuck at GND ;
+; sel.s21    ; Input ; Info     ; Stuck at GND ;
++------------+-------+----------+--------------+
+
+
++------------------------------------------------+
+; Port Connectivity Checks: "Mux22x2:MuxALU_CND" ;
++-------------+-------+----------+---------------+
+; Port        ; Type  ; Severity ; Details       ;
++-------------+-------+----------+---------------+
+; inp[17..18] ; Input ; Info     ; Stuck at VCC  ;
+; inp[20..21] ; Input ; Info     ; Stuck at VCC  ;
+; inp[4..6]   ; Input ; Info     ; Stuck at GND  ;
+; inp[10..11] ; Input ; Info     ; Stuck at GND  ;
+; inp[13..16] ; Input ; Info     ; Stuck at GND  ;
+; inp[0]      ; Input ; Info     ; Stuck at GND  ;
+; inp[1]      ; Input ; Info     ; Stuck at VCC  ;
+; inp[2]      ; Input ; Info     ; Stuck at GND  ;
+; inp[7]      ; Input ; Info     ; Stuck at VCC  ;
+; inp[8]      ; Input ; Info     ; Stuck at GND  ;
+; inp[9]      ; Input ; Info     ; Stuck at VCC  ;
+; inp[12]     ; Input ; Info     ; Stuck at VCC  ;
+; inp[19]     ; Input ; Info     ; Stuck at GND  ;
+; sel.s0      ; Input ; Info     ; Stuck at VCC  ;
+; sel.s1      ; Input ; Info     ; Stuck at GND  ;
+; sel.s2      ; Input ; Info     ; Stuck at GND  ;
+; sel.s3      ; Input ; Info     ; Stuck at GND  ;
+; sel.s4      ; Input ; Info     ; Stuck at GND  ;
+; sel.s5      ; Input ; Info     ; Stuck at GND  ;
+; sel.s6      ; Input ; Info     ; Stuck at GND  ;
+; sel.s7      ; Input ; Info     ; Stuck at GND  ;
+; sel.s8      ; Input ; Info     ; Stuck at GND  ;
+; sel.s9      ; Input ; Info     ; Stuck at GND  ;
+; sel.s10     ; Input ; Info     ; Stuck at GND  ;
+; sel.s11     ; Input ; Info     ; Stuck at GND  ;
+; sel.s12     ; Input ; Info     ; Stuck at GND  ;
+; sel.s13     ; Input ; Info     ; Stuck at GND  ;
+; sel.s14     ; Input ; Info     ; Stuck at GND  ;
+; sel.s15     ; Input ; Info     ; Stuck at GND  ;
+; sel.s16     ; Input ; Info     ; Stuck at GND  ;
+; sel.s17     ; Input ; Info     ; Stuck at GND  ;
+; sel.s18     ; Input ; Info     ; Stuck at GND  ;
+; sel.s19     ; Input ; Info     ; Stuck at GND  ;
+; sel.s20     ; Input ; Info     ; Stuck at GND  ;
+; sel.s21     ; Input ; Info     ; Stuck at GND  ;
++-------------+-------+----------+---------------+
+
+
++----------------------------------------------+
+; Port Connectivity Checks: "Mux22x2:MuxALU_J" ;
++------------+-------+----------+--------------+
+; Port       ; Type  ; Severity ; Details      ;
++------------+-------+----------+--------------+
+; inp[0..2]  ; Input ; Info     ; Stuck at GND ;
+; inp[4..5]  ; Input ; Info     ; Stuck at GND ;
+; inp[7..21] ; Input ; Info     ; Stuck at GND ;
+; inp[6]     ; Input ; Info     ; Stuck at VCC ;
+; sel.s0     ; Input ; Info     ; Stuck at VCC ;
+; sel.s1     ; Input ; Info     ; Stuck at GND ;
+; sel.s2     ; Input ; Info     ; Stuck at GND ;
+; sel.s3     ; Input ; Info     ; Stuck at GND ;
+; sel.s4     ; Input ; Info     ; Stuck at GND ;
+; sel.s5     ; Input ; Info     ; Stuck at GND ;
+; sel.s6     ; Input ; Info     ; Stuck at GND ;
+; sel.s7     ; Input ; Info     ; Stuck at GND ;
+; sel.s8     ; Input ; Info     ; Stuck at GND ;
+; sel.s9     ; Input ; Info     ; Stuck at GND ;
+; sel.s10    ; Input ; Info     ; Stuck at GND ;
+; sel.s11    ; Input ; Info     ; Stuck at GND ;
+; sel.s12    ; Input ; Info     ; Stuck at GND ;
+; sel.s13    ; Input ; Info     ; Stuck at GND ;
+; sel.s14    ; Input ; Info     ; Stuck at GND ;
+; sel.s15    ; Input ; Info     ; Stuck at GND ;
+; sel.s16    ; Input ; Info     ; Stuck at GND ;
+; sel.s17    ; Input ; Info     ; Stuck at GND ;
+; sel.s18    ; Input ; Info     ; Stuck at GND ;
+; sel.s19    ; Input ; Info     ; Stuck at GND ;
+; sel.s20    ; Input ; Info     ; Stuck at GND ;
+; sel.s21    ; Input ; Info     ; Stuck at GND ;
++------------+-------+----------+--------------+
+
+
++--------------------------------------------------+
+; Port Connectivity Checks: "Mux22x16:MuxALU_B"    ;
++----------------+-------+----------+--------------+
+; Port           ; Type  ; Severity ; Details      ;
++----------------+-------+----------+--------------+
+; inp[4..5]      ; Input ; Info     ; Stuck at GND ;
+; inp[10..11]    ; Input ; Info     ; Stuck at GND ;
+; inp[13..16]    ; Input ; Info     ; Stuck at GND ;
+; inp[0]         ; Input ; Info     ; Stuck at GND ;
+; inp[1][15..1]  ; Input ; Info     ; Stuck at GND ;
+; inp[1][0]      ; Input ; Info     ; Stuck at VCC ;
+; inp[2]         ; Input ; Info     ; Stuck at GND ;
+; inp[8]         ; Input ; Info     ; Stuck at GND ;
+; inp[9][15..9]  ; Input ; Info     ; Stuck at GND ;
+; inp[12][15..6] ; Input ; Info     ; Stuck at GND ;
+; inp[17][15..1] ; Input ; Info     ; Stuck at GND ;
+; inp[17][0]     ; Input ; Info     ; Stuck at VCC ;
+; inp[18][15..1] ; Input ; Info     ; Stuck at GND ;
+; inp[18][0]     ; Input ; Info     ; Stuck at VCC ;
+; inp[19]        ; Input ; Info     ; Stuck at GND ;
+; inp[20][15..1] ; Input ; Info     ; Stuck at GND ;
+; inp[20][0]     ; Input ; Info     ; Stuck at VCC ;
+; inp[21][15..1] ; Input ; Info     ; Stuck at GND ;
+; inp[21][0]     ; Input ; Info     ; Stuck at VCC ;
+; sel.s0         ; Input ; Info     ; Stuck at VCC ;
+; sel.s1         ; Input ; Info     ; Stuck at GND ;
+; sel.s2         ; Input ; Info     ; Stuck at GND ;
+; sel.s3         ; Input ; Info     ; Stuck at GND ;
+; sel.s4         ; Input ; Info     ; Stuck at GND ;
+; sel.s5         ; Input ; Info     ; Stuck at GND ;
+; sel.s6         ; Input ; Info     ; Stuck at GND ;
+; sel.s7         ; Input ; Info     ; Stuck at GND ;
+; sel.s8         ; Input ; Info     ; Stuck at GND ;
+; sel.s9         ; Input ; Info     ; Stuck at GND ;
+; sel.s10        ; Input ; Info     ; Stuck at GND ;
+; sel.s11        ; Input ; Info     ; Stuck at GND ;
+; sel.s12        ; Input ; Info     ; Stuck at GND ;
+; sel.s13        ; Input ; Info     ; Stuck at GND ;
+; sel.s14        ; Input ; Info     ; Stuck at GND ;
+; sel.s15        ; Input ; Info     ; Stuck at GND ;
+; sel.s16        ; Input ; Info     ; Stuck at GND ;
+; sel.s17        ; Input ; Info     ; Stuck at GND ;
+; sel.s18        ; Input ; Info     ; Stuck at GND ;
+; sel.s19        ; Input ; Info     ; Stuck at GND ;
+; sel.s20        ; Input ; Info     ; Stuck at GND ;
+; sel.s21        ; Input ; Info     ; Stuck at GND ;
++----------------+-------+----------+--------------+
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "Mux22x16:MuxALU_A" ;
++-------------+-------+----------+--------------+
+; Port        ; Type  ; Severity ; Details      ;
++-------------+-------+----------+--------------+
+; inp[4..5]   ; Input ; Info     ; Stuck at GND ;
+; inp[10..11] ; Input ; Info     ; Stuck at GND ;
+; inp[13..16] ; Input ; Info     ; Stuck at GND ;
+; inp[0]      ; Input ; Info     ; Stuck at GND ;
+; inp[2]      ; Input ; Info     ; Stuck at GND ;
+; inp[8]      ; Input ; Info     ; Stuck at GND ;
+; inp[19]     ; Input ; Info     ; Stuck at GND ;
+; sel.s0      ; Input ; Info     ; Stuck at VCC ;
+; sel.s1      ; Input ; Info     ; Stuck at GND ;
+; sel.s2      ; Input ; Info     ; Stuck at GND ;
+; sel.s3      ; Input ; Info     ; Stuck at GND ;
+; sel.s4      ; Input ; Info     ; Stuck at GND ;
+; sel.s5      ; Input ; Info     ; Stuck at GND ;
+; sel.s6      ; Input ; Info     ; Stuck at GND ;
+; sel.s7      ; Input ; Info     ; Stuck at GND ;
+; sel.s8      ; Input ; Info     ; Stuck at GND ;
+; sel.s9      ; Input ; Info     ; Stuck at GND ;
+; sel.s10     ; Input ; Info     ; Stuck at GND ;
+; sel.s11     ; Input ; Info     ; Stuck at GND ;
+; sel.s12     ; Input ; Info     ; Stuck at GND ;
+; sel.s13     ; Input ; Info     ; Stuck at GND ;
+; sel.s14     ; Input ; Info     ; Stuck at GND ;
+; sel.s15     ; Input ; Info     ; Stuck at GND ;
+; sel.s16     ; Input ; Info     ; Stuck at GND ;
+; sel.s17     ; Input ; Info     ; Stuck at GND ;
+; sel.s18     ; Input ; Info     ; Stuck at GND ;
+; sel.s19     ; Input ; Info     ; Stuck at GND ;
+; sel.s20     ; Input ; Info     ; Stuck at GND ;
+; sel.s21     ; Input ; Info     ; Stuck at GND ;
++-------------+-------+----------+--------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "Mux2x1:S17_2" ;
++--------+-------+----------+--------------+
+; Port   ; Type  ; Severity ; Details      ;
++--------+-------+----------+--------------+
+; inp[1] ; Input ; Info     ; Stuck at VCC ;
+; inp[0] ; Input ; Info     ; Stuck at GND ;
++--------+-------+----------+--------------+
+
+
++-----------------------------------------+
+; Port Connectivity Checks: "Mux2x1:S3_2" ;
++------+-------+----------+---------------+
+; Port ; Type  ; Severity ; Details       ;
++------+-------+----------+---------------+
+; sel  ; Input ; Info     ; Stuck at GND  ;
++------+-------+----------+---------------+
+
+
++-----------------------------------------+
+; Port Connectivity Checks: "Mux2x1:S3_1" ;
++------+-------+----------+---------------+
+; Port ; Type  ; Severity ; Details       ;
++------+-------+----------+---------------+
+; sel  ; Input ; Info     ; Stuck at GND  ;
++------+-------+----------+---------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "Mux2x1:S20_1" ;
++--------+-------+----------+--------------+
+; Port   ; Type  ; Severity ; Details      ;
++--------+-------+----------+--------------+
+; inp[1] ; Input ; Info     ; Stuck at VCC ;
+; inp[0] ; Input ; Info     ; Stuck at GND ;
++--------+-------+----------+--------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "Mux2x1:S17_1" ;
++--------+-------+----------+--------------+
+; Port   ; Type  ; Severity ; Details      ;
++--------+-------+----------+--------------+
+; inp[1] ; Input ; Info     ; Stuck at VCC ;
+; inp[0] ; Input ; Info     ; Stuck at GND ;
++--------+-------+----------+--------------+
+
+
++-------------------------------------------------+
+; Port Connectivity Checks: "Mux2x16:S7"          ;
++---------------+-------+----------+--------------+
+; Port          ; Type  ; Severity ; Details      ;
++---------------+-------+----------+--------------+
+; inp[0][15..1] ; Input ; Info     ; Stuck at GND ;
+; inp[0][0]     ; Input ; Info     ; Stuck at VCC ;
+; inp[1][15..6] ; Input ; Info     ; Stuck at GND ;
++---------------+-------+----------+--------------+
+
+
++-----------------------------------------+
+; Port Connectivity Checks: "memory:M1"   ;
++-------+-------+----------+--------------+
+; Port  ; Type  ; Severity ; Details      ;
++-------+-------+----------+--------------+
+; reset ; Input ; Info     ; Stuck at GND ;
++-------+-------+----------+--------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 23                          ;
+; cycloneiii_lcell_comb ; 2                           ;
+;     normal            ; 2                           ;
+;         0 data inputs ; 2                           ;
+;                       ;                             ;
+; Max LUT depth         ; 0.00                        ;
+; Average LUT depth     ; 0.00                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Thu Nov 24 12:14:25 2022
+    Info: Processing started: Thu Nov 24 20:27:42 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off IITB_CPU -c IITB_CPU
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 1 design units, including 0 entities, in source file datatypepackage.vhdl
-    Info (12022): Found design unit 1: DataTypePackage File: D:/IITBCPU/EE_224_Project/Code/DataTypePackage.vhdl Line: 4
-Info (12021): Found 9 design units, including 4 entities, in source file mux.vhdl
-    Info (12022): Found design unit 1: Mux File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 7
-    Info (12022): Found design unit 2: Mux22x16-behave1 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 58
-    Info (12022): Found design unit 3: Mux22x3-behave2 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 108
-    Info (12022): Found design unit 4: Mux22x2-behave3 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 156
-    Info (12022): Found design unit 5: Mux22x1-behave4 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 203
-    Info (12023): Found entity 1: Mux22x16 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 50
-    Info (12023): Found entity 2: Mux22x3 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 100
-    Info (12023): Found entity 3: Mux22x2 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 148
-    Info (12023): Found entity 4: Mux22x1 File: D:/IITBCPU/EE_224_Project/Code/Mux.vhdl Line: 195
+    Info (12022): Found design unit 1: DataTypePackage File: C:/Users/SCI/Desktop/EE_224_Project/Code/DataTypePackage.vhdl Line: 4
+Info (12021): Found 15 design units, including 7 entities, in source file mux.vhdl
+    Info (12022): Found design unit 1: Mux File: C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl Line: 7
+    Info (12022): Found design unit 2: Mux22x16-behave1 File: C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl Line: 82
+    Info (12022): Found design unit 3: Mux22x3-behave2 File: C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl Line: 129
+    Info (12022): Found design unit 4: Mux22x2-behave3 File: C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl Line: 176
+    Info (12022): Found design unit 5: Mux22x1-behave4 File: C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl Line: 223
+    Info (12022): Found design unit 6: Mux2x16-behave5 File: C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl Line: 270
+    Info (12022): Found design unit 7: Mux2x3-behave6 File: C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl Line: 297
+    Info (12022): Found design unit 8: Mux2x1-behave7 File: C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl Line: 324
+    Info (12023): Found entity 1: Mux22x16 File: C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl Line: 74
+    Info (12023): Found entity 2: Mux22x3 File: C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl Line: 121
+    Info (12023): Found entity 3: Mux22x2 File: C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl Line: 168
+    Info (12023): Found entity 4: Mux22x1 File: C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl Line: 215
+    Info (12023): Found entity 5: Mux2x16 File: C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl Line: 262
+    Info (12023): Found entity 6: Mux2x3 File: C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl Line: 289
+    Info (12023): Found entity 7: Mux2x1 File: C:/Users/SCI/Desktop/EE_224_Project/Code/Mux.vhdl Line: 316
 Info (12021): Found 2 design units, including 1 entities, in source file main.vhdl
-    Info (12022): Found design unit 1: Main-controller File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 11
-    Info (12023): Found entity 1: Main File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 7
+    Info (12022): Found design unit 1: Main-controller File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 11
+    Info (12023): Found entity 1: Main File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 7
 Info (12021): Found 2 design units, including 1 entities, in source file alu.vhdl
-    Info (12022): Found design unit 1: ALU-behavioural File: D:/IITBCPU/EE_224_Project/Code/ALU.vhdl Line: 29
-    Info (12023): Found entity 1: ALU File: D:/IITBCPU/EE_224_Project/Code/ALU.vhdl Line: 9
+    Info (12022): Found design unit 1: ALU-behavioural File: C:/Users/SCI/Desktop/EE_224_Project/Code/ALU.vhdl Line: 29
+    Info (12023): Found entity 1: ALU File: C:/Users/SCI/Desktop/EE_224_Project/Code/ALU.vhdl Line: 9
 Info (12021): Found 2 design units, including 1 entities, in source file register.vhd
-    Info (12022): Found design unit 1: reg-arch File: D:/IITBCPU/EE_224_Project/Code/register.vhd Line: 17
-    Info (12023): Found entity 1: reg File: D:/IITBCPU/EE_224_Project/Code/register.vhd Line: 7
+    Info (12022): Found design unit 1: reg-arch File: C:/Users/SCI/Desktop/EE_224_Project/Code/register.vhd Line: 17
+    Info (12023): Found entity 1: reg File: C:/Users/SCI/Desktop/EE_224_Project/Code/register.vhd Line: 7
 Info (12021): Found 2 design units, including 1 entities, in source file memory.vhd
-    Info (12022): Found design unit 1: memory-memory_arch File: D:/IITBCPU/EE_224_Project/Code/memory.vhd Line: 16
-    Info (12023): Found entity 1: memory File: D:/IITBCPU/EE_224_Project/Code/memory.vhd Line: 5
+    Info (12022): Found design unit 1: memory-memory_arch File: C:/Users/SCI/Desktop/EE_224_Project/Code/memory.vhd Line: 16
+    Info (12023): Found entity 1: memory File: C:/Users/SCI/Desktop/EE_224_Project/Code/memory.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file reg_file.vhd
-    Info (12022): Found design unit 1: reg_file-rf File: D:/IITBCPU/EE_224_Project/Code/reg_file.vhd Line: 18
-    Info (12023): Found entity 1: reg_file File: D:/IITBCPU/EE_224_Project/Code/reg_file.vhd Line: 4
+    Info (12022): Found design unit 1: reg_file-rf File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 18
+    Info (12023): Found entity 1: reg_file File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 4
 Info (12127): Elaborating entity "Main" for the top level hierarchy
-Error (10807): VHDL error at Main.vhdl(98): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 98
-Error (10807): VHDL error at Main.vhdl(101): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 101
-Error (10807): VHDL error at Main.vhdl(155): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 155
-Error (10807): VHDL error at Main.vhdl(162): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 162
-Error (10807): VHDL error at Main.vhdl(177): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 177
-Error (10807): VHDL error at Main.vhdl(213): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 213
-Error (10807): VHDL error at Main.vhdl(222): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 222
-Error (10807): VHDL error at Main.vhdl(255): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 255
-Error (10807): VHDL error at Main.vhdl(262): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 262
-Error (10807): VHDL error at Main.vhdl(295): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 295
-Error (10807): VHDL error at Main.vhdl(302): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 302
-Error (10807): VHDL error at Main.vhdl(309): condition in generation scheme must be a static expression File: D:/IITBCPU/EE_224_Project/Code/Main.vhdl Line: 309
-Error (12153): Can't elaborate top-level user hierarchy
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 13 errors, 1 warning
-    Error: Peak virtual memory: 4779 megabytes
-    Error: Processing ended: Thu Nov 24 12:14:33 2022
-    Error: Elapsed time: 00:00:08
-    Error: Total CPU time (on all processors): 00:00:17
+Warning (10540): VHDL Signal Declaration warning at Main.vhdl(15): used explicit default value for signal "sp" because signal was never assigned a value File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 15
+Warning (10540): VHDL Signal Declaration warning at Main.vhdl(30): used explicit default value for signal "reset" because signal was never assigned a value File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 30
+Info (12128): Elaborating entity "memory" for hierarchy "memory:M1" File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 84
+Warning (10492): VHDL Process Statement warning at memory.vhd(33): signal "clk" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/memory.vhd Line: 33
+Info (12128): Elaborating entity "ALU" for hierarchy "ALU:ALU1" File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 85
+Info (12128): Elaborating entity "reg_file" for hierarchy "reg_file:RF1" File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 86
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(59): signal "R0" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 59
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(61): signal "R1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 61
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(63): signal "R2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 63
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(65): signal "R3" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 65
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(67): signal "R4" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 67
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(69): signal "R5" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 69
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(71): signal "R6" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 71
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(73): signal "R7" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 73
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(77): signal "R0" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 77
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(79): signal "R1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 79
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(81): signal "R2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 81
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(83): signal "R3" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 83
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(85): signal "R4" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 85
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(87): signal "R5" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 87
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(89): signal "R6" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 89
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(91): signal "R7" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 91
+Warning (10631): VHDL Process Statement warning at reg_file.vhd(56): inferring latch(es) for signal or variable "D1", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Warning (10631): VHDL Process Statement warning at reg_file.vhd(56): inferring latch(es) for signal or variable "D2", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[0]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[1]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[2]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[3]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[4]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[5]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[6]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[7]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[8]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[9]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[10]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[11]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[12]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[13]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[14]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D2[15]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[0]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[1]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[2]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[3]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[4]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[5]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[6]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[7]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[8]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[9]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[10]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[11]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[12]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[13]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[14]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (10041): Inferred latch for "D1[15]" at reg_file.vhd(56) File: C:/Users/SCI/Desktop/EE_224_Project/Code/reg_file.vhd Line: 56
+Info (12128): Elaborating entity "Mux2x16" for hierarchy "Mux2x16:S7" File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 110
+Info (12128): Elaborating entity "Mux2x1" for hierarchy "Mux2x1:S17_1" File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 271
+Info (12128): Elaborating entity "Mux22x16" for hierarchy "Mux22x16:MuxALU_A" File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 328
+Info (12128): Elaborating entity "Mux22x2" for hierarchy "Mux22x2:MuxALU_J" File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 330
+Info (12128): Elaborating entity "Mux22x1" for hierarchy "Mux22x1:MuxT1_E" File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 335
+Info (12128): Elaborating entity "Mux22x3" for hierarchy "Mux22x3:MuxA1" File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 371
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "outp.s0" is stuck at VCC File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s1" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s2" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s3" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s4" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s5" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s6" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s7" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s8" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s9" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s10" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s11" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s12" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s13" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s14" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s15" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s16" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s17" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s18" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s19" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s20" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+    Warning (13410): Pin "outp.s21" is stuck at GND File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "clk" File: C:/Users/SCI/Desktop/EE_224_Project/Code/Main.vhdl Line: 8
+Info (21057): Implemented 23 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 1 input pins
+    Info (21059): Implemented 22 output pins
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 47 warnings
+    Info: Peak virtual memory: 4781 megabytes
+    Info: Processing ended: Thu Nov 24 20:27:56 2022
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:25
 
 

@@ -7,54 +7,69 @@ use work.DataTypePackage.all;
 package Mux is
 	
 component Mux22x16 is
-   	port(
+   port(
 	inp : in size22x16;
-   	sel : in state;
-   	outp : out std_logic_vector(15 downto 0)
-   	);
+   sel : in state;
+   outp : out std_logic_vector(15 downto 0)
+   );
 end component Mux22x16;
 
 component Mux22x2 is
-   	port(
+   port(
 	inp : in size22x2;
-   	sel : in state;
-   	outp : out std_logic_vector(1 downto 0)
-   	);
+   sel : in state;
+   outp : out std_logic_vector(1 downto 0)
+   );
 end component Mux22x2;
 
 component Mux22x3 is
-   	port(
+   port(
 	inp : in size22x3;
-   	sel : in state;
-   	outp : out std_logic_vector(2 downto 0)
-   	);
+   sel : in state;
+   outp : out std_logic_vector(2 downto 0)
+   );
 end component Mux22x3;
 
 
 component Mux22x1 is
-   	port(
+   port(
 	inp : in std_logic_vector(21 downto 0);
-   	sel : in state;
-   	outp : out std_logic
-   	);
+   sel : in state;
+   outp : out std_logic
+   );
 end component Mux22x1;
 
+component Mux2x16 is
+   port(
+	inp : in size2x16;
+   sel : in std_logic;
+   outp : out std_logic_vector(15 downto 0)
+   );
+end component Mux2x16;
+
+component Mux2x3 is
+   port(
+	inp : in size2x3;
+   sel : in std_logic;
+   outp : out std_logic_vector(2 downto 0)
+   );
+end component Mux2x3;
 
 component Mux2x1 is
-   	port(
+   port(
 	inp : in std_logic_vector(1 downto 0);
-   	sel : in std_logic;
-   	outp : out std_logic
-   	);
+   sel : in std_logic;
+   outp : out std_logic
+   );
 end component Mux2x1;
+
 end package Mux;
+
 
 
 library ieee;
 use ieee.std_logic_1164.all;
 use work.DataTypePackage.all;
-
-
 
 entity Mux22x16 is
    	port(
@@ -96,9 +111,6 @@ begin
 	end case;
 	end process;
 end architecture behave1;
-
-
-
 
 
 
@@ -146,7 +158,6 @@ begin
 	end case;
 	end process;
 end architecture behave2;
-
 
 
 
@@ -242,3 +253,83 @@ begin
 	end process;
 end architecture behave4;
 
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+use work.DataTypePackage.all;
+
+entity Mux2x16 is
+	port(
+	inp : in size2x16;
+   sel : in std_logic;
+   outp : out std_logic_vector(15 downto 0)
+   );
+end entity Mux2x16;
+
+architecture behave5 of Mux2x16 is
+begin
+    -- outp <= inp(unsigned(sel));
+	connection: process(inp, sel)
+	begin
+	case sel is
+		when '0' => outp <= inp(0);
+		when '1' => outp <= inp(1);
+		when others => null;
+	end case;
+	end process;
+end architecture behave5;
+
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+use work.DataTypePackage.all;
+
+entity Mux2x3 is
+   port(
+	inp : in size2x3;
+   sel : in std_logic;
+   outp : out std_logic_vector(2 downto 0)
+   );
+end entity Mux2x3;
+
+architecture behave6 of Mux2x3 is
+begin
+    -- outp <= inp(unsigned(sel));
+	connection: process(inp, sel)
+	begin
+	case sel is
+		when '0' => outp <= inp(0);
+		when '1' => outp <= inp(1);
+		when others => null;
+	end case;
+	end process;
+end architecture behave6;
+
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+use work.DataTypePackage.all;
+
+entity Mux2x1 is
+   port(
+	inp : in std_logic_vector(1 downto 0);
+   sel : in std_logic;
+   outp : out std_logic
+   );
+end entity Mux2x1;
+
+architecture behave7 of Mux2x1 is
+begin
+    -- outp <= inp(unsigned(sel));
+	connection: process(inp, sel)
+	begin
+	case sel is
+		when '0' => outp <= inp(0);
+		when '1' => outp <= inp(1);
+		when others => null;
+	end case;
+	end process;
+end architecture behave7;

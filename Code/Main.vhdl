@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 use work.Mux.all;
 
 entity Main is
---   port ();
+   port (clk: in std_logic; outp: out state);
 end entity;
 
 architecture controller of Main is
@@ -19,6 +19,9 @@ signal ALU_Ain, ALU_Bin, T1in, T2in, T3in, D3in, M_addin, M_data_inin : size22x1
 signal ALU_Jin, ALU_CNDin : size22x2 := (others => (others => '0'));
 signal A1in, A2in, A3in : size22x3 := (others => (others => '0'));
 signal FCin, FZin, RF_WRin, PC_Ein, MDRin, MWRin, T1_Ein, T2_Ein, T3_Ein : std_logic_vector(21 downto 0) := (others => '0');
+signal S7M1, GT1, GT2, GT3 : size2x16 := (others => (others => '0'));
+signal S3M1, S3M2, S17M1, S17M2, S20M1 : std_logic_vector(1 downto 0) := (others => '0');
+signal condition : std_logic := '0';
 
 signal counter : integer := 0;
 
@@ -29,23 +32,21 @@ signal ALU_J, ALU_CND: std_logic_vector(1 downto 0) := (others => '0');
 signal A1, A2, A3, temp: std_logic_vector(2 downto 0) := (others => '0');
 
 component ALU is
-
    generic(
-      operand_width : integer:=16
-   );
+        operand_width : integer:=16
+    );
 
-   port(
+	port(
 
-   -- inputs
-      ALU_A, ALU_B:in std_logic_vector((operand_width - 1) downto 0);
-      clk, c_in, z_in:in std_logic;
-      ALU_J, ALU_CND:in std_logic_vector(1 downto 0);
+    -- inputs
+        ALU_A, ALU_B:in std_logic_vector((operand_width - 1) downto 0);
+		clock, c_in, z_in:in std_logic;
+        ALU_J, ALU_CND:in std_logic_vector(1 downto 0);
 
-   -- outputs
-      ALU_C, ALU_Z, Z_int: out std_logic;
-      ALU_S: out std_logic_vector((operand_width - 1) downto 0)
-   );
-
+    -- outputs
+		ALU_C, ALU_Z, Z_int: out std_logic;
+        ALU_S: out std_logic_vector((operand_width - 1) downto 0)
+        );
 end component ALU;
 
 component reg_file is
@@ -77,6 +78,9 @@ end component memory;
 
 begin
 
+--	clock <= not clock after 10ns ;
+	clock <= clk;
+	outp <= sp;
    M1: memory port map (clock, MWR, MDR, reset, M_add, M_data_in, M_data_out);
    ALU1: ALU port map (ALU_A, ALU_B, clock, FC, FZ, ALU_J, ALU_CND, ALU_C, ALU_Z, Z_int, ALU_S);
    RF1: reg_file port map (A1, A2, A3, D3, RF_WR, PC_E, clock, D1, D2);
@@ -95,12 +99,15 @@ begin
    ALU_Ain(20) <= T3;
 
    ALU_Bin(1) <= "0000000000000001";--"0000000000010000";
-	S7_1: if (T2(0)='0') generate
-      ALU_Bin(7) <= "0000000000000001";--"0000000000010000";
-	end generate S7_1;
-	S7_2: if (T2(0)='1') generate	
-      ALU_Bin(7) <= "0000000000"&T1(5 downto 0);
-   end generate S7_2;
+--	S7_1: if (T2(0)='0') generate
+--      ALU_Bin(7) <= "0000000000000001";--"0000000000010000";
+--	end generate S7_1;
+--	S7_2: if (T2(0)='1') generate	
+--      ALU_Bin(7) <= "0000000000"&T1(5 downto 0);
+--   end generate S7_2;
+	S7M1(0) <= "0000000000000001";--"0000000000010000";
+	S7M1(1) <= "0000000000"&T1(5 downto 0);
+	S7: Mux2x16 port map (S7M1, T2(0), ALU_Bin(7));
    ALU_Bin(20) <= "0000000000000001";--"0000000000010000";
    ALU_Bin(9) <= "0000000"&T1(8 downto 0);
    ALU_Bin(12) <= "0000000000"&T1(5 downto 0);
@@ -152,19 +159,27 @@ begin
    T3in(12) <= ALU_S;
 	temp <= T2(2 downto 0);
    counter <= to_integer(unsigned(temp));
-   S17_1: if (T1(counter)='1') generate
-      T3in(17) <= ALU_S;
-	end generate S17_1;
+--   S17_1: if (T1(counter)='1') generate
+--      T3in(17) <= ALU_S;
+--	end generate S17_1;
 --   S17_2: if (T1(counter)='0') generate
 --      null;
 --	end generate S17_2;
+--	S17M1(0) <= T3;
+--	S17M1(1) <= ALU_S;
+--	S17: Mux2x16 port map (S17M1, T1(counter), T3in(17));
+	T3in(17) <= ALU_S;
    T3in(19) <= D3;
-   S20_1: if (T1(counter)='1') generate
-      T3in(20) <= ALU_S;
-	end generate S20_1;
+--   S20_1: if (T1(counter)='1') generate
+--      T3in(20) <= ALU_S;
+--	end generate S20_1;
 --   S20_2: if (T1(counter)='0') generate
 --      null;
 --	end generate S20_2;
+--	S20M1(0) <= T3;
+--	S20M1(1) <= ALU_S;
+--	S20: Mux2x16 port map (S20M1, T1(counter), T3in(20));
+	T3in(20) <= ALU_S;
 
    A1in(0) <= "111"; --for PC read
    A1in(1) <= "111"; --for PC read
@@ -174,12 +189,13 @@ begin
    A1in(2) <= T1(11 downto 9);
    A1in(5) <= T1(11 downto 9);
    A1in(10) <= T1(8 downto 6);
-   S17_3: if (T1(counter)='1') generate
-      A1in(17) <= T1(2 downto 0);
-	end generate S17_3;
+--   S17_3: if (T1(counter)='1') generate
+--      A1in(17) <= T2(2 downto 0);
+--	end generate S17_3;
 --	S17_4: if (T1(counter)='0') generate
 --		null;
 --	end generate S17_4;
+	A1in(17) <= T2(2 downto 0);
 
    A2in(2) <= T1(8 downto 6);
    A2in(16) <= T1(11 downto 9);
@@ -210,21 +226,23 @@ begin
    M_addin(0) <= D1; --PC read
    M_addin(13) <= T3;
    M_addin(14) <= T3;
-   S17_5: if (T1(counter)='1') generate
-      M_addin(17) <= T3;
-   end generate S17_5;
+--   S17_5: if (T1(counter)='1') generate
+--      M_addin(17) <= T3;
+--   end generate S17_5;
 --	S17_6: if (T1(counter)='1') generate
 --		null;
 --   end generate S17_6;
+	M_addin(17) <= T3;
    M_addin(20) <= T3;
    
    M_data_inin(13) <= T2;
-   S17_7: if (T1(counter)='1') generate
-      M_data_inin(17) <= D1;
-   end generate S17_7;
+--   S17_7: if (T1(counter)='1') generate
+--      M_data_inin(17) <= D1;
+--   end generate S17_7;
 --   S17_8: if (T1(counter)='0') generate
 --      null;
 --   end generate S17_8;
+	M_data_inin(17) <= D1;
 
 
    PC_Ein(1) <= '1';
@@ -247,24 +265,46 @@ begin
    T3_Ein(5) <= '1';
    T3_Ein(12) <= '1';
    T3_Ein(16) <= '1';
-   T3_Ein(17) <= '1';
+--   T3_Ein(17) <= '1';
+	S17M1(0) <= '0';
+	S17M1(1) <= '1';
+	S17_1: Mux2x1 port map (S17M1, T1(counter), T3_Ein(17));
+	
    T3_Ein(19) <= '1';
-   T3_Ein(20) <= '1';
+--   T3_Ein(20) <= '1';
+	S20M1(0) <= '0';
+	S20M1(1) <= '1';
+	S20_1: Mux2x1 port map (S20M1, T1(counter), T3_Ein(20));
 
 
-   S3_1: if (sp = s3) generate
-      FC <= ALU_C;
-   end generate S3_1;
+--   S3_1: if (sp = s3) generate
+--      FC <= ALU_C;
+--   end generate S3_1;
 --	S3_2: if (sp /= s3) generate
 --	null; -- FC <= FC
 --   end generate S3_2;
+	S3M1(0) <= FC;
+	S3M1(1) <= ALU_C;
+	c_proc: process(sp)
+	begin
+		if(sp = s3) then
+			condition <= '1';
+		else
+			condition <= '0';
+		end if;
+	end process;
+	S3_1: Mux2x1 port map (S3M1, condition, FC);
+	
 
-   S3_3: if (sp = s3) generate
-      FZ <= ALU_Z;
-   end generate S3_3;
+--   S3_3: if (sp = s3) generate
+--      FZ <= ALU_Z;
+--   end generate S3_3;
 --	S3_4: if (sp /= s3) generate
 --      null; -- FZ <= FZ
 --   end generate S3_4;
+	S3M2(0) <= FZ;
+	S3M2(1) <= ALU_Z;
+	S3_2: Mux2x1 port map (S3M2, condition, FZ);
    
    RF_WRin(4) <= '1';
    RF_WRin(8) <= '1';
@@ -277,7 +317,11 @@ begin
    MDRin(20) <= '1';
 
    MWRin(13) <= '1';
-   MWRin(17) <= '1';
+--   MWRin(17) <= '1';
+	
+	S17M2(0) <= '0';
+	S17M2(1) <= '1';
+	S17_2: Mux2x1 port map (S17M2, T1(counter), MWRin(17));
 
 
    
@@ -292,26 +336,37 @@ begin
    MuxT2_E : Mux22x1 port map (T2_Ein, sp, T2_E);
    MuxT3_E : Mux22x1 port map (T3_Ein, sp, T3_E);
 
-   G_T1_1: if (T1_E = '1') generate
-      T1 <= M_data_out;
-	end generate G_T1_1;
+--   G_T1_1: if (T1_E = '1') generate
+--      T1 <= M_data_out;
+--	end generate G_T1_1;
 --   G_T1_2: if (T1_E = '0') generate
 --      null;
 --	end generate G_T1_2;
+	GT1(0) <= T1;
+	GT1(1) <= M_data_out;
+	GT1_1: Mux2x16 port map (GT1, T1_E, T1);
 	
-   G_T2_1: if (T2_E = '1') generate
-      MuxT2 : Mux22x16 port map (T2in, sp, T2);
-	end generate G_T2_1;
+	
+--   G_T2_1: if (T2_E = '1') generate
+--      MuxT2 : Mux22x16 port map (T2in, sp, T2);
+--	end generate G_T2_1;
 --   G_T2_2: if (T2_E = '0') generate
 --      null;
 --	end generate G_T2_2;
+	MuxT2: Mux22x16 port map (T2in, sp, GT2(1));
+	GT2(0) <= T2;
+	GT2_1: Mux2x16 port map (GT2, T2_E, T2);
 	
-   G_T3_1: if (T3_E = '1') generate
-      MuxT3 : Mux22x16 port map (T3in, sp, T3);
-	end generate G_T3_1;
+	
+--   G_T3_1: if (T3_E = '1') generate
+--      MuxT3 : Mux22x16 port map (T3in, sp, T3);
+--	end generate G_T3_1;
 --   G_T3_2: if (T3_E = '0') generate
 --      null;
 --	end generate G_T3_2;
+	MuxT3 : Mux22x16 port map (T3in, sp, GT3(1));
+	GT3(0) <= T3;
+	GT3_1: Mux2x16 port map (GT3, T3_E, T3);
 
    MuxA1 : Mux22x3 port map (A1in, sp, A1);
    MuxA2 : Mux22x3 port map (A2in, sp, A2);

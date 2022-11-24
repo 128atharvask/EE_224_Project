@@ -60,10 +60,10 @@ architecture behavioural of ALU is
 		return bitwise_nand;
 	end nander;
     
-    variable sum: std_logic_vector((operand_width-1) downto 0);
-    variable full_add: std_logic_vector((operand_width) downto 0);
-    variable carry: std_logic;
-    variable bitwise_nand: std_logic_vector((operand_width-1) downto 0);
+    signal sum: std_logic_vector((operand_width-1) downto 0);
+    signal full_add: std_logic_vector((operand_width) downto 0);
+    signal carry: std_logic;
+    signal bitwise_nand: std_logic_vector((operand_width-1) downto 0);
 	signal sz_int: std_logic; -- Signal for temporarily storing Z_int
 begin
 
@@ -74,9 +74,9 @@ begin
 
             -- Case Addition
             if(ALU_J = "00") then
-                full_add := add(ALU_A, ALU_B);
-                carry := full_add((operand_width-1));
-                sum := full_add((operand_width-1) downto 0);
+                full_add <= add(ALU_A, ALU_B);
+                carry <= full_add((operand_width-1));
+                sum <= full_add((operand_width-1) downto 0);
                 ALU_S <= sum;
                 if(sum = "0000000000000000") then
                     sz_int <= '1';
@@ -99,7 +99,7 @@ begin
             
             -- Case NAND
             elsif(ALU_J = "01") then -- NAND
-                bitwise_nand := nander(ALU_A, ALU_B);
+                bitwise_nand <= nander(ALU_A, ALU_B);
                 ALU_S <= bitwise_nand;
                 if(bitwise_nand = "0000000000000000") then
                     sz_int <= '1';
