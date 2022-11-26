@@ -6,38 +6,38 @@ use work.DataTypePackage.all;
 
 package Mux is
 	
-component Mux21x16 is
+component Mux20x16 is
    port(
-	inp : in size21x16;
+	inp : in size20x16;
    sel : in state;
    outp : out std_logic_vector(15 downto 0)
    );
-end component Mux21x16;
+end component Mux20x16;
 
-component Mux21x2 is
+component Mux20x2 is
    port(
-	inp : in size21x2;
+	inp : in size20x2;
    sel : in state;
    outp : out std_logic_vector(1 downto 0)
    );
-end component Mux21x2;
+end component Mux20x2;
 
-component Mux21x3 is
+component Mux20x3 is
    port(
-	inp : in size21x3;
+	inp : in size20x3;
    sel : in state;
    outp : out std_logic_vector(2 downto 0)
    );
-end component Mux21x3;
+end component Mux20x3;
 
 
-component Mux21x1 is
+component Mux20x1 is
    port(
-	inp : in std_logic_vector(20 downto 0);
+	inp : in std_logic_vector(19 downto 0);
    sel : in state;
    outp : out std_logic
    );
-end component Mux21x1;
+end component Mux20x1;
 
 component Mux2x16 is
    port(
@@ -71,15 +71,15 @@ library ieee;
 use ieee.std_logic_1164.all;
 use work.DataTypePackage.all;
 
-entity Mux21x16 is
+entity Mux20x16 is
    	port(
-	inp : in size21x16;
+	inp : in size20x16;
    	sel : in state;
    	outp : out std_logic_vector(15 downto 0)
    	);
-end entity Mux21x16;
+end entity Mux20x16;
 
-architecture behave1 of Mux21x16 is
+architecture behave1 of Mux20x16 is
 begin
     -- outp <= inp(unsigned(sel));
 	connection: process(inp, sel)
@@ -105,7 +105,6 @@ begin
 		when s17 => outp <= inp(17);
 		when s18 => outp <= inp(18);
 		when s19 => outp <= inp(19);
-		when s20 => outp <= inp(20);
 		when others => null;
 	end case;
 	end process;
@@ -117,15 +116,15 @@ library ieee;
 use ieee.std_logic_1164.all;
 use work.DataTypePackage.all;
 
-entity Mux21x3 is
+entity Mux20x3 is
    	port(
-	inp : in size21x3;
+	inp : in size20x3;
    	sel : in state;
    	outp : out std_logic_vector(2 downto 0)
    	);
-end entity Mux21x3;
+end entity Mux20x3;
 
-architecture behave2 of Mux21x3 is
+architecture behave2 of Mux20x3 is
 begin
     -- outp <= inp(unsigned(sel));
 	connection: process(inp, sel)
@@ -151,7 +150,6 @@ begin
 		when s17 => outp <= inp(17);
 		when s18 => outp <= inp(18);
 		when s19 => outp <= inp(19);
-		when s20 => outp <= inp(20);
 		when others => null;
 	end case;
 	end process;
@@ -163,15 +161,15 @@ library ieee;
 use ieee.std_logic_1164.all;
 use work.DataTypePackage.all;
 
-entity Mux21x2 is
+entity Mux20x2 is
    	port(
-	inp : in size21x2;
+	inp : in size20x2;
    	sel : in state;
    	outp : out std_logic_vector(1 downto 0)
    	);
-end entity Mux21x2;
+end entity Mux20x2;
 
-architecture behave3 of Mux21x2 is
+architecture behave3 of Mux20x2 is
 begin
     -- outp <= inp(unsigned(sel));
 	connection: process(inp, sel)
@@ -197,7 +195,6 @@ begin
 		when s17 => outp <= inp(17);
 		when s18 => outp <= inp(18);
 		when s19 => outp <= inp(19);
-		when s20 => outp <= inp(20);
 		when others => null;
 	end case;
 	end process;
@@ -209,15 +206,15 @@ library ieee;
 use ieee.std_logic_1164.all;
 use work.DataTypePackage.all;
 
-entity Mux21x1 is
+entity Mux20x1 is
    	port(
-	inp : in std_logic_vector(20 downto 0);
+	inp : in std_logic_vector(19 downto 0);
    	sel : in state;
    	outp : out std_logic
    	);
-end entity Mux21x1;
+end entity Mux20x1;
 
-architecture behave4 of Mux21x1 is
+architecture behave4 of Mux20x1 is
 begin
     -- outp <= inp(unsigned(sel));
 	connection: process(inp, sel)
@@ -243,7 +240,6 @@ begin
 		when s17 => outp <= inp(17);
 		when s18 => outp <= inp(18);
 		when s19 => outp <= inp(19);
-		when s20 => outp <= inp(20);
 		when others => null;
 	end case;
 	end process;

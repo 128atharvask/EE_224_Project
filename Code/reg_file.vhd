@@ -44,10 +44,13 @@ begin
                     R5 <= D3;
                 elsif(A3 = "110") then
                     R6 <= D3;
-					 end if;
+				else null;
+                end if;
+            else null;
             end if;
 				if(PC_E = '1' and A3 = "111") then
 					R7 <= D3;
+                else null;
 				end if;
         end if;
     end process write_proc;
@@ -71,6 +74,7 @@ begin
             D1 <= R6;
         elsif(A1 = "111") then
             D1 <= R7;
+        else null;
         end if;
         --Address 2
         if(A2 = "000") then
@@ -89,6 +93,7 @@ begin
             D2 <= R6;
         elsif(A2 = "111") then
             D2 <= R7;
+        else null;
         end if;
     end process read_proc;
 end rf;
