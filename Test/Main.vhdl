@@ -5,7 +5,8 @@ use ieee.numeric_std.all;
 use work.Mux.all;
 
 entity Main is
-   port (clk: in std_logic; outp: out state);
+   port (clk: in std_logic; 
+      rf_data: out array(0 to 7) of std_logic_vector(15 downto 0));
 end entity;
 
 architecture controller of Main is
@@ -95,7 +96,7 @@ begin
 	outp <= sp;
    M1: memory port map (clock, MWR, MDR, reset, M_add, M_data_in, M_data_out);
    ALU1: ALU port map (ALU_A, ALU_B, clock, FC, FZ, ALU_J, ALU_CND, ALU_C, ALU_Z, Z_int, ALU_S);
-   RF1: reg_file port map (A1, A2, A3, D3, RF_WR, PC_E, clock, D1, D2);
+   RF1: reg_file port map (A1, A2, A3, D3, RF_WR, PC_E, clock, D1, D2, rf_data);
 
 	
 	
@@ -567,10 +568,5 @@ end process;
    MuxRF_WR : Mux20x1 port map (RF_WRin, sp, RF_WR);
    MuxMDR : Mux20x1 port map (MDRin, sp, MDR);
    MuxMWR : Mux20x1 port map (MWRin, sp, MWR);
-   
-
-	
-
-
 
 end architecture;

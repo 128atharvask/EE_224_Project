@@ -11,7 +11,8 @@ entity reg_file is
 		PC_E : in std_logic;
         clk : in std_logic;
         D1 : out std_logic_vector(15 downto 0);	--output data
-        D2 : out std_logic_vector(15 downto 0)	--output data
+        D2 : out std_logic_vector(15 downto 0);	--output data
+        test_arr : out array(0 to 7) of std_logic_vector(15 downto 0)   --for testing
     );
 end entity;
 
@@ -22,9 +23,17 @@ architecture rf of reg_file is
     signal R3 : std_logic_vector(15 downto 0) := "0000111000000000";    -- 3584
     signal R4 : std_logic_vector(15 downto 0) := "0100000000101000";    -- 16424
     signal R5 : std_logic_vector(15 downto 0) := "1000000100010000";    -- -32496
-    signal R6 : std_logic_vector(15 downto 0) := "1001100000010000";    -- -26608
+    signal R6 : std_logic_vector(15 downto 0) := "1111111111111010";    -- -6
     signal R7 : std_logic_vector(15 downto 0) := "0000000000000000";  --PC
 begin
+    test_arr(0) <= R0;
+    test_arr(1) <= R1;
+    test_arr(2) <= R2;
+    test_arr(3) <= R3;
+    test_arr(4) <= R4;
+    test_arr(5) <= R5;
+    test_arr(6) <= R6;
+    test_arr(7) <= R7;
     --writing to register when RF_WR is set
     write_proc: process(A3,RF_WR,clk)
     begin
