@@ -330,7 +330,7 @@ We have separated data-flow diagrams for ADD, NAND instructions from other instr
                     \hline
                 \end{tabular}
             \end{center} 
-            \subsection*{$S_{18}$ (Looping step 2 of SM)} %SM by Varad
+            \subsection*{$S_{18}$ (Updating counter variable (Looping step 2 of SM and LM))} %SM by Varad
             \begin{center}
                 \begin{tabular}{|c|c|}
                     \hline
@@ -350,8 +350,8 @@ We have separated data-flow diagrams for ADD, NAND instructions from other instr
                     Data Transfer & Commands \\
                     \hline
                     (0000000000000000) $\to$ T2 & T2\_E\\
-                    $T1_{11-9} \to$ RF\_A3 & T3\_E\\
-                    RF\_D3 $\to$ T3 & \\     %only diff b/w this and SM's 1st step is D3 vs D2
+                    $T1_{11-9} \to$ RF\_A1 & T3\_E\\
+                    RF\_D1 $\to$ T3 & \\     %only diff b/w this and SM's 1st step is D3 vs D2
                     \hline
                 \end{tabular}
             \end{center}    
@@ -367,25 +367,24 @@ We have separated data-flow diagrams for ADD, NAND instructions from other instr
                     T3 $\to$ M\_add & ALU\_J $\leftarrow$ 00\\
                     M\_data $\to$ RF\_D3 & ALU\_CND $\leftarrow$ 11\\
                     $T2_{2-0}$ $\to$ RF\_A3 & \\
-                    T3 $\to$ ALU\_A &\\
-                    +1 $\to$ ALU\_B &\\
-                    ALU\_CND $\leftarrow$ 00 & \\
+                    T3 $\to$ ALU\_A & \\
+                    +1 $\to$ ALU\_B & \\
                     if($T1_{counter}$==1) then ALU\_S $\to$ T3& \\
                     \hline
                 \end{tabular}
             \end{center} 
-            \subsection*{$S_{21}$ (Looping step 2 of LM)} %LM by Varad
-            \begin{center}
-                \begin{tabular}{|c|c|}
-                    \hline
-                    Data Transfer & Commands \\
-                    \hline
-                    T2 $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
-                    1 bit $\to$ ALU\_B & ALU\_CND $\leftarrow$ 11\\        %here 1 must be mentioned as a bit ig
-                    ALU\_S $\to$ T2 & T2\_E\\
-                    \hline
-                \end{tabular}
-            \end{center} 
+            % \subsection*{$S_{21}$ (Looping step 2 of LM)} %LM by Varad
+            % \begin{center}
+            %     \begin{tabular}{|c|c|}
+            %         \hline
+            %         Data Transfer & Commands \\
+            %         \hline
+            %         T2 $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
+            %         1 bit $\to$ ALU\_B & ALU\_CND $\leftarrow$ 11\\        %here 1 must be mentioned as a bit ig
+            %         ALU\_S $\to$ T2 & T2\_E\\
+            %         \hline
+            %     \end{tabular}
+            % \end{center} 
             %Varad's instructions end here
     \section*{Instructions with their State Diagrams and Control Signals}
         \begin{center}
@@ -406,7 +405,7 @@ We have separated data-flow diagrams for ADD, NAND instructions from other instr
                 & \\
                 SM & $S_0 \to S_1 \to S_{16} \to S_{17} $  $ S_{18}$\\
                 & \\
-                LM & $S_0 \to S_1 \to S_{19} \to S_{20} $  $ S_{21}$\\
+                LM & $S_0 \to S_1 \to S_{19} \to S_{20} $  $ S_{18}$\\
                 & \\
                 BEQ & $S_0 \to S_2 \to S_6 \to S_7$\\
                 JAL & $S_0 \to S_8 \to S_9$\\
