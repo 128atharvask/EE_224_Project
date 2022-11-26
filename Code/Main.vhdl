@@ -12,12 +12,12 @@ architecture controller of Main is
 
 -- type state is (s0,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14,s15,s16,s17,s18,s19,s20,s21);
 
-signal sp,sn: state := s0;
+signal sp,sn : state := s0;
 signal null_vec: std_logic_vector(15 downto 0) := (others => '0');
 
-signal ALU_Ain, ALU_Bin, T1in, T2in, T3in, D3in, M_addin, M_data_inin : size22x16 := (others => (others => '0'));
-signal ALU_Jin, ALU_CNDin : size22x2 := (others => (others => '0'));
-signal A1in, A2in, A3in : size22x3 := (others => (others => '0'));
+signal ALU_Ain, ALU_Bin, T1in, T2in, T3in, D3in, M_addin, M_data_inin : size21x16 := (others => (others => '0'));
+signal ALU_Jin, ALU_CNDin : size21x2 := (others => (others => '0'));
+signal A1in, A2in, A3in : size21x3 := (others => (others => '0'));
 signal FCin, FZin, RF_WRin, PC_Ein, MDRin, MWRin, T1_Ein, T2_Ein, T3_Ein : std_logic_vector(21 downto 0) := (others => '0');
 signal S7M1, GT1, GT2, GT3 : size2x16 := (others => (others => '0'));
 signal S3M1, S3M2, S17M1, S17M2, S20M1 : std_logic_vector(1 downto 0) := (others => '0');
@@ -30,6 +30,9 @@ signal ALU_A, ALU_B, ALU_S, D1, D2, D3, M_add, M_data_in, M_data_out, T1, T2, T3
 signal clock, ALU_C, ALU_Z, Z_int, RF_WR, PC_E, T1_E, T2_E, T3_E, MWR, MDR, reset: std_logic := '0';
 signal ALU_J, ALU_CND: std_logic_vector(1 downto 0) := (others => '0');
 signal A1, A2, A3, temp: std_logic_vector(2 downto 0) := (others => '0');
+
+signal icode : std_logic_vector(3 downto 0); --icode is opcode
+signal condcode : std_logic_vector(1 downto 0); --icode is condition code
 
 component ALU is
    generic(
@@ -76,6 +79,15 @@ component memory is
 end component memory;
 
 
+
+
+
+
+
+
+
+--begin process of clock and state transition;
+
 begin
 
 --	clock <= not clock after 10ns ;
@@ -85,6 +97,194 @@ begin
    ALU1: ALU port map (ALU_A, ALU_B, clock, FC, FZ, ALU_J, ALU_CND, ALU_C, ALU_Z, Z_int, ALU_S);
    RF1: reg_file port map (A1, A2, A3, D3, RF_WR, PC_E, clock, D1, D2);
 
+	
+	
+	
+	
+	icode <=  T1(15 downto 12);--T1 31 downto 28; 
+condcode <= T1(1 downto 0);--T1 1 downto 0;
+
+	
+clock_proc:process(clock)
+begin
+
+	if(clock='1' and clock' event) then
+	sp <= sn;
+	else null;
+	end if;
+	
+end process clock_proc;
+
+	
+	
+--sp,sn 
+
+
+
+--counter needs to be defined somewhere
+state_transition_proc : process (sp,counter) --make sure whether counter is really needed.
+begin
+
+
+case sp is
+
+
+	when s0 =>
+	if icode = "1100" then
+	sn <= s2;
+
+	elsif icode = "1000" then
+	sn <= s8;
+
+	elsif icode = "1001" then
+	sn <= s8;
+
+	else 
+	sn <= s1;
+	end if;
+
+
+
+	when s1 =>
+	if icode = "0001" then
+	sn <= s5;
+
+	elsif icode = "0011" then
+	sn <= s11;
+
+	elsif icode = "0111" then
+	sn <= s16;
+
+	elsif icode = "0110" then
+	sn <= s19;
+
+	else
+	sn <= s2;
+	end if;
+
+
+	when s2 =>
+	if icode = "0100" then
+	sn <= s12;
+
+	elsif icode = "0101" then
+	sn <= s12;
+
+	elsif icode = "1100" then
+	sn <= s6;
+
+	else --main else
+
+	if condcode = "00" then --inner else
+	sn <= s3;
+
+	elsif (FC='1') then		--FC is the value of flag register
+	if(condcode = "10") then
+	sn <= s3;					
+	else
+	sn <= s0;
+	end if;
+
+	elsif (FZ='1') then		--FZ is the value of zero register
+	if(condcode = "01") then
+	sn <= s3;					
+	else
+	sn <= s0;
+	end if;
+					
+	else
+	sn <= s0;
+	end if;--inner if ended
+	end if;--main if ended
+
+	when s3 =>
+	sn <= s4;
+
+	when s4 =>
+	sn <= s0;
+
+	when s5 =>
+	sn <= s3;
+
+	when s6 =>
+	sn <= s7;
+
+	when s7 =>
+	sn <= s0;
+
+	when s8 =>
+	if icode = "1000" then
+	sn <= s9;
+
+	else
+	sn <= s10;
+	end if;
+	
+	when s9 =>
+	sn <= s0;
+
+	when s10 =>
+	sn <= s0;
+
+	when s11 =>
+	sn <= s0;
+
+	when s12 =>
+	if icode = "0100" then
+	sn <= s14;
+
+	else
+	sn <= s13;
+	end if;
+
+
+
+	when s13 =>
+	sn <= s0;
+
+	when s14 =>
+	sn <= s15;
+
+	when s15 =>
+	sn <= s0;
+
+	when s16 =>
+	sn <= s17;
+
+	when s17 =>
+	sn <= s18;
+
+	when s18 =>
+	if(counter < 8) then
+	sn <= s17;
+
+	else
+	sn <= s0;
+	end if;
+
+	when s19 =>
+	sn <= s20;
+
+	when s20 =>
+	sn <= s21;
+
+	when s21 =>
+	if(counter < 8) then
+	sn <= s20;
+	else 
+	sn <= s0;
+	end if;
+
+	when others=>
+	sn<= s0;
+end case;
+
+end process;
+
+	
+--end process of clock and state transition;
+
+
    
    
    ALU_Ain(1) <= D1; --PC read
@@ -93,7 +293,7 @@ begin
    ALU_Ain(3) <= T2;
    ALU_Ain(6) <= T2;
    ALU_Ain(18) <= T2;
-   ALU_Ain(21) <= T2;
+   -- ALU_Ain(21) <= T2;
    ALU_Ain(12) <= T3;
    ALU_Ain(17) <= T3;
    ALU_Ain(20) <= T3;
@@ -113,7 +313,7 @@ begin
    ALU_Bin(12) <= "0000000000"&T1(5 downto 0);
    ALU_Bin(17) <= "0000000000000001";--"0000000000010000";
    ALU_Bin(18) <= "0000000000000001";
-   ALU_Bin(21) <= "0000000000000001";
+   -- ALU_Bin(21) <= "0000000000000001";
    ALU_Bin(3) <= T3;
    ALU_Bin(6) <= T3;
 
@@ -136,7 +336,7 @@ begin
    ALU_CNDin(17) <= "11";
    ALU_CNDin(18) <= "11";
    ALU_CNDin(20) <= "11";
-   ALU_CNDin(21) <= "11";
+   -- ALU_CNDin(21) <= "11";
    ALU_CNDin(3) <= T1(1 downto 0);
 
 
@@ -147,7 +347,7 @@ begin
    T2in(5) <= D1;
    T2in(3) <= ALU_S;
    T2in(18) <= ALU_S;
-   T2in(21) <= ALU_S;
+   -- T2in(21) <= ALU_S;
    T2in(6) <= "000000000000000"&Z_int;
    T2in(14) <= M_data_out;
    T2in(16) <= "0000000000000000";
@@ -259,7 +459,7 @@ begin
    T2_Ein(16) <= '1';
    T2_Ein(18) <= '1';
    T2_Ein(19) <= '1';
-   T2_Ein(21) <= '1';
+   -- T2_Ein(21) <= '1';
 
    T3_Ein(2) <= '1';
    T3_Ein(5) <= '1';
@@ -325,16 +525,16 @@ begin
 
 
    
-   MuxALU_A : Mux22x16 port map (ALU_Ain, sp, ALU_A);
-   MuxALU_B : Mux22x16 port map (ALU_Bin, sp, ALU_B);
-   MuxALU_J : Mux22x2 port map (ALU_Jin, sp, ALU_J);
-   MuxALU_CND : Mux22x2 port map (ALU_CNDin, sp, ALU_CND);
+   MuxALU_A : Mux21x16 port map (ALU_Ain, sp, ALU_A);
+   MuxALU_B : Mux21x16 port map (ALU_Bin, sp, ALU_B);
+   MuxALU_J : Mux21x2 port map (ALU_Jin, sp, ALU_J);
+   MuxALU_CND : Mux21x2 port map (ALU_CNDin, sp, ALU_CND);
 
    -- MuxT1 : Mux port map (T1in, sp, T1);
 
-   MuxT1_E : Mux22x1 port map (T1_Ein, sp, T1_E);
-   MuxT2_E : Mux22x1 port map (T2_Ein, sp, T2_E);
-   MuxT3_E : Mux22x1 port map (T3_Ein, sp, T3_E);
+   MuxT1_E : Mux21x1 port map (T1_Ein, sp, T1_E);
+   MuxT2_E : Mux21x1 port map (T2_Ein, sp, T2_E);
+   MuxT3_E : Mux21x1 port map (T3_Ein, sp, T3_E);
 
 --   G_T1_1: if (T1_E = '1') generate
 --      T1 <= M_data_out;
@@ -348,40 +548,42 @@ begin
 	
 	
 --   G_T2_1: if (T2_E = '1') generate
---      MuxT2 : Mux22x16 port map (T2in, sp, T2);
+--      MuxT2 : Mux21x16 port map (T2in, sp, T2);
 --	end generate G_T2_1;
 --   G_T2_2: if (T2_E = '0') generate
 --      null;
 --	end generate G_T2_2;
-	MuxT2: Mux22x16 port map (T2in, sp, GT2(1));
+	MuxT2: Mux21x16 port map (T2in, sp, GT2(1));
 	GT2(0) <= T2;
 	GT2_1: Mux2x16 port map (GT2, T2_E, T2);
 	
 	
 --   G_T3_1: if (T3_E = '1') generate
---      MuxT3 : Mux22x16 port map (T3in, sp, T3);
+--      MuxT3 : Mux21x16 port map (T3in, sp, T3);
 --	end generate G_T3_1;
 --   G_T3_2: if (T3_E = '0') generate
 --      null;
 --	end generate G_T3_2;
-	MuxT3 : Mux22x16 port map (T3in, sp, GT3(1));
+	MuxT3 : Mux21x16 port map (T3in, sp, GT3(1));
 	GT3(0) <= T3;
 	GT3_1: Mux2x16 port map (GT3, T3_E, T3);
 
-   MuxA1 : Mux22x3 port map (A1in, sp, A1);
-   MuxA2 : Mux22x3 port map (A2in, sp, A2);
-   MuxA3 : Mux22x3 port map (A3in, sp, A3);
-   MuxD3 : Mux22x16 port map (D3in, sp, D3);
+   MuxA1 : Mux21x3 port map (A1in, sp, A1);
+   MuxA2 : Mux21x3 port map (A2in, sp, A2);
+   MuxA3 : Mux21x3 port map (A3in, sp, A3);
+   MuxD3 : Mux21x16 port map (D3in, sp, D3);
 
-   MuxM_add : Mux22x16 port map (M_addin, sp, M_add);
-   MuxM_datain : Mux22x16 port map (M_data_inin, sp, M_data_in);
+   MuxM_add : Mux21x16 port map (M_addin, sp, M_add);
+   MuxM_datain : Mux21x16 port map (M_data_inin, sp, M_data_in);
 
-   MuxPC_E : Mux22x1 port map (PC_Ein, sp, PC_E);
-   MuxRF_WR : Mux22x1 port map (RF_WRin, sp, RF_WR);
-   MuxMDR : Mux22x1 port map (MDRin, sp, MDR);
-   MuxMWR : Mux22x1 port map (MWRin, sp, MWR);
+   MuxPC_E : Mux21x1 port map (PC_Ein, sp, PC_E);
+   MuxRF_WR : Mux21x1 port map (RF_WRin, sp, RF_WR);
+   MuxMDR : Mux21x1 port map (MDRin, sp, MDR);
+   MuxMWR : Mux21x1 port map (MWRin, sp, MWR);
    
-   -- connections: process()
 
-   -- begin
+	
+
+
+
 end architecture;
