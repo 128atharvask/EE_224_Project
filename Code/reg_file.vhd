@@ -16,13 +16,13 @@ entity reg_file is
 end entity;
 
 architecture rf of reg_file is    
-    signal R0 : std_logic_vector(15 downto 0) := "0000000000000000";
-    signal R1 : std_logic_vector(15 downto 0) := "0000000000000000";
-    signal R2 : std_logic_vector(15 downto 0) := "0000000000000000";
-    signal R3 : std_logic_vector(15 downto 0) := "0000000000000000";
-    signal R4 : std_logic_vector(15 downto 0) := "0000000000000000";
-    signal R5 : std_logic_vector(15 downto 0) := "0000000000000000";
-    signal R6 : std_logic_vector(15 downto 0) := "0000000000000000";
+    signal R0 : std_logic_vector(15 downto 0) := "0000000000000000";    -- 0
+    signal R1 : std_logic_vector(15 downto 0) := "1110011011100000";    -- -6432
+    signal R2 : std_logic_vector(15 downto 0) := "0000000011000000";    -- 192
+    signal R3 : std_logic_vector(15 downto 0) := "0000111000000000";    -- 3584
+    signal R4 : std_logic_vector(15 downto 0) := "0100000000101000";    -- 16424
+    signal R5 : std_logic_vector(15 downto 0) := "1000000100010000";    -- -32496
+    signal R6 : std_logic_vector(15 downto 0) := "1001100000010000";    -- -26608
     signal R7 : std_logic_vector(15 downto 0) := "0000000000000000";  --PC
 begin
     --writing to register when RF_WR is set
