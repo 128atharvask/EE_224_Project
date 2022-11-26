@@ -15,12 +15,12 @@ architecture controller of Main is
 signal sp,sn : state := s0;
 signal null_vec: std_logic_vector(15 downto 0) := (others => '0');
 
-signal ALU_Ain, ALU_Bin, T1in, T2in, T3in, D3in, M_addin, M_data_inin : size21x16 := (others => (others => '0'));
-signal ALU_Jin, ALU_CNDin : size21x2 := (others => (others => '0'));
-signal A1in, A2in, A3in : size21x3 := (others => (others => '0'));
-signal FCin, FZin, RF_WRin, PC_Ein, MDRin, MWRin, T1_Ein, T2_Ein, T3_Ein : std_logic_vector(21 downto 0) := (others => '0');
+signal ALU_Ain, ALU_Bin, T1in, T2in, T3in, D3in, M_addin, M_data_inin : size20x16 := (others => (others => '0'));
+signal ALU_Jin, ALU_CNDin : size20x2 := (others => (others => '0'));
+signal A1in, A2in, A3in : size20x3 := (others => (others => '0'));
+signal FCin, FZin, RF_WRin, PC_Ein, MDRin, MWRin, T1_Ein, T2_Ein, T3_Ein : std_logic_vector(19 downto 0) := (others => '0');
 signal S7M1, GT1, GT2, GT3 : size2x16 := (others => (others => '0'));
-signal S3M1, S3M2, S17M1, S17M2, S20M1 : std_logic_vector(1 downto 0) := (others => '0');
+signal S3M1, S3M2, S17M1, S17M2, S19M1 : std_logic_vector(1 downto 0) := (others => '0');
 signal condition : std_logic := '0';
 
 signal counter : integer := 0;
@@ -293,10 +293,9 @@ end process;
    ALU_Ain(3) <= T2;
    ALU_Ain(6) <= T2;
    ALU_Ain(18) <= T2;
-   -- ALU_Ain(21) <= T2;
    ALU_Ain(12) <= T3;
    ALU_Ain(17) <= T3;
-   ALU_Ain(20) <= T3;
+   ALU_Ain(19) <= T3;
 
    ALU_Bin(1) <= "0000000000000001";--"0000000000010000";
 --	S7_1: if (T2(0)='0') generate
@@ -308,12 +307,11 @@ end process;
 	S7M1(0) <= "0000000000000001";--"0000000000010000";
 	S7M1(1) <= "0000000000"&T1(5 downto 0);
 	S7: Mux2x16 port map (S7M1, T2(0), ALU_Bin(7));
-   ALU_Bin(20) <= "0000000000000001";--"0000000000010000";
+   ALU_Bin(19) <= "0000000000000001";--"0000000000010000";
    ALU_Bin(9) <= "0000000"&T1(8 downto 0);
    ALU_Bin(12) <= "0000000000"&T1(5 downto 0);
    ALU_Bin(17) <= "0000000000000001";--"0000000000010000";
    ALU_Bin(18) <= "0000000000000001";
-   -- ALU_Bin(21) <= "0000000000000001";
    ALU_Bin(3) <= T3;
    ALU_Bin(6) <= T3;
 
@@ -323,8 +321,7 @@ end process;
    ALU_Jin(12) <= "00";
    ALU_Jin(17) <= "00";
    ALU_Jin(18) <= "00";
-   ALU_Jin(20) <= "00";
-   ALU_Jin(21) <= "00";
+   ALU_Jin(19) <= "00";
    ALU_Jin(6) <= "11";
    ALU_Jin(3) <= T1(14 downto 13);
 
@@ -335,8 +332,7 @@ end process;
    ALU_CNDin(12) <= "11";
    ALU_CNDin(17) <= "11";
    ALU_CNDin(18) <= "11";
-   ALU_CNDin(20) <= "11";
-   -- ALU_CNDin(21) <= "11";
+   ALU_CNDin(19) <= "11";
    ALU_CNDin(3) <= T1(1 downto 0);
 
 
@@ -347,11 +343,9 @@ end process;
    T2in(5) <= D1;
    T2in(3) <= ALU_S;
    T2in(18) <= ALU_S;
-   -- T2in(21) <= ALU_S;
    T2in(6) <= "000000000000000"&Z_int;
    T2in(14) <= M_data_out;
    T2in(16) <= "0000000000000000";
-   T2in(19) <= "0000000000000000";
 
    T3in(2) <= D2;
    T3in(16) <= D2;
@@ -369,7 +363,6 @@ end process;
 --	S17M1(1) <= ALU_S;
 --	S17: Mux2x16 port map (S17M1, T1(counter), T3in(17));
 	T3in(17) <= ALU_S;
-   T3in(19) <= D3;
 --   S20_1: if (T1(counter)='1') generate
 --      T3in(20) <= ALU_S;
 --	end generate S20_1;
@@ -379,7 +372,7 @@ end process;
 --	S20M1(0) <= T3;
 --	S20M1(1) <= ALU_S;
 --	S20: Mux2x16 port map (S20M1, T1(counter), T3in(20));
-	T3in(20) <= ALU_S;
+	T3in(19) <= ALU_S;
 
    A1in(0) <= "111"; --for PC read
    A1in(1) <= "111"; --for PC read
@@ -408,8 +401,7 @@ end process;
    A3in(8) <= T1(11 downto 9);
    A3in(11) <= T1(11 downto 9);
    A3in(15) <= T1(11 downto 9);
-   A3in(19) <= T1(11 downto 9);
-   A3in(20) <= T2(2 downto 0);
+   A3in(19) <= T2(2 downto 0);
 
    D3in(1) <= ALU_S; --PC write
    D3in(7) <= ALU_S; --PC write
@@ -419,7 +411,7 @@ end process;
    D3in(15) <= T2;
    D3in(8) <= D1; --PC read
    D3in(11) <= "0000000"&T1(8 downto 0);
-   D3in(20) <= M_data_out;
+   D3in(19) <= M_data_out;
 
 
 
@@ -433,7 +425,7 @@ end process;
 --		null;
 --   end generate S17_6;
 	M_addin(17) <= T3;
-   M_addin(20) <= T3;
+   M_addin(19) <= T3;
    
    M_data_inin(13) <= T2;
 --   S17_7: if (T1(counter)='1') generate
@@ -458,8 +450,6 @@ end process;
    T2_Ein(14) <= '1';
    T2_Ein(16) <= '1';
    T2_Ein(18) <= '1';
-   T2_Ein(19) <= '1';
-   -- T2_Ein(21) <= '1';
 
    T3_Ein(2) <= '1';
    T3_Ein(5) <= '1';
@@ -470,11 +460,10 @@ end process;
 	S17M1(1) <= '1';
 	S17_1: Mux2x1 port map (S17M1, T1(counter), T3_Ein(17));
 	
-   T3_Ein(19) <= '1';
---   T3_Ein(20) <= '1';
-	S20M1(0) <= '0';
-	S20M1(1) <= '1';
-	S20_1: Mux2x1 port map (S20M1, T1(counter), T3_Ein(20));
+--   T3_Ein(19) <= '1';
+	S19M1(0) <= '0';
+	S19M1(1) <= '1';
+	S19_1: Mux2x1 port map (S19M1, T1(counter), T3_Ein(19));
 
 
 --   S3_1: if (sp = s3) generate
@@ -510,11 +499,11 @@ end process;
    RF_WRin(8) <= '1';
    RF_WRin(11) <= '1';
    RF_WRin(15) <= '1';
-   RF_WRin(20) <= T1(counter);
+   RF_WRin(19) <= T1(counter);
 
    MDRin(0) <= '1';
    MDRin(14) <= '1';
-   MDRin(20) <= '1';
+   MDRin(19) <= '1';
 
    MWRin(13) <= '1';
 --   MWRin(17) <= '1';
@@ -525,16 +514,16 @@ end process;
 
 
    
-   MuxALU_A : Mux21x16 port map (ALU_Ain, sp, ALU_A);
-   MuxALU_B : Mux21x16 port map (ALU_Bin, sp, ALU_B);
-   MuxALU_J : Mux21x2 port map (ALU_Jin, sp, ALU_J);
-   MuxALU_CND : Mux21x2 port map (ALU_CNDin, sp, ALU_CND);
+   MuxALU_A : Mux20x16 port map (ALU_Ain, sp, ALU_A);
+   MuxALU_B : Mux20x16 port map (ALU_Bin, sp, ALU_B);
+   MuxALU_J : Mux20x2 port map (ALU_Jin, sp, ALU_J);
+   MuxALU_CND : Mux20x2 port map (ALU_CNDin, sp, ALU_CND);
 
    -- MuxT1 : Mux port map (T1in, sp, T1);
 
-   MuxT1_E : Mux21x1 port map (T1_Ein, sp, T1_E);
-   MuxT2_E : Mux21x1 port map (T2_Ein, sp, T2_E);
-   MuxT3_E : Mux21x1 port map (T3_Ein, sp, T3_E);
+   MuxT1_E : Mux20x1 port map (T1_Ein, sp, T1_E);
+   MuxT2_E : Mux20x1 port map (T2_Ein, sp, T2_E);
+   MuxT3_E : Mux20x1 port map (T3_Ein, sp, T3_E);
 
 --   G_T1_1: if (T1_E = '1') generate
 --      T1 <= M_data_out;
@@ -548,38 +537,38 @@ end process;
 	
 	
 --   G_T2_1: if (T2_E = '1') generate
---      MuxT2 : Mux21x16 port map (T2in, sp, T2);
+--      MuxT2 : Mux20x16 port map (T2in, sp, T2);
 --	end generate G_T2_1;
 --   G_T2_2: if (T2_E = '0') generate
 --      null;
 --	end generate G_T2_2;
-	MuxT2: Mux21x16 port map (T2in, sp, GT2(1));
+	MuxT2: Mux20x16 port map (T2in, sp, GT2(1));
 	GT2(0) <= T2;
 	GT2_1: Mux2x16 port map (GT2, T2_E, T2);
 	
 	
 --   G_T3_1: if (T3_E = '1') generate
---      MuxT3 : Mux21x16 port map (T3in, sp, T3);
+--      MuxT3 : Mux20x16 port map (T3in, sp, T3);
 --	end generate G_T3_1;
 --   G_T3_2: if (T3_E = '0') generate
 --      null;
 --	end generate G_T3_2;
-	MuxT3 : Mux21x16 port map (T3in, sp, GT3(1));
+	MuxT3 : Mux20x16 port map (T3in, sp, GT3(1));
 	GT3(0) <= T3;
 	GT3_1: Mux2x16 port map (GT3, T3_E, T3);
 
-   MuxA1 : Mux21x3 port map (A1in, sp, A1);
-   MuxA2 : Mux21x3 port map (A2in, sp, A2);
-   MuxA3 : Mux21x3 port map (A3in, sp, A3);
-   MuxD3 : Mux21x16 port map (D3in, sp, D3);
+   MuxA1 : Mux20x3 port map (A1in, sp, A1);
+   MuxA2 : Mux20x3 port map (A2in, sp, A2);
+   MuxA3 : Mux20x3 port map (A3in, sp, A3);
+   MuxD3 : Mux20x16 port map (D3in, sp, D3);
 
-   MuxM_add : Mux21x16 port map (M_addin, sp, M_add);
-   MuxM_datain : Mux21x16 port map (M_data_inin, sp, M_data_in);
+   MuxM_add : Mux20x16 port map (M_addin, sp, M_add);
+   MuxM_datain : Mux20x16 port map (M_data_inin, sp, M_data_in);
 
-   MuxPC_E : Mux21x1 port map (PC_Ein, sp, PC_E);
-   MuxRF_WR : Mux21x1 port map (RF_WRin, sp, RF_WR);
-   MuxMDR : Mux21x1 port map (MDRin, sp, MDR);
-   MuxMWR : Mux21x1 port map (MWRin, sp, MWR);
+   MuxPC_E : Mux20x1 port map (PC_Ein, sp, PC_E);
+   MuxRF_WR : Mux20x1 port map (RF_WRin, sp, RF_WR);
+   MuxMDR : Mux20x1 port map (MDRin, sp, MDR);
+   MuxMWR : Mux20x1 port map (MWRin, sp, MWR);
    
 
 	
