@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.8.19)  26 NOV 2022 11:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8) (preloaded format=pdflatex 2022.8.19)  27 NOV 2022 11:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -864,7 +864,7 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 <StateDiagram.jpg, id=71, 1845.89626pt x 1639.62563pt>
 File: StateDiagram.jpg Graphic file (type jpg)
 <use StateDiagram.jpg>
-Package pdftex.def Info: StateDiagram.jpg  used on input line 418.
+Package pdftex.def Info: StateDiagram.jpg  used on input line 417.
 (pdftex.def)             Requested size: 398.93158pt x 354.339pt.
  [6 <./StateDiagram.jpg>] (CPU.aux)
 Package rerunfilecheck Info: File `CPU.out' has not changed.
@@ -882,7 +882,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  87i,11n,91p,723b,801s stack positions out of 10000i,1000n,20000p,200000b,80000s
 <C:/Users/theas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/theas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/theas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/theas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/theas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/theas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/theas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/theas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/theas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/theas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/theas/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on CPU.pdf (7 pages, 1369498 bytes).
+Output written on CPU.pdf (7 pages, 1369548 bytes).
 PDF statistics:
  135 PDF objects out of 1000 (max. 8388607)
  36 named destinations out of 1000 (max. 500000)
