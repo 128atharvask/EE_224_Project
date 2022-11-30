@@ -1,0 +1,64 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use work.DataTypePackage.all;
+
+entity memory is
+    port(
+        clk : in std_logic; -- clock
+        MWR : in std_logic; -- write enable
+        MDR : in std_logic; -- read enable
+        M_add : in std_logic_vector(15 downto 0);-- 16 bit address
+        M_data_in : in std_logic_vector(15 downto 0); -- data input to the memory
+        M_data_out : out std_logic_vector(15 downto 0));-- data output from the memory
+end entity;
+
+architecture memory_arch of memory is
+
+-- memory is 64 units of 16 bits each
+type mem_arr is array(0 to 63) of std_logic_vector(15 downto 0);
+
+-- this signal is the memory
+signal data : mem_arr := (
+    0 => "1100010011000010", --
+	 1 => "1000000000001000", --
+	 2 => "1000000000001000", --
+	 3 => "0001000000011111", --
+	 4 => "1100010011000010", --
+	 5 => "0000000010000001", --
+
+	 10 => "1001101110000000", --		
+	 12 => "0011101000000001", --
+	 13 => "0100101000010000", --
+	 14 => "0101010101010000", --
+	 15 => "0100000101010000", --
+	 16 => "0111101011111111", --
+	 18 => "0000000000000100", --
+	 40 => "0000000000000000", --
+	 41 => "0000000000000001", --
+	 42 => "0000000000000010", --
+	 43 => "0000000000000011", --
+	 44 => "0000000000000100", --
+    others => (others => '0')); --initialised the remaining to "0000000000000000"
+	 
+begin
+	 
+	 -- process to write data to memory
+	 write_proc: process(clk)
+    begin
+        if (clk'event and clk = '1') then   --writing at positive clock cycle  
+            if (MWR = '1') then
+                data(to_integer(unsigned(M_add))) <= M_data_in;
+            end if;
+		  end if;
+    end process write_proc;
+	 
+	 -- process to read data from memory
+	 read_proc: process(clk)
+	 begin
+		  if(MDR = '1') then
+				M_data_out <= data(to_integer(unsigned(M_add)));
+		  end if;
+    end process read_proc;
+	 
+end architecture memory_arch;

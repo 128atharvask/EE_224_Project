@@ -1,0 +1,252 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/SCI/Desktop/EE_224_Project-master/Test/simulation/modelsim
+Ealu
+Z1 w1669802278
+Z2 DPx4 work 15 datatypepackage 0 22 bg[64JIFIm]HU1l3oDBjI3
+Z3 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z4 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z5 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 3
+R0
+Z6 8C:/Users/SCI/Desktop/EE_224_Project-master/Test/ALU.vhdl
+Z7 FC:/Users/SCI/Desktop/EE_224_Project-master/Test/ALU.vhdl
+l0
+L10 1
+V<gWO[Ho5Rn=W_E=f3h>8a0
+!s100 9mJRFo1VaR?7N?LLnd`jV1
+Z8 OV;C;2020.1;71
+31
+Z9 !s110 1669802748
+!i10b 1
+Z10 !s108 1669802748.000000
+Z11 !s90 -reportprogress|300|-93|-work|work|C:/Users/SCI/Desktop/EE_224_Project-master/Test/ALU.vhdl|
+Z12 !s107 C:/Users/SCI/Desktop/EE_224_Project-master/Test/ALU.vhdl|
+!i113 1
+Z13 o-93 -work work
+Z14 tExplicit 1 CvgOpt 0
+Abehavioural
+R2
+R3
+R4
+R5
+DEx4 work 3 alu 0 22 <gWO[Ho5Rn=W_E=f3h>8a0
+!i122 3
+l65
+L27 113
+Vo^T]De1o7SPg5I:URCX110
+!s100 U^KFan2JCmLU9VmQDV]dC0
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Pdatatypepackage
+R4
+R5
+!i122 1
+w1669801737
+R0
+8C:/Users/SCI/Desktop/EE_224_Project-master/Test/DataTypePackage.vhdl
+FC:/Users/SCI/Desktop/EE_224_Project-master/Test/DataTypePackage.vhdl
+l0
+L5 1
+Vbg[64JIFIm]HU1l3oDBjI3
+!s100 YgbQ8A1;=CeAXA]MRURkO1
+R8
+31
+R9
+!i10b 1
+R10
+!s90 -reportprogress|300|-93|-work|work|C:/Users/SCI/Desktop/EE_224_Project-master/Test/DataTypePackage.vhdl|
+!s107 C:/Users/SCI/Desktop/EE_224_Project-master/Test/DataTypePackage.vhdl|
+!i113 1
+R13
+R14
+Emain_proc
+Z15 w1669802384
+R3
+R2
+R4
+R5
+!i122 2
+R0
+Z16 8C:/Users/SCI/Desktop/EE_224_Project-master/Test/Main_proc.vhd
+Z17 FC:/Users/SCI/Desktop/EE_224_Project-master/Test/Main_proc.vhd
+l0
+L6 1
+V7IQO@SQ05OfFH9N_AIg?[1
+!s100 eSXW@GUUGVDLZB_]56AEn0
+R8
+31
+R9
+!i10b 1
+R10
+Z18 !s90 -reportprogress|300|-93|-work|work|C:/Users/SCI/Desktop/EE_224_Project-master/Test/Main_proc.vhd|
+Z19 !s107 C:/Users/SCI/Desktop/EE_224_Project-master/Test/Main_proc.vhd|
+!i113 1
+R13
+R14
+Acontroller
+R3
+R2
+R4
+R5
+DEx4 work 9 main_proc 0 22 7IQO@SQ05OfFH9N_AIg?[1
+!i122 2
+l93
+L11 849
+V0cTBd;e_`Zd85Z=^_A]ZK2
+!s100 3^2kJ^c1KD>;6bQV0fiIo2
+R8
+31
+R9
+!i10b 1
+R10
+R18
+R19
+!i113 1
+R13
+R14
+Ememory
+Z20 w1669801572
+R2
+R3
+R4
+R5
+!i122 4
+R0
+Z21 8C:/Users/SCI/Desktop/EE_224_Project-master/Test/memory.vhd
+Z22 FC:/Users/SCI/Desktop/EE_224_Project-master/Test/memory.vhd
+l0
+L6 1
+VWzM9J;GoXBPWb5z^hf8UR3
+!s100 F1knb>hFRe<YIglT_N<<90
+R8
+31
+R9
+!i10b 1
+R10
+Z23 !s90 -reportprogress|300|-93|-work|work|C:/Users/SCI/Desktop/EE_224_Project-master/Test/memory.vhd|
+Z24 !s107 C:/Users/SCI/Desktop/EE_224_Project-master/Test/memory.vhd|
+!i113 1
+R13
+R14
+Amemory_arch
+R2
+R3
+R4
+R5
+DEx4 work 6 memory 0 22 WzM9J;GoXBPWb5z^hf8UR3
+!i122 4
+l44
+L16 49
+VLo1@BfDKdn3D`EnOhF;oQ0
+!s100 FZ@O_@3B]0^mP^XfG;F0]0
+R8
+31
+R9
+!i10b 1
+R10
+R23
+R24
+!i113 1
+R13
+R14
+Ereg_file
+Z25 w1669802528
+R2
+R4
+R5
+!i122 5
+R0
+Z26 8C:/Users/SCI/Desktop/EE_224_Project-master/Test/reg_file.vhd
+Z27 FC:/Users/SCI/Desktop/EE_224_Project-master/Test/reg_file.vhd
+l0
+L5 1
+VG:9G3HNd>eD4_19Z1Ub<g1
+!s100 7^F9_bV4`1Ij3;YX4MBoz0
+R8
+31
+R9
+!i10b 1
+R10
+Z28 !s90 -reportprogress|300|-93|-work|work|C:/Users/SCI/Desktop/EE_224_Project-master/Test/reg_file.vhd|
+!s107 C:/Users/SCI/Desktop/EE_224_Project-master/Test/reg_file.vhd|
+!i113 1
+R13
+R14
+Arf
+R2
+R4
+R5
+DEx4 work 8 reg_file 0 22 G:9G3HNd>eD4_19Z1Ub<g1
+!i122 5
+l30
+L19 102
+VCi<@M8`Hff7DTfj<zb0011
+!s100 B]=caiAZVJ[M7@5VgSTT:3
+R8
+31
+R9
+!i10b 1
+R10
+R28
+Z29 !s107 C:/Users/SCI/Desktop/EE_224_Project-master/Test/reg_file.vhd|
+!i113 1
+R13
+R14
+Etemp_regs
+Z30 w1669802526
+R4
+R5
+!i122 0
+R0
+Z31 8C:/Users/SCI/Desktop/EE_224_Project-master/Test/temp_regs.vhd
+Z32 FC:/Users/SCI/Desktop/EE_224_Project-master/Test/temp_regs.vhd
+l0
+L4 1
+V2<kmdhWiF_IcKjaW4[kmz2
+!s100 83LcHYimX??2V4^JfHJjz1
+R8
+31
+R9
+!i10b 1
+R10
+Z33 !s90 -reportprogress|300|-93|-work|work|C:/Users/SCI/Desktop/EE_224_Project-master/Test/temp_regs.vhd|
+Z34 !s107 C:/Users/SCI/Desktop/EE_224_Project-master/Test/temp_regs.vhd|
+!i113 1
+R13
+R14
+Aarch
+R4
+R5
+DEx4 work 9 temp_regs 0 22 2<kmdhWiF_IcKjaW4[kmz2
+!i122 0
+l16
+L12 15
+VaQ@V9=fBX7Rk`Jn:;<8B02
+!s100 @^oVM0@IRCLfolW`_DLHF1
+R8
+31
+R9
+!i10b 1
+R10
+R33
+R34
+!i113 1
+R13
+R14
