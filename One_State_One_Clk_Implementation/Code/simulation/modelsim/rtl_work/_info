@@ -1,0 +1,246 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/simulation/modelsim
+Ealu
+Z1 w1669809736
+Z2 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 4
+R0
+Z5 8/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/ALU.vhdl
+Z6 F/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/ALU.vhdl
+l0
+L8 1
+V[`Q`IUmfE?37odFPn?UdY3
+!s100 RQB:2Q99fbZ8K80L>9LRi0
+Z7 OV;C;2020.1;71
+31
+Z8 !s110 1669825479
+!i10b 1
+Z9 !s108 1669825479.000000
+Z10 !s90 -reportprogress|300|-93|-work|work|/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/ALU.vhdl|
+Z11 !s107 /home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/ALU.vhdl|
+!i113 1
+Z12 o-93 -work work
+Z13 tExplicit 1 CvgOpt 0
+Abehavioural
+R2
+R3
+R4
+DEx4 work 3 alu 0 22 [`Q`IUmfE?37odFPn?UdY3
+!i122 4
+l62
+L28 108
+VI0=1;86IHl[5SK1X1aU892
+!s100 1nT_@IGOIc23NYRb4GIle3
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Pdatatypepackage
+R3
+R4
+!i122 3
+w1669809768
+R0
+8/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/DataTypePackage.vhdl
+F/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/DataTypePackage.vhdl
+l0
+L4 1
+VKPTznaL5oR7?e^7K<W1lo0
+!s100 3Bo47KJ@io<:YSgnSJED<1
+R7
+31
+R8
+!i10b 1
+R9
+!s90 -reportprogress|300|-93|-work|work|/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/DataTypePackage.vhdl|
+!s107 /home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/DataTypePackage.vhdl|
+!i113 1
+R12
+R13
+Eiitb_cpu
+Z14 w1669825459
+R2
+Z15 DPx4 work 15 datatypepackage 0 22 KPTznaL5oR7?e^7K<W1lo0
+R3
+R4
+!i122 5
+R0
+Z16 8/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/IITB_CPU.vhd
+Z17 F/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/IITB_CPU.vhd
+l0
+L6 1
+V`e6;3DiA^c=]dYJ3MKShL0
+!s100 oXAa_619F0b8IXLz21T]i0
+R7
+31
+R8
+!i10b 1
+R9
+Z18 !s90 -reportprogress|300|-93|-work|work|/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/IITB_CPU.vhd|
+!s107 /home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/IITB_CPU.vhd|
+!i113 1
+R12
+R13
+Acontroller
+R2
+R15
+R3
+R4
+DEx4 work 8 iitb_cpu 0 22 `e6;3DiA^c=]dYJ3MKShL0
+!i122 5
+l81
+L11 654
+VB6]EPnADzW7cIF1[TiI`i3
+!s100 jka:<ABAcRSQD:U[2AGEl3
+R7
+31
+R8
+!i10b 1
+R9
+R18
+Z19 !s107 /home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/IITB_CPU.vhd|
+!i113 1
+R12
+R13
+Ememory
+Z20 w1669824520
+R2
+R3
+R4
+!i122 2
+R0
+Z21 8/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/memory.vhd
+Z22 F/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/memory.vhd
+l0
+L5 1
+VPCOj_X^E`X9lde]oj0P=T0
+!s100 bndom70>RXKALMAgc`Qzb2
+R7
+31
+Z23 !s110 1669825478
+!i10b 1
+Z24 !s108 1669825478.000000
+Z25 !s90 -reportprogress|300|-93|-work|work|/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/memory.vhd|
+Z26 !s107 /home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/memory.vhd|
+!i113 1
+R12
+R13
+Amemory_arch
+R2
+R3
+R4
+DEx4 work 6 memory 0 22 PCOj_X^E`X9lde]oj0P=T0
+!i122 2
+l89
+L15 97
+V]Fm5[aUf6:Y9AbmTm@WQG2
+!s100 mTe3=Smj0jNM2LdKc@4J?1
+R7
+31
+R23
+!i10b 1
+R24
+R25
+R26
+!i113 1
+R12
+R13
+Ereg_file
+Z27 w1669816339
+R3
+R4
+!i122 1
+R0
+Z28 8/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/reg_file.vhd
+Z29 F/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/reg_file.vhd
+l0
+L4 1
+V>HVGQI1D;Yl3SNUiZ`e@a2
+!s100 2SoHOFXZlikbEY09n?E?61
+R7
+31
+R23
+!i10b 1
+R24
+Z30 !s90 -reportprogress|300|-93|-work|work|/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/reg_file.vhd|
+Z31 !s107 /home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/reg_file.vhd|
+!i113 1
+R12
+R13
+Arf
+R3
+R4
+DEx4 work 8 reg_file 0 22 >HVGQI1D;Yl3SNUiZ`e@a2
+!i122 1
+l27
+L18 83
+V7IhN3aoWbI5kJnoJ4;Q3:1
+!s100 LjJUM[B@nLF:c]N[:fVd91
+R7
+31
+R23
+!i10b 1
+R24
+R30
+R31
+!i113 1
+R12
+R13
+Etemp_regs
+Z32 w1669809626
+R3
+R4
+!i122 0
+R0
+Z33 8/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/temp_regs.vhd
+Z34 F/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/temp_regs.vhd
+l0
+L6 1
+V8omYXzC_zLg?P<=EKffNO1
+!s100 c=6A;5DBk5HLbfY:5]FnG3
+R7
+31
+R23
+!i10b 1
+R24
+Z35 !s90 -reportprogress|300|-93|-work|work|/home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/temp_regs.vhd|
+Z36 !s107 /home/shreyas/Documents/IITB/sem3/ee224/EE_224_Project-master (Final, One State-One Clock) (1)/oneclock_project - Copy/temp_regs.vhd|
+!i113 1
+R12
+R13
+Aarch
+R3
+R4
+DEx4 work 9 temp_regs 0 22 8omYXzC_zLg?P<=EKffNO1
+!i122 0
+l17
+L14 14
+V3_SSFJ^NC@j^6FReBTbH30
+!s100 f=gP]o]3nKUb7<zdQI<j[1
+R7
+31
+R23
+!i10b 1
+R24
+R35
+R36
+!i113 1
+R12
+R13

@@ -1,0 +1,444 @@
+\documentclass[]{report}
+\usepackage[left=0.8in, right=0.8in, top=1in, bottom=1in]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amsthm}	
+\usepackage{amssymb}
+\usepackage{esint}
+\usepackage[parfill]{parskip}
+\usepackage{hyperref}
+\usepackage{floatrow}
+\usepackage{mwe}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{biblatex}
+\usepackage[none]{hyphenat}
+
+\title{EE 224 Course Project : CPU}
+
+\author{Atharva Kulkarni(210070047) \\Harshit Raj(20d070033) \\
+ Shreyas Grampurohit(21d070029) \\ Varad Deshpande(21d070024)}
+
+\date{9 Nov 2022}
+
+\begin{document}
+
+\maketitle
+\section*{ALU:}
+\subsection*{Data-flow}
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics*[width=0.85\textwidth]{ADDNAND.jpg}
+    \end{center}
+\end{figure}
+    \begin{figure}[H]
+        \begin{center}
+            \includegraphics*[width=0.85\textwidth]{BEQ+JAL+JLR.jpg}
+        \end{center}
+    \end{figure}
+We have separated data-flow diagrams for ADD, NAND instructions from other instructions for simplicity.
+    \subsection*{Inputs:}
+    ALU\_A: Takes 16-bit input \\
+    ALU\_B: Takes 16-bit input \\
+
+    \subsection*{Registers storing the flags:}
+    FC and FZ \\
+    These are connected to ALU\_C and ALU\_Z respectively.
+
+    \subsection*{Control Signals:}
+    ALU\_J: Takes 2-bit input. This specifies whether to perform addition, subtraction or NAND. \\
+    ALU\_CND: Takes 2-bit input. This is used to find the new values to be updated to FZ and FC(may or may not be the same as the previous values in FZ and FC) based upon ALU\_J(see table). \\
+
+    \subsection*{Outputs:}
+    ALU\_C: Outputs the carry flag to be put in the FZ register at the end of the clock cycle. \\
+    ALU\_Z: Outputs the zero flag to be put in the FZ register at the end of the clock cycle. This may or may not be the same as Z\_int. \\
+    ALU\_S: Outputs sum, NAND, or the difference based on the bits provided in ALU\_J. \\
+    Z\_int: Evaluates to 1 when ALU\_S is zero. Else, it evaluates to 0. \\
+
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        ALU\_J & Function \\
+        \hline
+        00 & Addition \\
+        \hline
+        01 & NAND \\
+        \hline
+        11 & Subtraction \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{|p{0.13\linewidth}|p{0.16\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|}
+    \hline
+    ALU\_J & ALU\_CND & Output from ALU\_C & Output from ALU\_Z  \\
+    \hline
+    00 (Add) & 00 & Modified value of carry flag. & Modified value of zero flag. \\
+    \hline
+    00 (Add) & 10 & Modified value of carry flag if input FC is 1. Same as the previous value in FC if FC is 0. & Modified value of zero flag if input FC is 1. Same as the previous value in FZ if FC is 0. \\
+    \hline
+    00 (Add) & 01 & Modified value of carry flag if input FZ is 1. Same as the previous value in FC if FZ is 0. & Modified value of zero flag if input FZ is 1. Same as the previous value in FZ if FZ is 0 \\
+    \hline
+    00 (Add) & 11 (Used for updating PC) & Same as the previous value in FC. & Same as the previous value in FZ. \\
+    \hline
+    01 (NAND) & 00 & Same as the previous value in FC. & Modified value of zero flag. \\
+    \hline
+    01 (NAND) & 10 & Same as the previous value in FC. & Modified value of zero flag if input FC is 1. Same as the previous value in FZ if FC is 0. \\
+    \hline
+    01 (NAND) & 01 & Same as the previous value in FC. & Modified value of zero flag if input FZ is 1. Same as the previous value in FZ if FZ is 0. \\
+    \hline
+    11 (Subtract) & xx & Same as the previous value in FC. & Same as the previous value in FZ. \\
+    \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\newpage
+% remember to mention that PC eqt to R7
+    \section*{State Descriptions}
+        (PC $\equiv$ R7) \\ 
+        \subsection*{$S_0$ (Fetching instruction from memory)}  % can be merged with S1
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    PC $\to$ M\_add & MDR\\
+                        M\_data $\to$ T1& T1\_E\\
+                    \hline
+                \end{tabular}
+            \end{center}
+        \subsection*{$S_1$ (Updating PC)}   % +1 or +2
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                PC $\to$ ALU\_A & PC\_E\\
+                +1 $\to$ ALU\_B & ALU\_J $\leftarrow$ 00\\
+                ALU\_CND $\leftarrow$ 11 & \\
+                ALU\_S $\to$ PC &\\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_2$ (Reading operands)}
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                $T1_{11-9} \to$ RF\_A1  & T2\_E\\
+                $T1_{8-6} \to$ RF\_A2 & T3\_E\\
+                RF\_D1 $\to$ T2 & \\
+                RF\_D2 $\to$ T3 & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_3$ (Execution)} % can execute ADD, SUB, NAND
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                T2 $\to$ ALU\_A & T4\_E\\
+                T3 $\to$ ALU\_B & ALU\_J $\leftarrow$ $T1_{14-13}$\\
+                $T1_{1-0} \to $ ALU\_CND & \\
+                ALU\_S $\to$ T4 & \\
+                ALU\_C $\to$ FC & \\
+                ALU\_Z $\to$ FZ & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_4$ (Storing the output)}
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                T2 $\to$ RF\_D3 & RF\_WR\\
+                if($T1_{15-12}$ = 0001) then $T1_{8-6}$ $\to$ RF\_A3 & \\
+                else $T1_{5-3}$ $\to$ RF\_A3 & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_5$ (Reading operands (for ADI))}
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                $T1_{11-9} \to$ RF\_A1  & T2\_E\\
+                RF\_D1 $\to$ T2 & T3\_E\\
+                $T1_{5-0} \to$ SE\_6 $\to$ T3 & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        % states for Atharva's instructions till here
+
+        \subsection*{$S_6$ (Evaluating condition for BEQ)} %BEQ by Harshit % without changing ZF
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                T2 $\to$ ALU\_A & ALU\_J $\leftarrow$ 11\\
+                T3 $\to$ ALU\_B & T4\_E\\
+                Z\_int $\to$ PZ\_15 $\to$ T4 & \\
+                ALU\_CND $\leftarrow$ 00 & \\
+                \hline
+            \end{tabular}   \\
+            (PZ\_15 here means pad 15 zeros to the left)
+        \end{center}
+        \subsection*{$S_7$ (Updating PC in BEQ)} %BEQ by Harshit
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                PC $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
+                if($T4_0$ == 0) then +1 $\to$ ALU\_B & PC\_E\\
+                else $T1_{5-0} \to$ SE\_6 $\to$ ALU\_B & \\
+                ALU\_CND $\leftarrow$ 11 & \\
+                ALU\_S $\to$ PC & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_8$ (Storing PC into REG\_A)} %JAL by Harshit
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                $T1_{11-9}$ $\to$ RF\_A3 & RF\_WR\\
+                PC $\to$ RF\_D3 & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_9$ (Branching PC to the address PC + immediate)} %JAL by Harshit
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                PC $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
+                $T1_{8-0} \to$ SE\_9 $\to$ ALU\_B & PC\_E\\
+                ALU\_CND $\leftarrow$ 11 & \\
+                ALU\_S $\to$ PC & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_{10}$ (Branching PC to the address in REG\_B)} %JLR by Harshit
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                $T1_{8-6} \to$ RF\_A1 & PC\_E\\
+                RF\_D1 $\to$ PC & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_{11}$ (Executing Load Higher Immediate)} %LHI by Harshit
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                $T1_{11-9} \to$ RF\_A3 & RF\_WR\\
+                $T1_{8-0} \to$ PZ\_7 $\to$ RF\_D3 & \\   %PZ = pad zeros
+                \hline
+            \end{tabular}   \\
+            (PZ\_7 here means pad 15 zeros to the right)
+        \end{center}
+        %Harshit's instructions end here
+
+        \subsection*{$S_{12}$ (Computing address of the memory destination)} %LW by Varad
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                T3 $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
+                $T1_{5-0} \to$ SE\_6 $\to$ ALU\_B & ALU\_CND $\leftarrow$ 11\\
+                ALU\_S $\to$ T4 & T4\_E\\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_{13}$ (Writing to the memory)} %SW by Varad
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                T4 $\to$ M\_add & MWR\\
+                T2 $\to$ M\_data & \\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_{14}$ (Reading from memory)} %LW by Varad
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Data Transfer & Commands \\
+                \hline
+                T4 $\to$ M\_add & MDR\\
+                M\_data $\to$ T2 & T2\_E\\
+                \hline
+            \end{tabular}
+        \end{center}
+        \subsection*{$S_{15}$ (Writing to the register)} %LW by Varad
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    $T1_{11-9} \to$ RF\_A3 & RF\_WR\\
+                    T2 $\to$ RF\_D3 & \\
+                    \hline
+                \end{tabular}
+            \end{center}
+
+            \subsection*{$S_{16}$ (Initial step of SM and LM)} %SM by Varad
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    (0000000000000000) $\to$ T2 & T2\_E\\
+                    $T1_{11-9} \to$ RF\_A2 & T3\_E\\
+                    RF\_D2 $\to$ T3 & \\
+                    counter := int($T2_{2-0}$) & \\
+                    \hline
+                \end{tabular}
+            \end{center}
+            \subsection*{$S_{17}$ (Looping step 1 of SM)} %SM by Varad
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    \textcolor{blue}{if(mod2(counter) == 0) then}\textcolor{blue}{\{} & if(mod2(counter) == 0) then T3\_E$\leftarrow$0 \\
+                    T3 $\to$ ALU\_A & else T3\_E$\leftarrow$1 \\
+                    +1 $\to$ ALU\_B & if(mod2(counter) == 1) then T4\_E$\leftarrow$1\\
+                    \textcolor{red}{if($T1_{counter}$==1) then}\textcolor{red}{\{} & else T3\_E$\leftarrow$0\\
+                    T3 $\to$ M\_add & ALU\_J $\leftarrow$ 00\\
+                    counter $\to$ 3 bit unsigned $\to$ RF\_A1 & ALU\_CND $\leftarrow$ 11\\
+                    RF\_D1 $\to$ M\_data & MWR\\
+                    ALU\_S $\to$ T4 \textcolor{red}{\}}\textcolor{blue}{\}} & \\ 
+                    \textcolor{blue}{else}\textcolor{blue}{\{} & \\
+                    T4 $\to$ ALU\_A & \\
+                    +1 $\to$ ALU\_B & \\
+                    \textcolor{red}{if($T1_{counter}$==1) then}\textcolor{red}{\{} & \\
+                    T4 $\to$ M\_add & \\
+                    counter $\to$ 3 bit unsigned $\to$ RF\_A1 & \\
+                    RF\_D1 $\to$ M\_data\ & \\
+                    ALU\_S $\to$ T3 \textcolor{red}{\}}\textcolor{blue}{\}} & \\
+                    \hline
+                \end{tabular}
+            \end{center} 
+            \subsection*{$S_{18}$ (Updating counter variable (Looping step 2 of SM and LM))} %SM by Varad
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    counter (converted to 16 bit) $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
+                    1 bit $\to$ ALU\_B & ALU\_CND $\leftarrow$ 11\\
+                    ALU\_S $\to$ counter & \\
+                    \hline
+                \end{tabular}
+            \end{center} 
+
+            % \subsection*{$S_{19}$ (Initial step of LM)} %LM by Varad
+            % \begin{center}
+            %     \begin{tabular}{|c|c|}
+            %         \hline
+            %         Data Transfer & Commands \\
+            %         \hline
+            %         (0000000000000000) $\to$ T2 & T2\_E\\
+            %         $T1_{11-9} \to$ RF\_A1 & T3\_E\\
+            %         RF\_D1 $\to$ T3 & \\     %only diff b/w this and SM's 1st step is D3 vs D2
+            %         \hline
+            %     \end{tabular}
+            % \end{center}    
+
+            \subsection*{$S_{19}$ (Looping step 1 of LM)} %LM by Varad --not sure
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Data Transfer & Commands \\
+                    \hline
+                    \textcolor{blue}{if(mod2(counter) == 0) then}\textcolor{blue}{\{} & if(mod2(counter) == 0) then T3\_E$\leftarrow$0 \\
+                    counter $\to$ 3 bit unsigned $\to$ RF\_A3 & else T3\_E$\leftarrow$1\\
+                    T3 $\to$ M\_add & if(mod2(counter) == 1) then T4\_E$\leftarrow$1\\
+                    M\_data $\to$ RF\_D3 & else T3\_E$\leftarrow$0\\
+                    T3 $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
+                    +1 $\to$ ALU\_B & ALU\_CND $\leftarrow$ 11\\
+                    \textcolor{red}{if($T1_{counter}$==1) then}\textcolor{red}{\{} & MDR\\
+                    ALU\_S $\to$ T4 \textcolor{red}{\}}\textcolor{blue}{\}} & \\ 
+                    \textcolor{blue}{else}\textcolor{blue}{\{} & \\
+                    counter $\to$ 3 bit unsigned $\to$ RF\_A3 & \\
+                    T4 $\to$ M\_add & \\
+                    M\_data $\to$ RF\_D3 & \\
+                    \textcolor{red}{if($T1_{counter}$==1) then}\textcolor{red}{\{} & \\
+                    ALU\_S $\to$ T3 \textcolor{red}{\}}\textcolor{blue}{\}} & \\
+                    \hline
+                \end{tabular}
+            \end{center} 
+            % \subsection*{$S_{21}$ (Looping step 2 of LM)} %LM by Varad
+            % \begin{center}
+            %     \begin{tabular}{|c|c|}
+            %         \hline
+            %         Data Transfer & Commands \\
+            %         \hline
+            %         T2 $\to$ ALU\_A & ALU\_J $\leftarrow$ 00\\
+            %         1 bit $\to$ ALU\_B & ALU\_CND $\leftarrow$ 11\\        %here 1 must be mentioned as a bit ig
+            %         ALU\_S $\to$ T2 & T2\_E\\
+            %         \hline
+            %     \end{tabular}
+            % \end{center} 
+            %Varad's instructions end here
+    \section*{Instructions with their State Diagrams and Control Signals}
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Instruction & State flow\\
+                \hline
+                ADD & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
+                ADC & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
+                ADZ & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
+                ADI & $S_0 \to S_1 \to S_5 \to S_3 \to S_4$\\
+                NDU & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
+                NDC & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
+                NDZ & $S_0 \to S_1 \to S_2 \to S_3 \to S_4$\\
+                LHI & $S_0 \to S_1 \to S_{11}$\\
+                LW & $S_0 \to S_1 \to S_2 \to S_{12} \to S_{14} \to S_{15}$\\
+                SW & $S_0 \to S_1 \to S_2 \to S_{12} \to S_{13}$\\
+                & \\
+                SM & $S_0 \to S_1 \to S_{16} \to S_{17} $  $ S_{18}$\\
+                & \\
+                LM & $S_0 \to S_1 \to S_{16} \to S_{19} $  $ S_{18}$\\
+                & \\
+                BEQ & $S_0 \to S_2 \to S_6 \to S_7$\\
+                JAL & $S_0 \to S_8 \to S_9$\\
+                JLR & $S_0 \to S_8 \to S_{10}$\\
+                \hline
+            \end{tabular}
+        \end{center} 
+        \begin{figure}[H]
+            \begin{center}
+                \includegraphics*[width=0.8\textwidth]{Screenshot_20221130-205600_Lens.jpg}
+                \caption{State Transition Diagram}
+            \end{center}
+        \end{figure}
+            
+
+
+
+\end{document}

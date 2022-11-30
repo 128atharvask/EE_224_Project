@@ -1,0 +1,15 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vcom -93 -work work {/home/shreyas/Desktop/Test/oneclock_project/temp_regs.vhd}
+vcom -93 -work work {/home/shreyas/Desktop/Test/oneclock_project/reg_file.vhd}
+vcom -93 -work work {/home/shreyas/Desktop/Test/oneclock_project/memory.vhd}
+vcom -93 -work work {/home/shreyas/Desktop/Test/oneclock_project/DUT.vhdl}
+vcom -93 -work work {/home/shreyas/Desktop/Test/oneclock_project/DataTypePackage.vhdl}
+vcom -93 -work work {/home/shreyas/Desktop/Test/oneclock_project/ALU.vhdl}
+vcom -93 -work work {/home/shreyas/Desktop/Test/oneclock_project/Main_proc.vhd}
+

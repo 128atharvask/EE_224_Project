@@ -1,0 +1,994 @@
+Analysis & Synthesis report for IITB_CPU
+Wed Nov 30 21:56:39 2022
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |Main_proc|sp
+  9. Registers Removed During Synthesis
+ 10. Removed Registers Triggering Further Register Optimizations
+ 11. General Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for User Entity Instance: ALU:ALU1
+ 14. Post-Synthesis Netlist Statistics for Top Partition
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Wed Nov 30 21:56:39 2022       ;
+; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                      ; IITB_CPU                                    ;
+; Top-level Entity Name              ; Main_proc                                   ;
+; Family                             ; MAX 10                                      ;
+; Total logic elements               ; 0                                           ;
+;     Total combinational functions  ; 0                                           ;
+;     Dedicated logic registers      ; 0                                           ;
+; Total registers                    ; 0                                           ;
+; Total pins                         ; 2                                           ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
+; UFM blocks                         ; 0                                           ;
+; ADC blocks                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; 10M25SCE144C8G     ;                    ;
+; Top-level entity name                                            ; Main_proc          ; IITB_CPU           ;
+; Family name                                                      ; MAX 10             ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                         ; Library ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------+---------+
+; temp_regs.vhd                    ; yes             ; User VHDL File  ; C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd        ;         ;
+; Main_proc.vhd                    ; yes             ; User VHDL File  ; C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd        ;         ;
+; DataTypePackage.vhdl             ; yes             ; User VHDL File  ; C:/Users/SCI/Desktop/EE_224_Project-master/Code/DataTypePackage.vhdl ;         ;
+; ALU.vhdl                         ; yes             ; User VHDL File  ; C:/Users/SCI/Desktop/EE_224_Project-master/Code/ALU.vhdl             ;         ;
+; memory.vhd                       ; yes             ; User VHDL File  ; C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd           ;         ;
+; reg_file.vhd                     ; yes             ; User VHDL File  ; C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd         ;         ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                         ;
++---------------------------------------------+-----------------------+
+; Resource                                    ; Usage                 ;
++---------------------------------------------+-----------------------+
+;                                             ;                       ;
+; Total combinational functions               ; 0                     ;
+; Logic element usage by number of LUT inputs ;                       ;
+;     -- 4 input functions                    ; 0                     ;
+;     -- 3 input functions                    ; 0                     ;
+;     -- <=2 input functions                  ; 0                     ;
+;                                             ;                       ;
+; Logic elements by mode                      ;                       ;
+;     -- normal mode                          ; 0                     ;
+;     -- arithmetic mode                      ; 0                     ;
+;                                             ;                       ;
+; Total registers                             ; 0                     ;
+;     -- Dedicated logic registers            ; 0                     ;
+;     -- I/O registers                        ; 0                     ;
+;                                             ;                       ;
+; I/O pins                                    ; 2                     ;
+;                                             ;                       ;
+; Embedded Multiplier 9-bit elements          ; 0                     ;
+;                                             ;                       ;
+; Maximum fan-out node                        ; stop_condition~output ;
+; Maximum fan-out                             ; 1                     ;
+; Total fan-out                               ; 2                     ;
+; Average fan-out                             ; 0.50                  ;
++---------------------------------------------+-----------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
+; |Main_proc                 ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 2    ; 0            ; 0          ; |Main_proc          ; Main_proc   ; work         ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |Main_proc|sp                                                                                                                                                                                                                                                                                                                                                                           ;
++---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+--------+---------+---------+--------+---------+---------+--------+---------+---------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+---------+
+; Name    ; sp.s19b ; sp.s19a ; sp.s18b ; sp.s18a ; sp.s17b ; sp.s17a ; sp.s16c ; sp.s16b ; sp.s16a ; sp.s15 ; sp.s14b ; sp.s14a ; sp.s13 ; sp.s12b ; sp.s12a ; sp.s11 ; sp.s10b ; sp.s10a ; sp.s9c ; sp.s9b ; sp.s9a ; sp.s8b ; sp.s8a ; sp.s7c ; sp.s7b ; sp.s7a ; sp.s6b ; sp.s6a ; sp.s5b ; sp.s5a ; sp.s4 ; sp.s3b ; sp.s3a ; sp.s2b ; sp.s2a ; sp.s1b ; sp.s1a ; sp.s0c ; sp.s0b ; sp.s0a ; sp.init ;
++---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+--------+---------+---------+--------+---------+---------+--------+---------+---------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+---------+
+; sp.init ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0       ;
+; sp.s0a  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1      ; 1       ;
+; sp.s0b  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1      ; 0      ; 1       ;
+; sp.s0c  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1      ; 0      ; 0      ; 1       ;
+; sp.s1a  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 1      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s1b  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 1      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s2a  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 1      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s2b  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 1      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s3a  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 1      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s3b  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 1      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s4   ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s5a  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s5b  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s6a  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s6b  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s7a  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s7b  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s7c  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 1      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s8a  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 1      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s8b  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 1      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s9a  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 1      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s9b  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 1      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s9c  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 1      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s10a ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 1       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s10b ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 1       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s11  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 1      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s12a ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 1       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s12b ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 1       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s13  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 1      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s14a ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 1       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s14b ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 1       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s15  ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s16a ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s16b ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s16c ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s17a ; 0       ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s17b ; 0       ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s18a ; 0       ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s18b ; 0       ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s19a ; 0       ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
+; sp.s19b ; 1       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0       ; 0       ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0     ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 0      ; 1       ;
++---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+--------+---------+---------+--------+---------+---------+--------+---------+---------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-------+--------+--------+--------+--------+--------+--------+--------+--------+--------+---------+
+
+
++----------------------------------------------------------------------+
+; Registers Removed During Synthesis                                   ;
++-----------------------------------------+----------------------------+
+; Register name                           ; Reason for Removal         ;
++-----------------------------------------+----------------------------+
+; ALU:ALU1|\clock_proc:sz_int             ; Merged with ALU:ALU1|Z_int ;
+; sp.s16c                                 ; Lost fanout                ;
+; ALU:ALU1|ALU_Z                          ; Lost fanout                ;
+; ALU:ALU1|ALU_C                          ; Lost fanout                ;
+; reg_file:RF1|R0[0]                      ; Lost fanout                ;
+; reg_file:RF1|R4[0]                      ; Lost fanout                ;
+; reg_file:RF1|R2[0]                      ; Lost fanout                ;
+; reg_file:RF1|R6[0]                      ; Lost fanout                ;
+; reg_file:RF1|R1[0]                      ; Lost fanout                ;
+; reg_file:RF1|R5[0]                      ; Lost fanout                ;
+; reg_file:RF1|R3[0]                      ; Lost fanout                ;
+; reg_file:RF1|R7[0]                      ; Lost fanout                ;
+; reg_file:RF1|R0[1]                      ; Lost fanout                ;
+; reg_file:RF1|R4[1]                      ; Lost fanout                ;
+; reg_file:RF1|R2[1]                      ; Lost fanout                ;
+; reg_file:RF1|R6[1]                      ; Lost fanout                ;
+; reg_file:RF1|R1[1]                      ; Lost fanout                ;
+; reg_file:RF1|R5[1]                      ; Lost fanout                ;
+; reg_file:RF1|R3[1]                      ; Lost fanout                ;
+; reg_file:RF1|R7[1]                      ; Lost fanout                ;
+; reg_file:RF1|R0[2]                      ; Lost fanout                ;
+; reg_file:RF1|R4[2]                      ; Lost fanout                ;
+; reg_file:RF1|R2[2]                      ; Lost fanout                ;
+; reg_file:RF1|R6[2]                      ; Lost fanout                ;
+; reg_file:RF1|R1[2]                      ; Lost fanout                ;
+; reg_file:RF1|R5[2]                      ; Lost fanout                ;
+; reg_file:RF1|R3[2]                      ; Lost fanout                ;
+; reg_file:RF1|R7[2]                      ; Lost fanout                ;
+; reg_file:RF1|R0[3]                      ; Lost fanout                ;
+; reg_file:RF1|R4[3]                      ; Lost fanout                ;
+; reg_file:RF1|R2[3]                      ; Lost fanout                ;
+; reg_file:RF1|R6[3]                      ; Lost fanout                ;
+; reg_file:RF1|R1[3]                      ; Lost fanout                ;
+; reg_file:RF1|R5[3]                      ; Lost fanout                ;
+; reg_file:RF1|R3[3]                      ; Lost fanout                ;
+; reg_file:RF1|R7[3]                      ; Lost fanout                ;
+; reg_file:RF1|R0[4]                      ; Lost fanout                ;
+; reg_file:RF1|R4[4]                      ; Lost fanout                ;
+; reg_file:RF1|R2[4]                      ; Lost fanout                ;
+; reg_file:RF1|R6[4]                      ; Lost fanout                ;
+; reg_file:RF1|R1[4]                      ; Lost fanout                ;
+; reg_file:RF1|R5[4]                      ; Lost fanout                ;
+; reg_file:RF1|R3[4]                      ; Lost fanout                ;
+; reg_file:RF1|R7[4]                      ; Lost fanout                ;
+; reg_file:RF1|R0[5]                      ; Lost fanout                ;
+; reg_file:RF1|R4[5]                      ; Lost fanout                ;
+; reg_file:RF1|R2[5]                      ; Lost fanout                ;
+; reg_file:RF1|R6[5]                      ; Lost fanout                ;
+; reg_file:RF1|R1[5]                      ; Lost fanout                ;
+; reg_file:RF1|R5[5]                      ; Lost fanout                ;
+; reg_file:RF1|R3[5]                      ; Lost fanout                ;
+; reg_file:RF1|R7[5]                      ; Lost fanout                ;
+; reg_file:RF1|R0[6]                      ; Lost fanout                ;
+; reg_file:RF1|R4[6]                      ; Lost fanout                ;
+; reg_file:RF1|R2[6]                      ; Lost fanout                ;
+; reg_file:RF1|R6[6]                      ; Lost fanout                ;
+; reg_file:RF1|R1[6]                      ; Lost fanout                ;
+; reg_file:RF1|R5[6]                      ; Lost fanout                ;
+; reg_file:RF1|R3[6]                      ; Lost fanout                ;
+; reg_file:RF1|R7[6]                      ; Lost fanout                ;
+; reg_file:RF1|R0[7]                      ; Lost fanout                ;
+; reg_file:RF1|R4[7]                      ; Lost fanout                ;
+; reg_file:RF1|R2[7]                      ; Lost fanout                ;
+; reg_file:RF1|R6[7]                      ; Lost fanout                ;
+; reg_file:RF1|R1[7]                      ; Lost fanout                ;
+; reg_file:RF1|R5[7]                      ; Lost fanout                ;
+; reg_file:RF1|R3[7]                      ; Lost fanout                ;
+; reg_file:RF1|R7[7]                      ; Lost fanout                ;
+; reg_file:RF1|R0[8]                      ; Lost fanout                ;
+; reg_file:RF1|R4[8]                      ; Lost fanout                ;
+; reg_file:RF1|R2[8]                      ; Lost fanout                ;
+; reg_file:RF1|R6[8]                      ; Lost fanout                ;
+; reg_file:RF1|R1[8]                      ; Lost fanout                ;
+; reg_file:RF1|R5[8]                      ; Lost fanout                ;
+; reg_file:RF1|R3[8]                      ; Lost fanout                ;
+; reg_file:RF1|R7[8]                      ; Lost fanout                ;
+; reg_file:RF1|R0[9]                      ; Lost fanout                ;
+; reg_file:RF1|R4[9]                      ; Lost fanout                ;
+; reg_file:RF1|R2[9]                      ; Lost fanout                ;
+; reg_file:RF1|R6[9]                      ; Lost fanout                ;
+; reg_file:RF1|R1[9]                      ; Lost fanout                ;
+; reg_file:RF1|R5[9]                      ; Lost fanout                ;
+; reg_file:RF1|R3[9]                      ; Lost fanout                ;
+; reg_file:RF1|R7[9]                      ; Lost fanout                ;
+; reg_file:RF1|R0[10]                     ; Lost fanout                ;
+; reg_file:RF1|R4[10]                     ; Lost fanout                ;
+; reg_file:RF1|R2[10]                     ; Lost fanout                ;
+; reg_file:RF1|R6[10]                     ; Lost fanout                ;
+; reg_file:RF1|R1[10]                     ; Lost fanout                ;
+; reg_file:RF1|R5[10]                     ; Lost fanout                ;
+; reg_file:RF1|R3[10]                     ; Lost fanout                ;
+; reg_file:RF1|R7[10]                     ; Lost fanout                ;
+; reg_file:RF1|R0[11]                     ; Lost fanout                ;
+; reg_file:RF1|R4[11]                     ; Lost fanout                ;
+; reg_file:RF1|R2[11]                     ; Lost fanout                ;
+; reg_file:RF1|R6[11]                     ; Lost fanout                ;
+; reg_file:RF1|R1[11]                     ; Lost fanout                ;
+; reg_file:RF1|R5[11]                     ; Lost fanout                ;
+; reg_file:RF1|R3[11]                     ; Lost fanout                ;
+; reg_file:RF1|R7[11]                     ; Lost fanout                ;
+; reg_file:RF1|R0[12]                     ; Lost fanout                ;
+; reg_file:RF1|R4[12]                     ; Lost fanout                ;
+; reg_file:RF1|R2[12]                     ; Lost fanout                ;
+; reg_file:RF1|R6[12]                     ; Lost fanout                ;
+; reg_file:RF1|R1[12]                     ; Lost fanout                ;
+; reg_file:RF1|R5[12]                     ; Lost fanout                ;
+; reg_file:RF1|R3[12]                     ; Lost fanout                ;
+; reg_file:RF1|R7[12]                     ; Lost fanout                ;
+; reg_file:RF1|R0[13]                     ; Lost fanout                ;
+; reg_file:RF1|R4[13]                     ; Lost fanout                ;
+; reg_file:RF1|R2[13]                     ; Lost fanout                ;
+; reg_file:RF1|R6[13]                     ; Lost fanout                ;
+; reg_file:RF1|R1[13]                     ; Lost fanout                ;
+; reg_file:RF1|R5[13]                     ; Lost fanout                ;
+; reg_file:RF1|R3[13]                     ; Lost fanout                ;
+; reg_file:RF1|R7[13]                     ; Lost fanout                ;
+; reg_file:RF1|R0[14]                     ; Lost fanout                ;
+; reg_file:RF1|R4[14]                     ; Lost fanout                ;
+; reg_file:RF1|R2[14]                     ; Lost fanout                ;
+; reg_file:RF1|R6[14]                     ; Lost fanout                ;
+; reg_file:RF1|R1[14]                     ; Lost fanout                ;
+; reg_file:RF1|R5[14]                     ; Lost fanout                ;
+; reg_file:RF1|R3[14]                     ; Lost fanout                ;
+; reg_file:RF1|R7[14]                     ; Lost fanout                ;
+; reg_file:RF1|R0[15]                     ; Lost fanout                ;
+; reg_file:RF1|R4[15]                     ; Lost fanout                ;
+; reg_file:RF1|R2[15]                     ; Lost fanout                ;
+; reg_file:RF1|R6[15]                     ; Lost fanout                ;
+; reg_file:RF1|R1[15]                     ; Lost fanout                ;
+; reg_file:RF1|R5[15]                     ; Lost fanout                ;
+; reg_file:RF1|R3[15]                     ; Lost fanout                ;
+; reg_file:RF1|R7[15]                     ; Lost fanout                ;
+; ALU:ALU1|ALU_S[0,3]                     ; Lost fanout                ;
+; ALU:ALU1|Z_int                          ; Lost fanout                ;
+; ALU:ALU1|ALU_S[1,2,4..15]               ; Lost fanout                ;
+; sp.init                                 ; Lost fanout                ;
+; sp.s0a                                  ; Lost fanout                ;
+; sp.s0b                                  ; Lost fanout                ;
+; sp.s0c                                  ; Lost fanout                ;
+; sp.s1a                                  ; Lost fanout                ;
+; sp.s1b                                  ; Lost fanout                ;
+; sp.s2a                                  ; Lost fanout                ;
+; sp.s2b                                  ; Lost fanout                ;
+; sp.s3a                                  ; Lost fanout                ;
+; sp.s3b                                  ; Lost fanout                ;
+; sp.s4                                   ; Lost fanout                ;
+; sp.s5a                                  ; Lost fanout                ;
+; sp.s5b                                  ; Lost fanout                ;
+; sp.s6a                                  ; Lost fanout                ;
+; sp.s6b                                  ; Lost fanout                ;
+; sp.s7a                                  ; Lost fanout                ;
+; sp.s7b                                  ; Lost fanout                ;
+; sp.s7c                                  ; Lost fanout                ;
+; sp.s8a                                  ; Lost fanout                ;
+; sp.s8b                                  ; Lost fanout                ;
+; sp.s9a                                  ; Lost fanout                ;
+; sp.s9b                                  ; Lost fanout                ;
+; sp.s9c                                  ; Lost fanout                ;
+; sp.s10a                                 ; Lost fanout                ;
+; sp.s10b                                 ; Lost fanout                ;
+; sp.s11                                  ; Lost fanout                ;
+; sp.s12a                                 ; Lost fanout                ;
+; sp.s12b                                 ; Lost fanout                ;
+; sp.s13                                  ; Lost fanout                ;
+; sp.s14a                                 ; Lost fanout                ;
+; sp.s14b                                 ; Lost fanout                ;
+; sp.s15                                  ; Lost fanout                ;
+; sp.s16a                                 ; Lost fanout                ;
+; sp.s16b                                 ; Lost fanout                ;
+; sp.s17a                                 ; Lost fanout                ;
+; sp.s17b                                 ; Lost fanout                ;
+; sp.s18a                                 ; Lost fanout                ;
+; sp.s18b                                 ; Lost fanout                ;
+; sp.s19a                                 ; Lost fanout                ;
+; sp.s19b                                 ; Lost fanout                ;
+; Total Number of Removed Registers = 189 ;                            ;
++-----------------------------------------+----------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                  ;
++--------------------+--------------------+----------------------------------------------------------------------------------------------------+
+; Register name      ; Reason for Removal ; Registers Removed due to This Register                                                             ;
++--------------------+--------------------+----------------------------------------------------------------------------------------------------+
+; reg_file:RF1|R0[0] ; Lost Fanouts       ; ALU:ALU1|ALU_S[0], sp.s0c, sp.s1b, sp.s4, sp.s7c, sp.s8b, sp.s9c, sp.s10b, sp.s11, sp.s15, sp.s19b ;
+; ALU:ALU1|ALU_Z     ; Lost Fanouts       ; sp.init, sp.s1a, sp.s3a, sp.s6a, sp.s7b, sp.s9b                                                    ;
+; reg_file:RF1|R0[1] ; Lost Fanouts       ; ALU:ALU1|ALU_S[1], sp.s2b, sp.s3b, sp.s5b, sp.s6b, sp.s14b                                         ;
+; reg_file:RF1|R0[2] ; Lost Fanouts       ; ALU:ALU1|ALU_S[2]                                                                                  ;
+; reg_file:RF1|R0[3] ; Lost Fanouts       ; ALU:ALU1|ALU_S[3]                                                                                  ;
+; reg_file:RF1|R0[4] ; Lost Fanouts       ; ALU:ALU1|ALU_S[4]                                                                                  ;
+; reg_file:RF1|R0[5] ; Lost Fanouts       ; ALU:ALU1|ALU_S[5]                                                                                  ;
+; reg_file:RF1|R0[6] ; Lost Fanouts       ; ALU:ALU1|ALU_S[6]                                                                                  ;
++--------------------+--------------------+----------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 0     ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------+
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |Main_proc|ALU:ALU1|ALU_S[8]   ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |Main_proc|sn.s8a              ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Main_proc|reg_file:RF1|D1[14] ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |Main_proc|Selector88          ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |Main_proc|Selector110         ;
+; 4:1                ; 15 bits   ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |Main_proc|Selector55          ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |Main_proc|Selector144         ;
+; 5:1                ; 10 bits   ; 30 LEs        ; 20 LEs               ; 10 LEs                 ; No         ; |Main_proc|Selector97          ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; No         ; |Main_proc|Selector64          ;
+; 5:1                ; 9 bits    ; 27 LEs        ; 36 LEs               ; -9 LEs                 ; No         ; |Main_proc|Selector76          ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 9 LEs                ; 0 LEs                  ; No         ; |Main_proc|Selector83          ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 10 LEs               ; 5 LEs                  ; No         ; |Main_proc|Selector90          ;
+; 10:1               ; 16 bits   ; 96 LEs        ; 96 LEs               ; 0 LEs                  ; No         ; |Main_proc|Selector39          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------+
+
+
++-------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ALU:ALU1 ;
++----------------+-------+------------------------------+
+; Parameter Name ; Value ; Type                         ;
++----------------+-------+------------------------------+
+; operand_width  ; 16    ; Signed Integer               ;
++----------------+-------+------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 2                           ;
+; cycloneiii_lcell_comb ; 1                           ;
+;     normal            ; 1                           ;
+;         0 data inputs ; 1                           ;
+;                       ;                             ;
+; Max LUT depth         ; 0.00                        ;
+; Average LUT depth     ; 0.00                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Processing started: Wed Nov 30 21:56:32 2022
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off IITB_CPU -c IITB_CPU
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file temp_regs.vhd
+    Info (12022): Found design unit 1: temp_regs-arch File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 12
+    Info (12023): Found entity 1: temp_regs File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file main_proc.vhd
+    Info (12022): Found design unit 1: Main_proc-controller File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 11
+    Info (12023): Found entity 1: Main_proc File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 6
+Info (12021): Found 1 design units, including 0 entities, in source file datatypepackage.vhdl
+    Info (12022): Found design unit 1: DataTypePackage File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/DataTypePackage.vhdl Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file alu.vhdl
+    Info (12022): Found design unit 1: ALU-behavioural File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/ALU.vhdl Line: 26
+    Info (12023): Found entity 1: ALU File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/ALU.vhdl Line: 9
+Info (12021): Found 2 design units, including 1 entities, in source file memory.vhd
+    Info (12022): Found design unit 1: memory-memory_arch File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 16
+    Info (12023): Found entity 1: memory File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file reg_file.vhd
+    Info (12022): Found design unit 1: reg_file-rf File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 19
+    Info (12023): Found entity 1: reg_file File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 5
+Info (12127): Elaborating entity "Main_proc" for the top level hierarchy
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(183): signal "FC" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 183
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(190): signal "FZ" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 190
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(306): signal "counter" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 306
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(355): signal "D1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 355
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(366): signal "M_data_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 366
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(378): signal "D1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 378
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(393): signal "ALU_S" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 393
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(404): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 404
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(405): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 405
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(416): signal "D1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 416
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(417): signal "D2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 417
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(428): signal "T2_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 428
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(429): signal "T3_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 429
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(430): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 430
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(431): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 431
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(442): signal "ALU_S" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 442
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(443): signal "ALU_C" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 443
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(444): signal "ALU_Z" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 444
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(455): signal "icode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 455
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(455): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 455
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(456): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 456
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(459): signal "T2_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 459
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(470): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 470
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(481): signal "D1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 481
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(483): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 483
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(484): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 484
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(496): signal "T2_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 496
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(497): signal "T3_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 497
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(510): signal "Z_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 510
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(532): signal "D1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 532
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(534): signal "T2_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 534
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(535): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 535
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(536): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 536
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(552): signal "ALU_S" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 552
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(574): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 574
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(575): signal "D1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 575
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(597): signal "D1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 597
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(598): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 598
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(599): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 599
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(614): signal "ALU_S" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 614
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(625): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 625
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(637): signal "D1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 637
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(648): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 648
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(649): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 649
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(660): signal "T3_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 660
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(662): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 662
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(663): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 663
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(678): signal "ALU_S" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 678
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(689): signal "T3_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 689
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(690): signal "T2_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 690
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(701): signal "T3_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 701
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(712): signal "M_data_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 712
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(723): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 723
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(724): signal "T2_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 724
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(736): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 736
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(737): signal "T2_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 737
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(748): signal "D2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 748
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(749): signal "temp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 749
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(760): signal "T3_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 760
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(765): signal "T2_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 765
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(766): signal "T3_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 766
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(772): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 772
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(772): signal "counter" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 772
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(774): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 774
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(774): signal "counter" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 774
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(777): signal "D1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 777
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(778): signal "ALU_S" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 778
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(789): signal "T2_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 789
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(803): signal "ALU_S" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 803
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(804): signal "T2_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 804
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(805): signal "temp" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 805
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(816): signal "T3_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 816
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(817): signal "T3_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 817
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(826): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 826
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(826): signal "counter" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 826
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(827): signal "T1_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 827
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(827): signal "counter" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 827
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(831): signal "T2_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 831
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(832): signal "M_data_out" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 832
+Warning (10492): VHDL Process Statement warning at Main_proc.vhd(834): signal "ALU_S" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 834
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "A1", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "M_add", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "T1_in", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "ALU_A", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "ALU_B", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "ALU_J", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "ALU_CND", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "A3", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "D3", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "A2", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "T2_in", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "T3_in", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "FC", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "FZ", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "M_data_in", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "temp", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(331): inferring latch(es) for signal or variable "counter", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at Main_proc.vhd(850): inferring latch(es) for signal or variable "stop_condition", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 850
+Info (10041): Inferred latch for "stop_condition" at Main_proc.vhd(850) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 850
+Info (10041): Inferred latch for "counter[0]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[1]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[2]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[3]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[4]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[5]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[6]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[7]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[8]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[9]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[10]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[11]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[12]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[13]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[14]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[15]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[16]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[17]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[18]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[19]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[20]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[21]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[22]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[23]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[24]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[25]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[26]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[27]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[28]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[29]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[30]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "counter[31]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "temp[0]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "temp[1]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "temp[2]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "temp[3]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[0]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[1]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[2]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[3]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[4]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[5]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[6]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[7]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[8]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[9]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[10]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[11]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[12]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[13]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[14]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_data_in[15]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "FZ" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "FC" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[0]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[1]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[2]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[3]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[4]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[5]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[6]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[7]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[8]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[9]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[10]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[11]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[12]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[13]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[14]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T3_in[15]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[0]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[1]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[2]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[3]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[4]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[5]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[6]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[7]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[8]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[9]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[10]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[11]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[12]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[13]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[14]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T2_in[15]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "A2[0]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "A2[1]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "A2[2]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[0]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[1]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[2]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[3]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[4]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[5]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[6]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[7]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[8]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[9]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[10]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[11]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[12]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[13]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[14]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "D3[15]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "A3[0]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "A3[1]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "A3[2]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_CND[0]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_CND[1]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_J[0]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_J[1]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[0]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[1]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[2]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[3]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[4]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[5]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[6]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[7]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[8]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[9]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[10]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[11]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[12]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[13]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[14]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_B[15]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[0]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[1]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[2]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[3]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[4]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[5]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[6]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[7]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[8]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[9]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[10]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[11]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[12]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[13]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[14]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "ALU_A[15]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[0]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[1]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[2]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[3]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[4]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[5]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[6]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[7]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[8]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[9]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[10]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[11]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[12]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[13]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[14]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "T1_in[15]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[0]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[1]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[2]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[3]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[4]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[5]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[6]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[7]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[8]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[9]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[10]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[11]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[12]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[13]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[14]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "M_add[15]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "A1[0]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "A1[1]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (10041): Inferred latch for "A1[2]" at Main_proc.vhd(331) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 331
+Info (12128): Elaborating entity "memory" for hierarchy "memory:M1" File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 96
+Warning (10492): VHDL Process Statement warning at memory.vhd(110): signal "MDR" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 110
+Warning (10492): VHDL Process Statement warning at memory.vhd(111): signal "data" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 111
+Warning (10492): VHDL Process Statement warning at memory.vhd(111): signal "M_add" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 111
+Warning (10631): VHDL Process Statement warning at memory.vhd(108): inferring latch(es) for signal or variable "M_data_out", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[0]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[1]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[2]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[3]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[4]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[5]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[6]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[7]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[8]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[9]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[10]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[11]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[12]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[13]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[14]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (10041): Inferred latch for "M_data_out[15]" at memory.vhd(108) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 108
+Info (12128): Elaborating entity "ALU" for hierarchy "ALU:ALU1" File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 97
+Info (12128): Elaborating entity "reg_file" for hierarchy "reg_file:RF1" File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 98
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(71): signal "R0" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 71
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(74): signal "R1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 74
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(77): signal "R2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 77
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(80): signal "R3" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 80
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(83): signal "R4" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 83
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(86): signal "R5" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 86
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(89): signal "R6" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 89
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(92): signal "R7" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 92
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(96): signal "R0" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 96
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(99): signal "R1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 99
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(102): signal "R2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 102
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(105): signal "R3" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 105
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(108): signal "R4" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 108
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(111): signal "R5" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 111
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(114): signal "R6" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 114
+Warning (10492): VHDL Process Statement warning at reg_file.vhd(117): signal "R7" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 117
+Warning (10631): VHDL Process Statement warning at reg_file.vhd(68): inferring latch(es) for signal or variable "D1", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (10631): VHDL Process Statement warning at reg_file.vhd(68): inferring latch(es) for signal or variable "D2", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[0]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[1]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[2]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[3]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[4]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[5]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[6]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[7]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[8]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[9]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[10]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[11]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[12]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[13]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[14]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D2[15]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[0]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[1]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[2]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[3]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[4]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[5]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[6]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[7]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[8]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[9]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[10]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[11]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[12]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[13]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[14]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (10041): Inferred latch for "D1[15]" at reg_file.vhd(68) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (12128): Elaborating entity "temp_regs" for hierarchy "temp_regs:T1" File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 99
+Warning (10631): VHDL Process Statement warning at temp_regs.vhd(17): inferring latch(es) for signal or variable "data", which holds its previous value in one or more paths through the process File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[0]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[1]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[2]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[3]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[4]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[5]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[6]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[7]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[8]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[9]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[10]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[11]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[12]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[13]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[14]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Info (10041): Inferred latch for "data[15]" at temp_regs.vhd(17) File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd Line: 17
+Warning (14026): LATCH primitive "reg_file:RF1|D1[0]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D1[1]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D1[2]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D1[3]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D1[4]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D1[5]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D1[6]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D1[7]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D1[8]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D1[9]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D1[10]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D1[11]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D1[12]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D1[13]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D1[14]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D1[15]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[0]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[1]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[2]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[3]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[4]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[5]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[6]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[7]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[8]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[9]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[10]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[11]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[12]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[13]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[14]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Warning (14026): LATCH primitive "reg_file:RF1|D2[15]" is permanently enabled File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd Line: 68
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276013): RAM logic "memory:M1|data" is uninferred because MIF is not supported for the selected family File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd Line: 22
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "stop_condition" is stuck at VCC File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 8
+Info (17049): 188 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "clock" File: C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd Line: 7
+Info (21057): Implemented 2 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 1 input pins
+    Info (21059): Implemented 1 output pins
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 158 warnings
+    Info: Peak virtual memory: 4786 megabytes
+    Info: Processing ended: Wed Nov 30 21:56:39 2022
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:08
+
+

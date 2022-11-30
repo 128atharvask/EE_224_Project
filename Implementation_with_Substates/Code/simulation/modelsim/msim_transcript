@@ -1,0 +1,134 @@
+# Reading pref.tcl
+# do IITB_CPU_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 21:56:58 on Nov 30,2022
+# vcom -reportprogress 300 -93 -work work C:/Users/SCI/Desktop/EE_224_Project-master/Code/temp_regs.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity temp_regs
+# -- Compiling architecture arch of temp_regs
+# End time: 21:56:59 on Nov 30,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/SCI/Desktop/EE_224_Project-master/Code/DataTypePackage.vhdl}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 21:56:59 on Nov 30,2022
+# vcom -reportprogress 300 -93 -work work C:/Users/SCI/Desktop/EE_224_Project-master/Code/DataTypePackage.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling package DataTypePackage
+# End time: 21:56:59 on Nov 30,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 21:56:59 on Nov 30,2022
+# vcom -reportprogress 300 -93 -work work C:/Users/SCI/Desktop/EE_224_Project-master/Code/Main_proc.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package DataTypePackage
+# -- Loading package NUMERIC_STD
+# -- Compiling entity Main_proc
+# -- Compiling architecture controller of Main_proc
+# End time: 21:56:59 on Nov 30,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/SCI/Desktop/EE_224_Project-master/Code/ALU.vhdl}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 21:56:59 on Nov 30,2022
+# vcom -reportprogress 300 -93 -work work C:/Users/SCI/Desktop/EE_224_Project-master/Code/ALU.vhdl 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package DataTypePackage
+# -- Compiling entity ALU
+# -- Compiling architecture behavioural of ALU
+# End time: 21:56:59 on Nov 30,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 21:56:59 on Nov 30,2022
+# vcom -reportprogress 300 -93 -work work C:/Users/SCI/Desktop/EE_224_Project-master/Code/memory.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package DataTypePackage
+# -- Compiling entity memory
+# -- Compiling architecture memory_arch of memory
+# End time: 21:56:59 on Nov 30,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 21:56:59 on Nov 30,2022
+# vcom -reportprogress 300 -93 -work work C:/Users/SCI/Desktop/EE_224_Project-master/Code/reg_file.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package DataTypePackage
+# -- Compiling entity reg_file
+# -- Compiling architecture rf of reg_file
+# End time: 21:56:59 on Nov 30,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vsim work.main_proc(controller)
+# vsim work.main_proc(controller) 
+# Start time: 21:57:12 on Nov 30,2022
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.datatypepackage
+# Loading ieee.numeric_std(body)
+# Loading work.main_proc(controller)
+# Loading work.memory(memory_arch)
+# Loading work.alu(behavioural)
+# Loading work.reg_file(rf)
+# Loading work.temp_regs(arch)
+force -freeze sim:/main_proc/clock 1 0, 0 {10000 ps} -r 20000
+add wave -position end  sim:/main_proc/A1
+add wave -position end  sim:/main_proc/A2
+add wave -position end  sim:/main_proc/A3
+add wave -position end  sim:/main_proc/D1
+add wave -position end  sim:/main_proc/D2
+add wave -position end  sim:/main_proc/D3
+add wave -position end  sim:/main_proc/M_add
+add wave -position end  sim:/main_proc/M_data_in
+add wave -position end  sim:/main_proc/M_data_out
+add wave -position end  sim:/main_proc/T1_in
+add wave -position end  sim:/main_proc/T1_out
+add wave -position end  sim:/main_proc/T2_in
+add wave -position end  sim:/main_proc/T2_out
+add wave -position end  sim:/main_proc/T3_in
+add wave -position end  sim:/main_proc/T3_out
+add wave -position end  sim:/main_proc/clock
+add wave -position end  sim:/main_proc/sp
+add wave -position end  sim:/main_proc/RF1/R0
+add wave -position end  sim:/main_proc/RF1/R1
+add wave -position end  sim:/main_proc/RF1/R2
+add wave -position end  sim:/main_proc/RF1/R3
+add wave -position end  sim:/main_proc/RF1/R4
+add wave -position end  sim:/main_proc/RF1/R5
+add wave -position end  sim:/main_proc/RF1/R6
+add wave -position end  sim:/main_proc/RF1/R7
+add wave -position end  sim:/main_proc/M1/data
+when {stop_condition} {
+  stop
+  echo "All instructions executed successfully."
+}
+run -all
+# All instructions executed successfully.
+# Simulation stop requested.
+# End time: 22:04:01 on Nov 30,2022, Elapsed time: 0:06:49
+# Errors: 0, Warnings: 0
